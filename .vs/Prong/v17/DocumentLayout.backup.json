@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\PC\\godot\\prong\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D87339D6-9A03-41FD-A4C1-E16993A549F3}|Prong.csproj|c:\\users\\pc\\godot\\prong\\src\\prong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87339D6-9A03-41FD-A4C1-E16993A549F3}|Prong.csproj|solutionrelative:src\\prong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Prong.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\godot\\prong\\Src\\Prong.cs",
+              "RelativeDocumentMoniker": "Src\\Prong.cs",
+              "ToolTip": "C:\\Users\\PC\\godot\\prong\\Src\\Prong.cs",
+              "RelativeToolTip": "Src\\Prong.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T19:41:10.608Z",
+              "EditorCaption": ""
             }
           ]
         }

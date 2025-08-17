@@ -1,4 +1,5 @@
 using Godot;
+using Prong.Src;
 
 namespace Prong;
 
@@ -21,10 +22,15 @@ public partial class Prong : RigidBody2D
         if (Input.IsActionPressed("Up"))
         {
             velocity.Y -= speed;
+            GameData.incrementUp();
         }
         if (Input.IsActionPressed("Down"))
         {
             velocity.Y += speed;
+        }
+        if (Input.IsActionJustReleased("Space"))
+        {
+            GD.Print($"Pressed up {GameData.ups} time");
         }
 
         LinearVelocity = velocity;
