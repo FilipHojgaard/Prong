@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{D87339D6-9A03-41FD-A4C1-E16993A549F3}|Prong.csproj|solutionrelative:src\\prong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D87339D6-9A03-41FD-A4C1-E16993A549F3}|Prong.csproj|c:\\users\\pc\\godot\\prong\\src\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87339D6-9A03-41FD-A4C1-E16993A549F3}|Prong.csproj|solutionrelative:src\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D87339D6-9A03-41FD-A4C1-E16993A549F3}|Prong.csproj|c:\\users\\pc\\godot\\prong\\src\\gamedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D87339D6-9A03-41FD-A4C1-E16993A549F3}|Prong.csproj|solutionrelative:src\\gamedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,6 +31,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\godot\\prong\\Src\\GameManager.cs",
+              "RelativeDocumentMoniker": "Src\\GameManager.cs",
+              "ToolTip": "C:\\Users\\PC\\godot\\prong\\Src\\GameManager.cs",
+              "RelativeToolTip": "Src\\GameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T19:33:04.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "GameData.cs",
               "DocumentMoniker": "C:\\Users\\PC\\godot\\prong\\Src\\GameData.cs",
               "RelativeDocumentMoniker": "Src\\GameData.cs",
@@ -45,7 +62,7 @@
               "RelativeDocumentMoniker": "Src\\Prong.cs",
               "ToolTip": "C:\\Users\\PC\\godot\\prong\\Src\\Prong.cs",
               "RelativeToolTip": "Src\\Prong.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-15T19:41:10.608Z",
               "EditorCaption": ""

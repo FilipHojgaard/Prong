@@ -30,7 +30,7 @@ public partial class Prong : RigidBody2D
         }
         if (Input.IsActionJustReleased("Space"))
         {
-            GD.Print($"Pressed up {GameData.ups} time");
+            GD.Print($"Pressed up {GameManager.data} time");
         }
 
         LinearVelocity = velocity;
