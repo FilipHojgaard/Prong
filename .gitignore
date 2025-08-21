@@ -15,3 +15,20 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Visual Studio / C# ignores (ADD THESE)
+.vs/
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+bin/
+obj/
+.vscode/
+
+# GitHub Copilot (ADD THIS)
+CopilotIndices/
+
+# OS specific (ADD THESE)
+.DS_Store
+Thumbs.db
