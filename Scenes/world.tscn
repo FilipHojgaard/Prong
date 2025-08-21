@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://baqjofqhljr20"]
+[gd_scene load_steps=3 format=3 uid="uid://baqjofqhljr20"]
 
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_a02cp"]
+[ext_resource type="PackedScene" uid="uid://botop038mpbg7" path="res://Scenes/ball.tscn" id="2_go701"]
 
 [node name="World" type="Node2D"]
 position = Vector2(0, -1)
@@ -12,3 +13,7 @@ scale = Vector2(3.08762, -0.380489)
 
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
 position = Vector2(-909, -1)
+
+[node name="Ball" parent="." instance=ExtResource("2_go701")]
+position = Vector2(-231, -61)
+Speed = 200.0
