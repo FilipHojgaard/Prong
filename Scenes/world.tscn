@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://botop038mpbg7" path="res://Scenes/ball.tscn" id="2_go701"]
 
 [node name="World" type="Node2D"]
-position = Vector2(0, -1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-5.82077e-11, 1)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace Prong.Src;
@@ -9,6 +10,8 @@ public partial class GameManager : Node
     public override void _Ready()
     {
         Instance = this;
+
+        CallDeferred(nameof(ConnectToPlayerSignal));
     }
 
     public override void _Process(double delta)
@@ -17,6 +20,21 @@ public partial class GameManager : Node
         {
             SpawnBall();
         }
+    }
+
+    private void ConnectToPlayerSignal()
+    {
+        var player = GetTree().CurrentScene.GetNodeOrNull<Prong>("Player");
+
+        if (player != null)
+        {
+            player.HighPosition += OnPlayerHighPosition;
+        }
+    }
+
+    private void OnPlayerHighPosition()
+    {
+        GD.Print("listened to event from the Gamemanager");
     }
 
     private void SpawnBall()
