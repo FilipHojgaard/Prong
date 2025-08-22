@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(24, 3.09149)
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="StaticBody2D"]
 rotation = 1.57079
 scale = Vector2(3.26043, 3.23469)
 script = ExtResource("1_cvnsp")

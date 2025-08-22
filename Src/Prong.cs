@@ -3,7 +3,7 @@ using Prong.Src;
 
 namespace Prong;
 
-public partial class Prong : RigidBody2D
+public partial class Prong : StaticBody2D
 {
     [Export]
     public float speed = 300.0f;
@@ -13,29 +13,36 @@ public partial class Prong : RigidBody2D
 
     public override void _Ready()
     {
-        GravityScale = 0;
-
-        FreezeMode = RigidBody2D.FreezeModeEnum.Kinematic;
+        SetupGodotProperties();
 
         HighPosition += () => GD.Print("Listened to event from same place as definition");
     }
 
+    private void SetupGodotProperties()
+    {
+        // Legacy from when Prong class was a RigidBody2D. 
+        //GravityScale = 0;
+        //LockRotation = true;
+
+        //FreezeMode = RigidBody2D.FreezeModeEnum.Kinematic;
+    }
+
     public override void _PhysicsProcess(double delta)
     {
-        HandlePlayerInput();
+        HandlePlayerInput(delta);
 
         SignalTesting();
     }
 
     private void SignalTesting()
     {
-        if (Position.Y < -100)
+        if (Position.Y < -600)
         {
             EmitSignal(SignalName.HighPosition);
         }
     }
 
-    private void HandlePlayerInput()
+    private void HandlePlayerInput(double delta)
     {
         Vector2 velocity = Vector2.Zero;
 
@@ -53,6 +60,6 @@ public partial class Prong : RigidBody2D
             GD.Print($"Pressed up {GameManager.data} time");
         }
 
-        LinearVelocity = velocity;
+        Position += velocity * (float)delta;
     }
 }
