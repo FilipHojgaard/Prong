@@ -28,3 +28,7 @@ text = "Test
 [node name="Timer" type="Timer" parent="."]
 wait_time = 7.0
 autostart = true
+
+[node name="Player2" parent="." instance=ExtResource("1_a02cp")]
+position = Vector2(878, -1)
+rotation = 4.71238

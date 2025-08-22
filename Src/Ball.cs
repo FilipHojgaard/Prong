@@ -11,6 +11,12 @@ public partial class Ball : RigidBody2D
     {
         GravityScale = 0;
 
+        ContactMonitor = true;
+        MaxContactsReported = 1; // Allow up to 10 contacts to be reported
+
+        BodyShapeEntered += OnBodyEntered;
+
+        SetupDefaultBallMaterial();
         StartRandomDirection();
     }
 
@@ -25,6 +31,47 @@ public partial class Ball : RigidBody2D
         Vector2 velocity = new Vector2(direction * Speed, 0).Rotated(randomAngle);
 
         LinearVelocity = velocity;
+    }
+
+    private void SetupDefaultBallMaterial()
+    {
+        var material = new PhysicsMaterial();
+        material.Friction = 0f;
+        material.Bounce = 1f;
+        PhysicsMaterialOverride = material;
+    }
+
+    private void OnBodyEntered(Rid bodyRid, Node body, long bodyShapeIndex, long localShapeIndex)
+    {
+        if (body is Prong paddle)
+        {
+            HandlePaddleCollision(paddle);
+        }
+    }
+
+    private void HandlePaddleCollision(Prong paddle)
+    {
+        // Get collision point relative to paddle center
+        float paddleHeight = 64.0f; // Adjust to your paddle height
+        float ballY = GlobalPosition.Y;
+        float paddleY = paddle.GlobalPosition.Y;
+
+        //// Calculate hit position (-1 = top, 0 = center, +1 = bottom)
+        float hitPosition = (ballY - paddleY) / (paddleHeight * 0.5f);
+
+        //// Clamp to prevent extreme angles
+        hitPosition = Mathf.Clamp(hitPosition, -1.0f, 1.0f);
+
+        GD.Print(hitPosition);
+
+        // Add vertical component based on hit position
+        float maxAngle = Mathf.Pi / 3; // 60 degrees max
+        float angle = hitPosition * maxAngle * 0.5f; // Scale down the angle
+
+        Vector2 newVelocity = new Vector2(LinearVelocity.X, 0).Rotated(angle);
+        newVelocity = newVelocity.Normalized() * Speed;
+
+        LinearVelocity = newVelocity;
     }
 
 }
