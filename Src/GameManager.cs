@@ -12,6 +12,9 @@ public partial class GameManager : Node
         Instance = this;
 
         CallDeferred(nameof(ConnectToPlayerSignal));
+
+        ConnectToButton();
+        ConnectToTimer();
     }
 
     public override void _Process(double delta)
@@ -29,6 +32,26 @@ public partial class GameManager : Node
         if (player != null)
         {
             player.HighPosition += OnPlayerHighPosition;
+        }
+    }
+
+    private void ConnectToButton()
+    {
+        var button = GetTree().CurrentScene.GetNodeOrNull<Button>("Button");
+
+        if (button != null)
+        {
+            button.Pressed += () => GD.Print("Button Pressed from GameManager");
+        }
+    }
+    
+    private void ConnectToTimer()
+    {
+        var timer = GetTree().CurrentScene.GetNodeOrNull<Timer>("Timer");
+
+        if (timer != null)
+        {
+            timer.Timeout += () => GD.Print("Time's up!");
         }
     }
 

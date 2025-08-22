@@ -29,7 +29,7 @@ public partial class Prong : RigidBody2D
 
     private void SignalTesting()
     {
-        if (Position.Y < 50)
+        if (Position.Y < -100)
         {
             EmitSignal(SignalName.HighPosition);
         }
