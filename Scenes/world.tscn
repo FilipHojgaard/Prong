@@ -49,3 +49,11 @@ position = Vector2(0, -543)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryUpper"]
 shape = SubResource("WorldBoundaryShape2D_5a7ea")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 963.0
+offset_bottom = 543.0
+color = Color(0.188446, 0.25593, 0.293871, 1)
