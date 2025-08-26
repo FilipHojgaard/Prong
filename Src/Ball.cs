@@ -5,7 +5,7 @@ namespace Prong.Src;
 public partial class Ball : RigidBody2D
 {
     [Export]
-    public float Speed { get; set; } = 300f;
+    public float Speed { get; set; } = 400f;
 
     public override void _Ready()
     {
@@ -19,6 +19,11 @@ public partial class Ball : RigidBody2D
         SetupDefaultBallMaterial();
         StartRandomDirection();
     }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        LinearVelocity = LinearVelocity.Normalized() * Speed;
+    }   
 
     private void StartRandomDirection()
     {
@@ -67,8 +72,10 @@ public partial class Ball : RigidBody2D
         // Add vertical component based on hit position
         float maxAngle = Mathf.Pi / 3; // 60 degrees max
         float angle = hitPosition * maxAngle * 0.5f; // Scale down the angle
+        angle = LinearVelocity.X > 0 ? angle : -angle;
 
         Vector2 newVelocity = new Vector2(LinearVelocity.X, 0).Rotated(angle);
+
         newVelocity = newVelocity.Normalized() * Speed;
 
         LinearVelocity = newVelocity;

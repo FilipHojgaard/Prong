@@ -15,7 +15,6 @@ position = Vector2(-909, -1)
 
 [node name="Ball" parent="." instance=ExtResource("2_go701")]
 position = Vector2(-231, -61)
-Speed = 200.0
 
 [node name="Button" type="Button" parent="."]
 offset_left = -480.0
