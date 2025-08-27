@@ -16,8 +16,9 @@ position = Vector2(-5.82077e-11, 1)
 rotation = 0.00501389
 scale = Vector2(3.08762, -0.380489)
 
-[node name="Player" parent="." instance=ExtResource("1_a02cp")]
+[node name="Player2" parent="." instance=ExtResource("1_a02cp")]
 position = Vector2(-909, -1)
+wasd = true
 
 [node name="Ball" parent="." instance=ExtResource("2_go701")]
 position = Vector2(-231, -61)
@@ -34,7 +35,7 @@ text = "Test
 wait_time = 7.0
 autostart = true
 
-[node name="Player2" parent="." instance=ExtResource("1_a02cp")]
+[node name="Player" parent="." instance=ExtResource("1_a02cp")]
 position = Vector2(878, -1)
 rotation = 4.71238
 

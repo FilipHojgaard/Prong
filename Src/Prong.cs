@@ -8,6 +8,9 @@ public partial class Prong : StaticBody2D
     [Export]
     public float speed = 300.0f;
 
+    [Export]
+    public bool wasd { get; set; } = false;
+
     [Signal]
     public delegate void HighPositionEventHandler();
 
@@ -46,14 +49,29 @@ public partial class Prong : StaticBody2D
     {
         Vector2 velocity = Vector2.Zero;
 
-        if (Input.IsActionPressed("Up"))
+        if (wasd)
         {
-            velocity.Y -= speed;
-            GameData.incrementUp();
+            if (Input.IsActionPressed("Player2Up"))
+            {
+                velocity.Y -= speed;
+                GameData.incrementUp();
+            }
+            if (Input.IsActionPressed("Player2Down"))
+            {
+                velocity.Y += speed;
+            }
         }
-        if (Input.IsActionPressed("Down"))
+        else
         {
-            velocity.Y += speed;
+            if (Input.IsActionPressed("Up"))
+            {
+                velocity.Y -= speed;
+                GameData.incrementUp();
+            }
+            if (Input.IsActionPressed("Down"))
+            {
+                velocity.Y += speed;
+            }
         }
         if (Input.IsActionJustReleased("Space"))
         {
