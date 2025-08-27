@@ -51,6 +51,7 @@ public partial class Ball : RigidBody2D
         if (body is Prong paddle)
         {
             HandlePaddleCollision(paddle);
+            Speed += 40;
         }
     }
 
