@@ -7,12 +7,15 @@ public partial class GameManager : Node
 {
     public static GameManager Instance { get; private set; }
     public static string data { get; set; } = "Lilo&Stitch";
+    public static Vector2 UpperBoundaryPosition { get; set; }
+    public static Vector2 LowerBoundaryPosition { get; set; }
     public override void _Ready()
     {
         Instance = this;
 
         CallDeferred(nameof(ConnectToPlayerSignal));
 
+        SpawnHorizontalBorders();
         ConnectToButton();
         ConnectToTimer();
     }
@@ -60,6 +63,30 @@ public partial class GameManager : Node
         GD.Print("listened to event from the Gamemanager");
     }
 
+    public void SpawnHorizontalBorders()
+    {
+        var borderScene = GD.Load<PackedScene>("res://Scenes/horizontal_border.tscn");
+        var upperBorder = borderScene.Instantiate<StaticBody2D>();
+        GD.Print("spawned upper Border");
+        var lowerBorder = borderScene.Instantiate<StaticBody2D>();
+        GD.Print("spawned lower Border");
+
+        var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
+        var viewportSize = GetViewport().GetVisibleRect().Size;
+        var cameraPos = camera.GlobalPosition;
+        var halfViewportHeight = viewportSize.Y / 2;
+
+        UpperBoundaryPosition = new Vector2(cameraPos.X, cameraPos.Y - halfViewportHeight + 10);
+        LowerBoundaryPosition = new Vector2(cameraPos.X, cameraPos.Y + halfViewportHeight - 10);
+
+        upperBorder.Position = UpperBoundaryPosition;
+        upperBorder.Rotation = Mathf.Pi;
+        lowerBorder.Position = LowerBoundaryPosition;
+
+        GetTree().CurrentScene.AddChild(upperBorder);
+        GetTree().CurrentScene.AddChild(lowerBorder);
+    }
+
     private void SpawnBall()
     {
         // Fetching the ball scene and instantiating a ball using it. 
@@ -69,7 +96,7 @@ public partial class GameManager : Node
         // Because I have a camera on the game scene, I use that to determine the center of the screen for sparning the balls. 
         var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
         ball.Position = camera.GlobalPosition;
-        
+
         // Placing the ball on the current scene.
         GetTree().CurrentScene.AddChild(ball);
 
