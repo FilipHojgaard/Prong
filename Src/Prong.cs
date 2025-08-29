@@ -51,24 +51,24 @@ public partial class Prong : StaticBody2D
 
         if (wasd)
         {
-            if (Input.IsActionPressed("Player2Up"))
+            if (Input.IsActionPressed("Player2Up") && Position.Y > GameManager.UpperBoundaryPosition.Y)
             {
                 velocity.Y -= speed;
                 GameData.incrementUp();
             }
-            if (Input.IsActionPressed("Player2Down"))
+            if (Input.IsActionPressed("Player2Down") && Position.Y < GameManager.LowerBoundaryPosition.Y)
             {
                 velocity.Y += speed;
             }
         }
         else
         {
-            if (Input.IsActionPressed("Up"))
+            if (Input.IsActionPressed("Up") && Position.Y > GameManager.UpperBoundaryPosition.Y)
             {
                 velocity.Y -= speed;
                 GameData.incrementUp();
             }
-            if (Input.IsActionPressed("Down"))
+            if (Input.IsActionPressed("Down") && Position.Y < GameManager.LowerBoundaryPosition.Y)
             {
                 velocity.Y += speed;
             }
