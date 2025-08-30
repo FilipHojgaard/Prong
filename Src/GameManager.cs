@@ -9,6 +9,10 @@ public partial class GameManager : Node
     public static string data { get; set; } = "Lilo&Stitch";
     public static Vector2 UpperBoundaryPosition { get; set; }
     public static Vector2 LowerBoundaryPosition { get; set; }
+    public static float LeftBoundaryPosition { get; set; }
+    public static float RightBoundaryPosition { get; set; }
+    public static int Player1Score { get; set; } = 0;
+    public static int Player2Score { get; set; } = 0;
     public override void _Ready()
     {
         Instance = this;
@@ -16,6 +20,7 @@ public partial class GameManager : Node
         CallDeferred(nameof(ConnectToPlayerSignal));
 
         SpawnHorizontalBorders();
+        SetVerticalBorders();
         ConnectToButton();
         ConnectToTimer();
     }
@@ -87,6 +92,17 @@ public partial class GameManager : Node
         GetTree().CurrentScene.AddChild(lowerBorder);
     }
 
+    public void SetVerticalBorders()
+    {
+        var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
+        var viewPortSize = GetViewport().GetVisibleRect().Size;
+        var cameraPos = camera.GlobalPosition;
+        var halfViewPortLength = viewPortSize.X / 2;
+
+        LeftBoundaryPosition = cameraPos.X - halfViewPortLength;
+        RightBoundaryPosition = cameraPos.X + halfViewPortLength;
+    }
+
     private void SpawnBall()
     {
         // Fetching the ball scene and instantiating a ball using it. 
@@ -101,5 +117,10 @@ public partial class GameManager : Node
         GetTree().CurrentScene.AddChild(ball);
 
         GD.Print($"Ball spawend at {ball.Position}");
+    }
+
+    public static void PrintScore()
+    {
+        GD.Print($"{Player2Score} - {Player1Score}");
     }
 }

@@ -20,6 +20,11 @@ public partial class Ball : RigidBody2D
         StartRandomDirection();
     }
 
+    public override void _Process(double delta)
+    {
+        CheckForGoal();
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         LinearVelocity = LinearVelocity.Normalized() * Speed;
@@ -46,6 +51,23 @@ public partial class Ball : RigidBody2D
         PhysicsMaterialOverride = material;
     }
 
+    private void CheckForGoal()
+    {
+        if (Position.X <= GameManager.LeftBoundaryPosition)
+        {
+            GameManager.Player1Score++;
+            GameManager.PrintScore();
+            QueueFree();
+        }
+
+        if (Position.X >= GameManager.RightBoundaryPosition)
+        {
+            GameManager.Player2Score++;
+            GameManager.PrintScore();
+            QueueFree();
+        }
+    }
+
     private void OnBodyEntered(Rid bodyRid, Node body, long bodyShapeIndex, long localShapeIndex)
     {
         if (body is Prong paddle)
@@ -54,7 +76,6 @@ public partial class Ball : RigidBody2D
             Speed += 40;
         }
     }
-
     private void HandlePaddleCollision(Prong paddle)
     {
         // Get collision point relative to paddle center
