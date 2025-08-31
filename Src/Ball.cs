@@ -58,6 +58,7 @@ public partial class Ball : RigidBody2D
             GameManager.Player1Score++;
             GameManager.PrintScore();
             QueueFree();
+            GameManager.DecreaseBallCount();
         }
 
         if (Position.X >= GameManager.RightBoundaryPosition)
@@ -65,6 +66,7 @@ public partial class Ball : RigidBody2D
             GameManager.Player2Score++;
             GameManager.PrintScore();
             QueueFree();
+            GameManager.DecreaseBallCount();
         }
     }
 

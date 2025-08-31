@@ -13,6 +13,7 @@ public partial class GameManager : Node
     public static float RightBoundaryPosition { get; set; }
     public static int Player1Score { get; set; } = 0;
     public static int Player2Score { get; set; } = 0;
+    public static int BallCount { get; set; } = 0;
     public override void _Ready()
     {
         Instance = this;
@@ -29,8 +30,10 @@ public partial class GameManager : Node
     {
         if (Input.IsActionJustReleased("Test"))
         {
+            BallCount++;
             SpawnBall();
         }
+        CheckBallCount();
     }
 
     private void ConnectToPlayerSignal()
@@ -117,6 +120,22 @@ public partial class GameManager : Node
         GetTree().CurrentScene.AddChild(ball);
 
         GD.Print($"Ball spawend at {ball.Position}");
+    }
+
+    private async void CheckBallCount()
+    {
+        if (BallCount <= 0)
+        {
+            GD.Print("Spawning ball");
+            BallCount++;
+            await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
+            SpawnBall();
+        }
+    }
+
+    public static void DecreaseBallCount()
+    {
+        BallCount--;
     }
 
     public static void PrintScore()
