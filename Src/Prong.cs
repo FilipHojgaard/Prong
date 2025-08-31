@@ -9,7 +9,7 @@ public partial class Prong : StaticBody2D
     public float speed = 300.0f;
 
     [Export]
-    public bool wasd { get; set; } = false;
+    public bool player2 { get; set; } = false;
 
     [Signal]
     public delegate void HighPositionEventHandler();
@@ -33,28 +33,17 @@ public partial class Prong : StaticBody2D
     public override void _PhysicsProcess(double delta)
     {
         HandlePlayerInput(delta);
-
-        SignalTesting();
-    }
-
-    private void SignalTesting()
-    {
-        if (Position.Y < -600)
-        {
-            EmitSignal(SignalName.HighPosition);
-        }
     }
 
     private void HandlePlayerInput(double delta)
     {
         Vector2 velocity = Vector2.Zero;
 
-        if (wasd)
+        if (player2)
         {
             if (Input.IsActionPressed("Player2Up") && Position.Y > GameManager.UpperBoundaryPosition.Y)
             {
                 velocity.Y -= speed;
-                GameData.incrementUp();
             }
             if (Input.IsActionPressed("Player2Down") && Position.Y < GameManager.LowerBoundaryPosition.Y)
             {
@@ -66,16 +55,11 @@ public partial class Prong : StaticBody2D
             if (Input.IsActionPressed("Up") && Position.Y > GameManager.UpperBoundaryPosition.Y)
             {
                 velocity.Y -= speed;
-                GameData.incrementUp();
             }
             if (Input.IsActionPressed("Down") && Position.Y < GameManager.LowerBoundaryPosition.Y)
             {
                 velocity.Y += speed;
             }
-        }
-        if (Input.IsActionJustReleased("Space"))
-        {
-            GD.Print($"Pressed up {GameManager.data} time");
         }
 
         Position += velocity * (float)delta;

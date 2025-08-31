@@ -10,7 +10,7 @@ scale = Vector2(3.08762, -0.380489)
 
 [node name="Player2" parent="." instance=ExtResource("1_a02cp")]
 position = Vector2(-909, -1)
-wasd = true
+player2 = true
 
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
 position = Vector2(878, -1)
