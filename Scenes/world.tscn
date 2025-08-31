@@ -12,18 +12,6 @@ scale = Vector2(3.08762, -0.380489)
 position = Vector2(-909, -1)
 wasd = true
 
-[node name="Button" type="Button" parent="."]
-offset_left = -480.0
-offset_top = -425.0
-offset_right = -246.0
-offset_bottom = -325.0
-text = "Test
-"
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 7.0
-autostart = true
-
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
 position = Vector2(878, -1)
 rotation = 4.71238

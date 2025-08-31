@@ -6,7 +6,6 @@ namespace Prong.Src;
 public partial class GameManager : Node
 {
     public static GameManager Instance { get; private set; }
-    public static string data { get; set; } = "Lilo&Stitch";
     public static Vector2 UpperBoundaryPosition { get; set; }
     public static Vector2 LowerBoundaryPosition { get; set; }
     public static float LeftBoundaryPosition { get; set; }
@@ -18,12 +17,8 @@ public partial class GameManager : Node
     {
         Instance = this;
 
-        CallDeferred(nameof(ConnectToPlayerSignal));
-
-        SpawnHorizontalBorders();
+        SetHorizontalBorders();
         SetVerticalBorders();
-        ConnectToButton();
-        ConnectToTimer();
     }
 
     public override void _Process(double delta)
@@ -36,42 +31,7 @@ public partial class GameManager : Node
         CheckBallCount();
     }
 
-    private void ConnectToPlayerSignal()
-    {
-        var player = GetTree().CurrentScene.GetNodeOrNull<Prong>("Player");
-
-        if (player != null)
-        {
-            player.HighPosition += OnPlayerHighPosition;
-        }
-    }
-
-    private void ConnectToButton()
-    {
-        var button = GetTree().CurrentScene.GetNodeOrNull<Button>("Button");
-
-        if (button != null)
-        {
-            button.Pressed += () => GD.Print("Button Pressed from GameManager");
-        }
-    }
-    
-    private void ConnectToTimer()
-    {
-        var timer = GetTree().CurrentScene.GetNodeOrNull<Timer>("Timer");
-
-        if (timer != null)
-        {
-            timer.Timeout += () => GD.Print("Time's up!");
-        }
-    }
-
-    private void OnPlayerHighPosition()
-    {
-        GD.Print("listened to event from the Gamemanager");
-    }
-
-    public void SpawnHorizontalBorders()
+    public void SetHorizontalBorders()
     {
         var borderScene = GD.Load<PackedScene>("res://Scenes/horizontal_border.tscn");
         var upperBorder = borderScene.Instantiate<StaticBody2D>();
