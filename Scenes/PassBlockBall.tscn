@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://btq087ab1xydn"]
+
+[ext_resource type="Texture2D" uid="uid://dytxhlxcmd4i" path="res://Assets/Sprites/block_sprite_sheet.png" id="1_wwsni"]
+[ext_resource type="Script" uid="uid://dguuo404i0nds" path="res://Src/PassBlockBall.cs" id="1_xruf4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xruf4"]
+size = Vector2(14, 6)
+
+[node name="Area2D" type="Area2D"]
+rotation = -1.5708
+scale = Vector2(2.71367, 2.71367)
+script = ExtResource("1_xruf4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wwsni")
+region_enabled = true
+region_rect = Rect2(192, 0, 15, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xruf4")

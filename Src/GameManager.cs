@@ -66,6 +66,8 @@ public partial class GameManager : Node
         RightBoundaryPosition = cameraPos.X + halfViewPortLength;
     }
 
+    // TODO: Find out how to make a public static function to spawn balls from GameManager. 
+
     private void SpawnBall()
     {
         // Fetching the ball scene and instantiating a ball using it. 

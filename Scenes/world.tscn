@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://baqjofqhljr20"]
+[gd_scene load_steps=3 format=3 uid="uid://baqjofqhljr20"]
 
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_a02cp"]
+[ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="2_go701"]
 
 [node name="World" type="Node2D"]
 
@@ -13,5 +14,17 @@ position = Vector2(-909, -1)
 player2 = true
 
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
-position = Vector2(878, -1)
+position = Vector2(908, -1)
 rotation = 4.71238
+
+[node name="Area2D2" parent="." instance=ExtResource("2_go701")]
+position = Vector2(-252, -58)
+
+[node name="Area2D" parent="." instance=ExtResource("2_go701")]
+position = Vector2(-251, -12)
+
+[node name="Area2D3" parent="." instance=ExtResource("2_go701")]
+position = Vector2(-251, 38)
+
+[node name="Area2D4" parent="." instance=ExtResource("2_go701")]
+position = Vector2(-253, 86)
