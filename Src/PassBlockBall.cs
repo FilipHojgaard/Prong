@@ -15,7 +15,8 @@ public partial class PassBlockBall : Area2D
         {
             QueueFree();
             GameManager.BallCount++;
-            GameManager.SpawnBallStatic();
+            float movementAngle = ball.LinearVelocity.Angle();
+            GameManager.SpawnBallAtPosition(ball.Position, movementAngle);
         }
     }
 }

@@ -66,11 +66,17 @@ public partial class GameManager : Node
         RightBoundaryPosition = cameraPos.X + halfViewPortLength;
     }
 
-    // TODO: Find out how to make a public static function to spawn balls from GameManager. 
-
-    public static void SpawnBallStatic()
+    public static void SpawnBallAtPosition(Vector2 position, float rotation)
     {
-        Instance.SpawnBall();
+        var ballScene = GD.Load<PackedScene>("res://Scenes/ball.tscn");
+        var ball = ballScene.Instantiate<Ball>();
+
+        ball.SpawnInCenter = false;
+        ball.StartAtPosition(position, rotation);
+
+        Instance.GetTree().CurrentScene.AddChild(ball);
+
+        GD.Print($"Ball spawned at {ball.Position}");
     }
 
     private void SpawnBall()

@@ -6,6 +6,7 @@ public partial class Ball : RigidBody2D
 {
     [Export]
     public float Speed { get; set; } = 400f;
+    public bool SpawnInCenter { get; set; } = true;
 
     public override void _Ready()
     {
@@ -17,7 +18,10 @@ public partial class Ball : RigidBody2D
         BodyShapeEntered += OnBodyEntered;
 
         SetupDefaultBallMaterial();
-        StartRandomDirection();
+        if (SpawnInCenter)
+        {
+            StartRandomDirection();
+        }
     }
 
     public override void _Process(double delta)
@@ -28,7 +32,17 @@ public partial class Ball : RigidBody2D
     public override void _PhysicsProcess(double delta)
     {
         LinearVelocity = LinearVelocity.Normalized() * Speed;
-    }   
+    }
+
+    public void StartAtPosition(Vector2 position, float rotation)
+    {
+        Position = position;
+        Rotation = rotation + Mathf.Pi;
+
+        Vector2 velocity = new Vector2(Speed, 0).Rotated(Rotation);
+
+        LinearVelocity = velocity;
+    }
 
     private void StartRandomDirection()
     {
