@@ -18,13 +18,13 @@ position = Vector2(908, -1)
 rotation = 4.71238
 
 [node name="Area2D2" parent="." instance=ExtResource("2_go701")]
-position = Vector2(-252, -58)
+position = Vector2(-296, -152)
 
 [node name="Area2D" parent="." instance=ExtResource("2_go701")]
-position = Vector2(-251, -12)
+position = Vector2(-384, 104)
 
 [node name="Area2D3" parent="." instance=ExtResource("2_go701")]
-position = Vector2(-251, 38)
+position = Vector2(195, -143)
 
 [node name="Area2D4" parent="." instance=ExtResource("2_go701")]
-position = Vector2(-253, 86)
+position = Vector2(211, 260)
