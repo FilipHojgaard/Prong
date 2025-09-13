@@ -13,8 +13,9 @@ public partial class PassBlockBall : Area2D
     {
         if (node is Ball ball)
         {
-            GD.Print("ball hit");
             QueueFree();
+            GameManager.BallCount++;
+            GameManager.SpawnBallStatic();
         }
     }
 }
