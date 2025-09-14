@@ -13,7 +13,7 @@ public partial class Ball : RigidBody2D
         GravityScale = 0;
 
         ContactMonitor = true;
-        MaxContactsReported = 1; // Allow up to 10 contacts to be reported
+        MaxContactsReported = 20;
 
         BodyShapeEntered += OnBodyEntered;
 
@@ -91,7 +91,18 @@ public partial class Ball : RigidBody2D
             HandlePaddleCollision(paddle);
             Speed += 40;
         }
+        if (body is Block block)
+        {
+            HandleBlockCollision(block);
+        }
     }
+
+    private void HandleBlockCollision(Block block)
+    {
+        GD.Print("hit block");
+        block.QueueFree();
+    }
+
     private void HandlePaddleCollision(Prong paddle)
     {
         // Get collision point relative to paddle center

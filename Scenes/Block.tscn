@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvciffyj0kaoh"]
+
+[ext_resource type="Texture2D" uid="uid://dytxhlxcmd4i" path="res://Assets/Sprites/block_sprite_sheet.png" id="1_ovn4m"]
+[ext_resource type="Script" uid="uid://div0gtjb4e81h" path="res://Src/Block.cs" id="1_x55lh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x55lh"]
+size = Vector2(6, 14)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_x55lh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.714, 2.714)
+shape = SubResource("RectangleShape2D_x55lh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(2.714, 2.714)
+texture = ExtResource("1_ovn4m")
+region_enabled = true
+region_rect = Rect2(48, 0, 15, 7)

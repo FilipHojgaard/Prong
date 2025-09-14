@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://baqjofqhljr20"]
+[gd_scene load_steps=4 format=3 uid="uid://baqjofqhljr20"]
 
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="2_go701"]
+[ext_resource type="PackedScene" uid="uid://bvciffyj0kaoh" path="res://Scenes/Block.tscn" id="3_5a7ea"]
 
 [node name="World" type="Node2D"]
 
@@ -28,3 +29,42 @@ position = Vector2(195, -143)
 
 [node name="Area2D4" parent="." instance=ExtResource("2_go701")]
 position = Vector2(211, 260)
+
+[node name="RigidBody2D" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(445, -253)
+
+[node name="RigidBody2D2" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(527, 63)
+
+[node name="RigidBody2D3" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(468, 306)
+
+[node name="RigidBody2D4" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-689, -302)
+
+[node name="RigidBody2D5" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-708, 303)
+
+[node name="RigidBody2D6" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-645, -26)
+
+[node name="RigidBody2D7" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-679, -222)
+
+[node name="RigidBody2D8" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-692, -137)
+
+[node name="RigidBody2D9" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-589, -102)
+
+[node name="RigidBody2D10" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-644, 49)
+
+[node name="RigidBody2D11" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-634, 107)
+
+[node name="RigidBody2D12" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-616, 181)
+
+[node name="RigidBody2D13" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-659, 247)
