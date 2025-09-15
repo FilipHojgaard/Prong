@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xruf4"]
 size = Vector2(14, 6)
 
-[node name="Area2D" type="Area2D"]
+[node name="PassBlockBall" type="Area2D"]
 rotation = -1.5708
 scale = Vector2(2.71367, 2.71367)
 script = ExtResource("1_xruf4")
