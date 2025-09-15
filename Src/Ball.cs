@@ -7,6 +7,7 @@ public partial class Ball : RigidBody2D
     [Export]
     public float Speed { get; set; } = 400f;
     public bool SpawnInCenter { get; set; } = true;
+    public Prong LastProngHit { get; set; } = null;
 
     public override void _Ready()
     {
@@ -90,6 +91,7 @@ public partial class Ball : RigidBody2D
         {
             HandlePaddleCollision(paddle);
             Speed += 40;
+            LastProngHit = paddle;
         }
         if (body is Block block)
         {
@@ -99,7 +101,6 @@ public partial class Ball : RigidBody2D
 
     private void HandleBlockCollision(Block block)
     {
-        GD.Print("hit block");
         block.QueueFree();
     }
 
