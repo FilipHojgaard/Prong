@@ -59,4 +59,10 @@ public partial class Prong : StaticBody2D
 
         Position += velocity * (float)delta;
     }
+
+    public void IncreaseSpeed()
+    {
+        speed += 30;
+        GD.Print(speed);
+    }
 }

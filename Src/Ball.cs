@@ -104,6 +104,15 @@ public partial class Ball : RigidBody2D
         block.QueueFree();
     }
 
+    public void HandlePassBlockSpeed()
+    {
+        if (LastProngHit != null)
+        {
+            GD.Print("ball hit passblockspeed");
+            LastProngHit.IncreaseSpeed();
+        }
+    }
+
     private void HandlePaddleCollision(Prong paddle)
     {
         // Get collision point relative to paddle center
