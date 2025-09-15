@@ -35,9 +35,7 @@ public partial class GameManager : Node
     {
         var borderScene = GD.Load<PackedScene>("res://Scenes/horizontal_border.tscn");
         var upperBorder = borderScene.Instantiate<StaticBody2D>();
-        GD.Print("spawned upper Border");
         var lowerBorder = borderScene.Instantiate<StaticBody2D>();
-        GD.Print("spawned lower Border");
 
         var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
         var viewportSize = GetViewport().GetVisibleRect().Size;
@@ -75,8 +73,6 @@ public partial class GameManager : Node
         ball.StartAtPosition(position, rotation);
 
         Instance.GetTree().CurrentScene.AddChild(ball);
-
-        GD.Print($"Ball spawned at {ball.Position}");
     }
 
     private void SpawnBall()
@@ -91,15 +87,12 @@ public partial class GameManager : Node
 
         // Placing the ball on the current scene.
         GetTree().CurrentScene.AddChild(ball);
-
-        GD.Print($"Ball spawend at {ball.Position}");
     }
 
     private async void CheckBallCount()
     {
         if (BallCount <= 0)
         {
-            GD.Print("Spawning ball");
             BallCount++;
             await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
             SpawnBall();

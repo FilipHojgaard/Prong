@@ -11,17 +11,12 @@ public partial class Prong : StaticBody2D
     [Export]
     public bool player2 { get; set; } = false;
 
-    [Signal]
-    public delegate void HighPositionEventHandler();
-
     public override void _Ready()
     {
-        SetupGodotProperties();
-
-        HighPosition += () => GD.Print("Listened to event from same place as definition");
+        SetupProperties();
     }
 
-    private void SetupGodotProperties()
+    private void SetupProperties()
     {
         // Legacy from when Prong class was a RigidBody2D. 
         //GravityScale = 0;
