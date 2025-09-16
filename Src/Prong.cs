@@ -44,6 +44,10 @@ public partial class Prong : StaticBody2D
             {
                 velocity.Y += speed;
             }
+            if (Input.IsActionJustPressed("Player2Fire"))
+            {
+                FireFireball();
+            }
         }
         else
         {
@@ -55,9 +59,29 @@ public partial class Prong : StaticBody2D
             {
                 velocity.Y += speed;
             }
+            if (Input.IsActionJustPressed("Fire"))
+            {
+                FireFireball(fireLeft: true);
+            }
         }
 
         Position += velocity * (float)delta;
+    }
+
+    public void FireFireball(bool fireLeft = false)
+    {
+        var fireBallScene = GD.Load<PackedScene>("res://Scenes/fireball.tscn");
+        var fireball = fireBallScene.Instantiate<Fireball>();
+
+        if (fireLeft) 
+        { 
+            fireball.FireLeft(); 
+        }
+
+        var offset = fireLeft ? -20 : 20;
+        fireball.Position = new Vector2(Position.X + offset, Position.Y);
+
+        GetTree().CurrentScene.AddChild(fireball);
     }
 
     public void IncreaseSpeed()

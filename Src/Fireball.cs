@@ -1,0 +1,27 @@
+using Godot;
+
+namespace Prong.Src;
+
+public partial class Fireball : RigidBody2D
+{
+    public int Speed { get; set; } = 900;
+
+    public override void _Ready()
+    {
+        GravityScale = 0;
+        Mass = 1000;
+    }
+
+    public override void _Process(double delta)
+    {
+        LinearVelocity = new Vector2(Speed, 0);
+    }
+
+    public void FireLeft()
+    {
+        Rotation = Mathf.Pi;
+        Speed *= -1;
+    }
+
+}
+
