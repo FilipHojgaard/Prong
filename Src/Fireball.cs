@@ -10,6 +10,12 @@ public partial class Fireball : RigidBody2D
     {
         GravityScale = 0;
         Mass = 1000;
+        LockRotation = true;
+
+        ContactMonitor = true;
+        MaxContactsReported = 20;
+
+        BodyShapeEntered += OnBodyEntered;
     }
 
     public override void _Process(double delta)
@@ -21,6 +27,18 @@ public partial class Fireball : RigidBody2D
     {
         Rotation = Mathf.Pi;
         Speed *= -1;
+    }
+
+    private void OnBodyEntered(Rid bodyRid, Node body, long bodyShapeIndex, long localShapeIndex)
+    {
+        if (body is Block block)
+        {
+            block.QueueFree();
+        }
+        if (body is Prong player)
+        {
+            QueueFree();
+        }
     }
 
 }

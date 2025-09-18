@@ -48,6 +48,10 @@ public partial class Prong : StaticBody2D
             {
                 FireFireball();
             }
+            if (Input.IsActionJustPressed("Player2Defence"))
+            {
+                SetBlock();
+            }
         }
         else
         {
@@ -62,6 +66,10 @@ public partial class Prong : StaticBody2D
             if (Input.IsActionJustPressed("Fire"))
             {
                 FireFireball(fireLeft: true);
+            }
+            if (Input.IsActionJustPressed("Defence"))
+            {
+                SetBlock();
             }
         }
 
@@ -82,6 +90,18 @@ public partial class Prong : StaticBody2D
         fireball.Position = new Vector2(Position.X + offset, Position.Y);
 
         GetTree().CurrentScene.AddChild(fireball);
+    }
+
+    public void SetBlock()
+    {
+        var blockScene = GD.Load<PackedScene>("res://Scenes/Block.tscn");
+        var block = blockScene.Instantiate<Block>();
+
+        var offset = player2 ? -20 : 20;
+
+        block.Position = new Vector2(Position.X + offset, Position.Y);
+
+        GetTree().CurrentScene.AddChild(block);
     }
 
     public void IncreaseSpeed()
