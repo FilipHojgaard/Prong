@@ -90,6 +90,15 @@ public partial class Prong : StaticBody2D
         fireball.Position = new Vector2(Position.X + offset, Position.Y);
 
         GetTree().CurrentScene.AddChild(fireball);
+        ChangeColor();
+
+    }
+
+    private void ChangeColor()
+    {
+        Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
+        Texture2D newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue.png");
+        sprite.Texture = newTexture;
     }
 
     public void SetBlock()
