@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 using Prong.Src;
 
@@ -10,6 +11,8 @@ public partial class Prong : StaticBody2D
 
     [Export]
     public bool player2 { get; set; } = false;
+
+    public bool Ammo { get; set; } = true;
 
     public override void _Ready()
     {
@@ -76,8 +79,13 @@ public partial class Prong : StaticBody2D
         Position += velocity * (float)delta;
     }
 
-    public void FireFireball(bool fireLeft = false)
+    public async Task FireFireball(bool fireLeft = false)
     {
+        if (!Ammo)
+        {
+            return;
+        }
+
         var fireBallScene = GD.Load<PackedScene>("res://Scenes/fireball.tscn");
         var fireball = fireBallScene.Instantiate<Fireball>();
 
@@ -90,14 +98,25 @@ public partial class Prong : StaticBody2D
         fireball.Position = new Vector2(Position.X + offset, Position.Y);
 
         GetTree().CurrentScene.AddChild(fireball);
-        ChangeColor();
 
+        Ammo = false;
+        SpriteChangeAmmoUsed();
+        await ToSignal(GetTree().CreateTimer(10.0), SceneTreeTimer.SignalName.Timeout);
+        Ammo = true;
+        SpriteChangeAmmoGained();
     }
 
-    private void ChangeColor()
+    private void SpriteChangeAmmoGained()
     {
         Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
         Texture2D newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue.png");
+        sprite.Texture = newTexture;
+    }
+
+    private void SpriteChangeAmmoUsed()
+    {
+        Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
+        Texture2D newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle.png");
         sprite.Texture = newTexture;
     }
 
