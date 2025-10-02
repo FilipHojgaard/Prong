@@ -14,9 +14,12 @@ public partial class Prong : StaticBody2D
 
     public bool Ammo { get; set; } = true;
 
+    public bool ShieldUp { get; set; } = true;
+
     public override void _Ready()
     {
         SetupProperties();
+        SpriteUpdate();
     }
 
     private void SetupProperties()
@@ -100,28 +103,52 @@ public partial class Prong : StaticBody2D
         GetTree().CurrentScene.AddChild(fireball);
 
         Ammo = false;
-        SpriteChangeAmmoUsed();
+        SpriteUpdate();
         await ToSignal(GetTree().CreateTimer(10.0), SceneTreeTimer.SignalName.Timeout);
         Ammo = true;
-        SpriteChangeAmmoGained();
+        SpriteUpdate();
     }
 
-    private void SpriteChangeAmmoGained()
+    private void SpriteUpdate()
     {
         Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
-        Texture2D newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue.png");
-        sprite.Texture = newTexture;
+        Texture2D newTexture = null;
+        
+        if (Ammo && ShieldUp && player2)
+        {
+            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_red_blue.png");
+        }
+        else if (Ammo && ShieldUp && !player2)
+        {
+            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue_red.png");
+        }
+        else if (Ammo)
+        {
+            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_red.png");
+        }
+        else if (ShieldUp)
+        {
+            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue.png");
+        }
+        else
+        {
+            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle.png");
+        }
+
+        if (newTexture is not null)
+        {
+            sprite.Texture = newTexture;
+        }
+
     }
 
-    private void SpriteChangeAmmoUsed()
+    public async Task SetBlock()
     {
-        Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
-        Texture2D newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle.png");
-        sprite.Texture = newTexture;
-    }
+        if (!ShieldUp)
+        {
+            return;
+        }
 
-    public void SetBlock()
-    {
         var blockScene = GD.Load<PackedScene>("res://Scenes/Block.tscn");
         var block = blockScene.Instantiate<Block>();
 
@@ -130,6 +157,12 @@ public partial class Prong : StaticBody2D
         block.Position = new Vector2(Position.X + offset, Position.Y);
 
         GetTree().CurrentScene.AddChild(block);
+
+        ShieldUp = false;
+        SpriteUpdate();
+        await ToSignal(GetTree().CreateTimer(10.0), SceneTreeTimer.SignalName.Timeout);
+        ShieldUp = true;
+        SpriteUpdate();
     }
 
     public void IncreaseSpeed()
