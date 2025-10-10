@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bs5mfhakhwn26"]
+[gd_scene load_steps=3 format=3 uid="uid://bs5mfhakhwn26"]
+
+[ext_resource type="Script" uid="uid://kutavm17kq4y" path="res://Src/ScoreLabel.cs" id="1_gxu0g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6tbo2"]
 
@@ -29,11 +31,15 @@ size_flags_vertical = 4
 [node name="left_score" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 400
 text = "0"
+script = ExtResource("1_gxu0g")
 
 [node name="right_score" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 400
 text = "0"
+script = ExtResource("1_gxu0g")
+Player2 = true
