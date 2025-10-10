@@ -5,7 +5,7 @@ namespace Prong.Src;
 public partial class Ball : RigidBody2D
 {
     [Export]
-    public float Speed { get; set; } = 400f;
+    public float Speed { get; set; } = 550f;
     public bool SpawnInCenter { get; set; } = true;
     public Prong LastProngHit { get; set; } = null;
 
@@ -90,7 +90,10 @@ public partial class Ball : RigidBody2D
         if (body is Prong paddle)
         {
             HandlePaddleCollision(paddle);
-            Speed += 40;
+            if (Speed <= 900)
+            {
+                Speed += 40;
+            }
             LastProngHit = paddle;
         }
         if (body is Block block)
