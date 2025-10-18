@@ -130,13 +130,10 @@ public partial class Ball : RigidBody2D
 
     private async void HandleEasterEgg()
     {
-        var player1Score = GameManager.Player1Score;
-        var player2Score = GameManager.Player2Score;
-        GameManager.Player1Score = 10;
-        GameManager.Player2Score = 28;
+        GD.Print("Handeling easter egg");
+        GameManager.ShowEasterEgg = true;
         await ToSignal(GetTree().CreateTimer(3.0), SceneTreeTimer.SignalName.Timeout);
-        GameManager.Player1Score = player1Score;
-        GameManager.Player2Score = player2Score;
+        GameManager.ShowEasterEgg = false;
     }
 
     private void HandlePaddleCollision(Prong paddle)

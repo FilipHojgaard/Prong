@@ -16,11 +16,11 @@ public partial class ScoreLabel : Label
     {
         if (Player2)
         {
-            Text = GameManager.Player1Score.ToString();
+            Text = GameManager.ShowEasterEgg ? "10" : GameManager.Player1Score.ToString();
         }
         else
         {
-            Text = GameManager.Player2Score.ToString();
+            Text = GameManager.ShowEasterEgg ? "28" : GameManager.Player2Score.ToString();
         }
     }
 }
