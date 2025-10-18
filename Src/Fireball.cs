@@ -5,6 +5,7 @@ namespace Prong.Src;
 public partial class Fireball : RigidBody2D
 {
     public int Speed { get; set; } = 900;
+    public bool HitBall { get; set; } = false;
 
     public override void _Ready()
     {

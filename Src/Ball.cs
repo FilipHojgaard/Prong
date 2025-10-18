@@ -5,9 +5,11 @@ namespace Prong.Src;
 public partial class Ball : RigidBody2D
 {
     [Export]
-    public float Speed { get; set; } = 550f;
+    public float Speed { get; set; } = 0f; //550f;
     public bool SpawnInCenter { get; set; } = true;
     public Prong LastProngHit { get; set; } = null;
+
+    public int FireballHits { get; set; } = 0;
 
     public override void _Ready()
     {
@@ -100,6 +102,16 @@ public partial class Ball : RigidBody2D
         {
             HandleBlockCollision(block);
         }
+        if (body is Fireball fireball && !fireball.HitBall)
+        {
+            GD.Print("fireball hit");
+            FireballHits++;
+            fireball.HitBall = true;
+            if (FireballHits >= 2)
+            {
+                HandleEasterEgg();
+            }
+        }
     }
 
     private void HandleBlockCollision(Block block)
@@ -114,6 +126,17 @@ public partial class Ball : RigidBody2D
             GD.Print("ball hit passblockspeed");
             LastProngHit.IncreaseSpeed();
         }
+    }
+
+    private async void HandleEasterEgg()
+    {
+        var player1Score = GameManager.Player1Score;
+        var player2Score = GameManager.Player2Score;
+        GameManager.Player1Score = 10;
+        GameManager.Player2Score = 28;
+        await ToSignal(GetTree().CreateTimer(3.0), SceneTreeTimer.SignalName.Timeout);
+        GameManager.Player1Score = player1Score;
+        GameManager.Player2Score = player2Score;
     }
 
     private void HandlePaddleCollision(Prong paddle)
