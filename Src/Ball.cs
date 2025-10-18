@@ -5,7 +5,7 @@ namespace Prong.Src;
 public partial class Ball : RigidBody2D
 {
     [Export]
-    public float Speed { get; set; } = 0f; //550f;
+    public float Speed { get; set; } = 550f;
     public bool SpawnInCenter { get; set; } = true;
     public Prong LastProngHit { get; set; } = null;
 
