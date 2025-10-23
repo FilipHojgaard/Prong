@@ -13,6 +13,7 @@ public partial class GameManager : Node
     public static int Player1Score { get; set; } = 0;
     public static int Player2Score { get; set; } = 0;
     public static int BallCount { get; set; } = 0;
+    public static bool ShowEasterEggCounter { get; set; } = false;
     public static bool ShowEasterEgg { get; set; } = false;
     public override void _Ready()
     {

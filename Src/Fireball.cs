@@ -35,12 +35,38 @@ public partial class Fireball : RigidBody2D
         if (body is Block block)
         {
             block.QueueFree();
+            GameManager.ShowEasterEggCounter = false;
         }
         if (body is Prong player)
         {
             QueueFree();
+            GameManager.ShowEasterEggCounter = false;
+        }
+        if (body is Fireball otherFireball)
+        {
+            GD.Print($"{this.Position.Y}<= {GameManager.UpperBoundaryPosition.Y + 10}");
+            GD.Print(GameManager.ShowEasterEggCounter);
+            if (this.Position.Y <= GameManager.UpperBoundaryPosition.Y + 10)
+            {
+                if (GameManager.ShowEasterEggCounter)
+                {
+                    HandleEasterEgg();
+                }
+                GameManager.ShowEasterEggCounter = true;
+                GD.Print($"easter egg counter: {GameManager.ShowEasterEggCounter}");
+            }
+            QueueFree();
         }
     }
+
+    private async void HandleEasterEgg()
+    {
+        GD.Print("Handeling easter egg");
+        GameManager.ShowEasterEgg = true;
+        await ToSignal(GetTree().CreateTimer(3.0), SceneTreeTimer.SignalName.Timeout);
+        GameManager.ShowEasterEgg = false;
+    }
+
 
 }
 
