@@ -110,4 +110,21 @@ public partial class GameManager : Node
     {
         GD.Print($"{Player2Score} - {Player1Score}");
     }
+
+    public static async void HandleEasterEgg()
+    {
+        if (ShowEasterEggCounter)
+        {
+            ShowEasterEgg = true;
+            await Instance.ToSignal(Instance.GetTree().CreateTimer(3.0), SceneTreeTimer.SignalName.Timeout);
+            ShowEasterEgg = false;
+            ShowEasterEggCounter = false;
+        }
+        else
+        {
+            ShowEasterEggCounter = true;
+        }
+
+    }
+
 }

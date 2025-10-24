@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="4_fo5ed"]
 
 [node name="World" type="Node2D"]
+position = Vector2(0, -1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 rotation = 0.00501389
