@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://Src/GameManager.cs"
+Eventbus="*res://Src/Eventbus.cs"
 
 [display]
 

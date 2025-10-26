@@ -15,6 +15,9 @@ public partial class PassBlockSpeed : Area2D
         {
             QueueFree();
             ball.HandlePassBlockSpeed();
+
+            var eventBus = GetNode<Eventbus>("/root/Eventbus"); // TODO:  Can I avoid getting a static reference somehow? 
+            eventBus.EmitSignal(Eventbus.SignalName.SpeedLevelUp, ball.LastProngHit.player2);
         }
     }
 }

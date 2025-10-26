@@ -22,6 +22,16 @@ public partial class Prong : StaticBody2D
         SpriteUpdate();
     }
 
+    public override void _EnterTree()
+    {
+        GetNode<Eventbus>("/root/Eventbus").SpeedLevelUp += EventIncreaseSpeed;
+    }
+
+    public override void _ExitTree()
+    {
+        GetNode<Eventbus>("/root/Eventbus").SpeedLevelUp -= EventIncreaseSpeed;
+    }
+
     private void SetupProperties()
     {
         // Legacy from when Prong class was a RigidBody2D. 
@@ -169,5 +179,14 @@ public partial class Prong : StaticBody2D
     {
         speed += 30;
         GD.Print(speed);
+    }
+
+    private void EventIncreaseSpeed(bool isPlayer2)
+    {
+        if (isPlayer2 != player2) // Only handle speed buff for the correct player
+        {
+            return;
+        }
+        GD.Print($"Player {player2} increasing speed from event");
     }
 }
