@@ -22,12 +22,22 @@ public partial class Fireball : RigidBody2D
     public override void _Process(double delta)
     {
         LinearVelocity = new Vector2(Speed, 0);
+        CheckForLeftMap();
     }
 
     public void FireLeft()
     {
         Rotation = Mathf.Pi;
         Speed *= -1;
+    }
+
+    private void CheckForLeftMap()
+    {
+        if (Position.X > GameManager.RightBoundaryPosition + 50 || Position.X < GameManager.LeftBoundaryPosition - 50)
+        {
+            GameManager.ShowEasterEggCounter = false;
+            QueueFree();
+        }
     }
 
     private void OnBodyEntered(Rid bodyRid, Node body, long bodyShapeIndex, long localShapeIndex)
