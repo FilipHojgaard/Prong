@@ -94,7 +94,7 @@ public partial class Ball : RigidBody2D
             HandlePaddleCollision(paddle);
             if (Speed <= 900)
             {
-                Speed += 40;
+                Speed += 60;
             }
             LastProngHit = paddle;
         }
@@ -117,15 +117,6 @@ public partial class Ball : RigidBody2D
     private void HandleBlockCollision(Block block)
     {
         block.QueueFree();
-    }
-
-    public void HandlePassBlockSpeed()
-    {
-        if (LastProngHit != null)
-        {
-            GD.Print("ball hit passblockspeed");
-            LastProngHit.IncreaseSpeed();
-        }
     }
 
     private async void HandleEasterEgg()

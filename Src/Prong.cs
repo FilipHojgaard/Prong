@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Godot;
+using Godot.Collections;
 using Prong.Src;
 
 namespace Prong;
@@ -7,19 +8,32 @@ namespace Prong;
 public partial class Prong : StaticBody2D
 {
     [Export]
-    public float speed = 300.0f;
-
-    [Export]
     public bool player2 { get; set; } = false;
 
     public bool Ammo { get; set; } = true;
 
     public bool ShieldUp { get; set; } = true;
 
+    public Sprite2D indicator_1 { get; set; }
+
+    public Sprite2D indicator_2 { get; set; }
+
+    public int SpeedLevel { get; set; } = 1;
+
+    public Dictionary<int, float> SpeedLevelDict = new Dictionary<int, float>()
+    {
+        { 1, 300f },
+        { 2, 380f },
+        { 3, 520f }
+    };
+
     public override void _Ready()
     {
         SetupProperties();
         SpriteUpdate();
+
+        indicator_1 = GetNode<Sprite2D>("speed_2");
+        indicator_2 = GetNode<Sprite2D>("speed_3");
     }
 
     public override void _EnterTree()
@@ -54,11 +68,11 @@ public partial class Prong : StaticBody2D
         {
             if (Input.IsActionPressed("Player2Up") && Position.Y > GameManager.UpperBoundaryPosition.Y)
             {
-                velocity.Y -= speed;
+                velocity.Y -= SpeedLevelDict[SpeedLevel];
             }
             if (Input.IsActionPressed("Player2Down") && Position.Y < GameManager.LowerBoundaryPosition.Y)
             {
-                velocity.Y += speed;
+                velocity.Y += SpeedLevelDict[SpeedLevel];
             }
             if (Input.IsActionJustPressed("Player2Fire"))
             {
@@ -73,11 +87,11 @@ public partial class Prong : StaticBody2D
         {
             if (Input.IsActionPressed("Up") && Position.Y > GameManager.UpperBoundaryPosition.Y)
             {
-                velocity.Y -= speed;
+                velocity.Y -= SpeedLevelDict[SpeedLevel];
             }
             if (Input.IsActionPressed("Down") && Position.Y < GameManager.LowerBoundaryPosition.Y)
             {
-                velocity.Y += speed;
+                velocity.Y += SpeedLevelDict[SpeedLevel];
             }
             if (Input.IsActionJustPressed("Fire"))
             {
@@ -175,18 +189,25 @@ public partial class Prong : StaticBody2D
         SpriteUpdate();
     }
 
-    public void IncreaseSpeed()
-    {
-        speed += 30;
-        GD.Print(speed);
-    }
-
     private void EventIncreaseSpeed(bool isPlayer2)
     {
         if (isPlayer2 != player2) // Only handle speed buff for the correct player
         {
             return;
         }
-        GD.Print($"Player {player2} increasing speed from event");
+
+        if (SpeedLevel < 3)
+        {
+            SpeedLevel++;
+        }
+
+        if (SpeedLevel == 2)
+        {
+            indicator_1.Visible = true;
+        }
+        if (SpeedLevel == 3)
+        {
+            indicator_2.Visible = true;
+        }
     }
 }
