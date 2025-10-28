@@ -72,7 +72,7 @@ public partial class Ball : RigidBody2D
     {
         if (Position.X <= GameManager.LeftBoundaryPosition)
         {
-            GameManager.Player1Score++;
+            GameManager.RightPlayerScore++;
             GameManager.PrintScore();
             QueueFree();
             GameManager.DecreaseBallCount();
@@ -80,7 +80,7 @@ public partial class Ball : RigidBody2D
 
         if (Position.X >= GameManager.RightBoundaryPosition)
         {
-            GameManager.Player2Score++;
+            GameManager.LeftPlayerScore++;
             GameManager.PrintScore();
             QueueFree();
             GameManager.DecreaseBallCount();

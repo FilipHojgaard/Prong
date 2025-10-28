@@ -10,8 +10,8 @@ public partial class GameManager : Node
     public static Vector2 LowerBoundaryPosition { get; set; }
     public static float LeftBoundaryPosition { get; set; }
     public static float RightBoundaryPosition { get; set; }
-    public static int Player1Score { get; set; } = 0;
-    public static int Player2Score { get; set; } = 0;
+    public static int RightPlayerScore { get; set; } = 0;
+    public static int LeftPlayerScore { get; set; } = 0;
     public static int BallCount { get; set; } = 0;
     public static EasterEggStatusEnum EasterEggStatus { get; set; } = EasterEggStatusEnum.Inactive;
     public static bool ShowEasterEgg { get; set; } = false;
@@ -108,7 +108,7 @@ public partial class GameManager : Node
 
     public static void PrintScore()
     {
-        GD.Print($"{Player2Score} - {Player1Score}");
+        GD.Print($"{LeftPlayerScore} - {RightPlayerScore}");
     }
 
     public static async void HandleEasterEgg()

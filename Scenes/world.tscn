@@ -14,7 +14,6 @@ scale = Vector2(3.08762, -0.380489)
 
 [node name="LeftPlayer" parent="." instance=ExtResource("1_a02cp")]
 position = Vector2(-909, -1)
-player2 = true
 Player = 1
 
 [node name="RightPlayer" parent="." instance=ExtResource("1_a02cp")]
