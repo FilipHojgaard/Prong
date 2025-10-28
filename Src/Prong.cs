@@ -67,38 +67,38 @@ public partial class Prong : StaticBody2D
 
         if (Player == PlayerEnum.LeftPlayer)
         {
-            if (Input.IsActionPressed("Player2Up") && Position.Y > GameManager.UpperBoundaryPosition.Y)
+            if (Input.IsActionPressed("LeftUp") && Position.Y > GameManager.UpperBoundaryPosition.Y)
             {
                 velocity.Y -= SpeedLevelDict[SpeedLevel];
             }
-            if (Input.IsActionPressed("Player2Down") && Position.Y < GameManager.LowerBoundaryPosition.Y)
+            if (Input.IsActionPressed("LeftDown") && Position.Y < GameManager.LowerBoundaryPosition.Y)
             {
                 velocity.Y += SpeedLevelDict[SpeedLevel];
             }
-            if (Input.IsActionJustPressed("Player2Fire"))
+            if (Input.IsActionJustPressed("LeftFire"))
             {
                 FireFireball();
             }
-            if (Input.IsActionJustPressed("Player2Defence"))
+            if (Input.IsActionJustPressed("LeftDefence"))
             {
                 SetBlock();
             }
         }
         else
         {
-            if (Input.IsActionPressed("Up") && Position.Y > GameManager.UpperBoundaryPosition.Y)
+            if (Input.IsActionPressed("RightUp") && Position.Y > GameManager.UpperBoundaryPosition.Y)
             {
                 velocity.Y -= SpeedLevelDict[SpeedLevel];
             }
-            if (Input.IsActionPressed("Down") && Position.Y < GameManager.LowerBoundaryPosition.Y)
+            if (Input.IsActionPressed("RightDown") && Position.Y < GameManager.LowerBoundaryPosition.Y)
             {
                 velocity.Y += SpeedLevelDict[SpeedLevel];
             }
-            if (Input.IsActionJustPressed("Fire"))
+            if (Input.IsActionJustPressed("RightFire"))
             {
                 FireFireball(fireLeft: true);
             }
-            if (Input.IsActionJustPressed("Defence"))
+            if (Input.IsActionJustPressed("RightDefence"))
             {
                 SetBlock();
             }
