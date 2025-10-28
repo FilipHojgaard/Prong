@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using Godot;
+using Prong.Shared;
 
 namespace Prong.Src;
 
@@ -13,7 +13,7 @@ public partial class GameManager : Node
     public static int Player1Score { get; set; } = 0;
     public static int Player2Score { get; set; } = 0;
     public static int BallCount { get; set; } = 0;
-    public static bool ShowEasterEggCounter { get; set; } = false;
+    public static EasterEggStatusEnum EasterEggStatus { get; set; } = EasterEggStatusEnum.Inactive;
     public static bool ShowEasterEgg { get; set; } = false;
     public override void _Ready()
     {
@@ -113,16 +113,16 @@ public partial class GameManager : Node
 
     public static async void HandleEasterEgg()
     {
-        if (ShowEasterEggCounter)
+        if (EasterEggStatus == EasterEggStatusEnum.ReadyForEasterEgg)
         {
             ShowEasterEgg = true;
             await Instance.ToSignal(Instance.GetTree().CreateTimer(3.0), SceneTreeTimer.SignalName.Timeout);
             ShowEasterEgg = false;
-            ShowEasterEggCounter = false;
+            EasterEggStatus = EasterEggStatusEnum.Inactive;
         }
-        else
-        {
-            ShowEasterEggCounter = true;
+        else 
+        { 
+            EasterEggStatus = EasterEggStatusEnum.ReadyForEasterEgg;
         }
 
     }

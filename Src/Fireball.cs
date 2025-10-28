@@ -1,4 +1,5 @@
 using Godot;
+using Prong.Shared;
 
 namespace Prong.Src;
 
@@ -35,7 +36,7 @@ public partial class Fireball : RigidBody2D
     {
         if (Position.X > GameManager.RightBoundaryPosition + 50 || Position.X < GameManager.LeftBoundaryPosition - 50)
         {
-            GameManager.ShowEasterEggCounter = false;
+            GameManager.EasterEggStatus = EasterEggStatusEnum.Inactive;
             QueueFree();
         }
     }
@@ -45,12 +46,12 @@ public partial class Fireball : RigidBody2D
         if (body is Block block)
         {
             block.QueueFree();
-            GameManager.ShowEasterEggCounter = false;
+            GameManager.EasterEggStatus = EasterEggStatusEnum.Inactive;
         }
         if (body is Prong player)
         {
             QueueFree();
-            GameManager.ShowEasterEggCounter = false;
+            GameManager.EasterEggStatus = EasterEggStatusEnum.Inactive;
         }
         if (body is Fireball otherFireball)
         {
