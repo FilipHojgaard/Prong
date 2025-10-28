@@ -11,6 +11,9 @@ public partial class Prong : StaticBody2D
     [Export]
     public bool player2 { get; set; } = false;
 
+    [Export]
+    public PlayerEnum Player { get; set; } = PlayerEnum.Undefined;
+
     public bool Ammo { get; set; } = true;
 
     public bool ShieldUp { get; set; } = true;
