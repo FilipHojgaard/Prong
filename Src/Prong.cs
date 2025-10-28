@@ -9,9 +9,6 @@ namespace Prong;
 public partial class Prong : StaticBody2D
 {
     [Export]
-    public bool player2 { get; set; } = false;
-
-    [Export]
     public PlayerEnum Player { get; set; } = PlayerEnum.Undefined;
 
     public bool Ammo { get; set; } = true;
@@ -68,7 +65,7 @@ public partial class Prong : StaticBody2D
     {
         Vector2 velocity = Vector2.Zero;
 
-        if (player2)
+        if (Player == PlayerEnum.LeftPlayer)
         {
             if (Input.IsActionPressed("Player2Up") && Position.Y > GameManager.UpperBoundaryPosition.Y)
             {
@@ -142,11 +139,11 @@ public partial class Prong : StaticBody2D
         Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
         Texture2D newTexture = null;
         
-        if (Ammo && ShieldUp && player2)
+        if (Ammo && ShieldUp && Player == PlayerEnum.LeftPlayer)
         {
             newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_red_blue.png");
         }
-        else if (Ammo && ShieldUp && !player2)
+        else if (Ammo && ShieldUp && Player == PlayerEnum.RightPlayer)
         {
             newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue_red.png");
         }
@@ -180,7 +177,7 @@ public partial class Prong : StaticBody2D
         var blockScene = GD.Load<PackedScene>("res://Scenes/Block.tscn");
         var block = blockScene.Instantiate<Block>();
 
-        var offset = player2 ? -20 : 20;
+        var offset = Player == PlayerEnum.LeftPlayer ? -20 : 20;
 
         block.Position = new Vector2(Position.X + offset, Position.Y);
 
@@ -193,9 +190,9 @@ public partial class Prong : StaticBody2D
         SpriteUpdate();
     }
 
-    private void EventIncreaseSpeed(bool isPlayer2)
+    private void EventIncreaseSpeed(int EventPlayer)
     {
-        if (isPlayer2 != player2) // Only handle speed buff for the correct player
+        if (Player != (PlayerEnum)EventPlayer) // Only handle speed buff for the correct player
         {
             return;
         }

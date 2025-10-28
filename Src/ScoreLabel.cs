@@ -1,11 +1,12 @@
 using Godot;
+using Prong.Shared;
 
 namespace Prong.Src;
 
 public partial class ScoreLabel : Label
 {
     [Export]
-    public bool Player2 { get; set; } = false;
+    public PlayerEnum Player { get; set; } = PlayerEnum.Undefined;
 
     public override void _Ready()
     {
@@ -14,13 +15,13 @@ public partial class ScoreLabel : Label
 
     public override void _Process(double delta)
     {
-        if (Player2)
+        if (Player == PlayerEnum.LeftPlayer)
         {
-            Text = GameManager.ShowEasterEgg ? "10" : GameManager.Player1Score.ToString();
+            Text = GameManager.ShowEasterEgg ? "10" : GameManager.RightPlayerScore.ToString();
         }
         else
         {
-            Text = GameManager.ShowEasterEgg ? "28" : GameManager.Player2Score.ToString();
+            Text = GameManager.ShowEasterEgg ? "28" : GameManager.LeftPlayerScore.ToString();
         }
     }
 }
