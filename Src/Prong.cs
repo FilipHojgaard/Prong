@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
+using Prong.Shared;
 using Prong.Src;
 
 namespace Prong;
@@ -38,12 +39,12 @@ public partial class Prong : StaticBody2D
 
     public override void _EnterTree()
     {
-        GetNode<Eventbus>("/root/Eventbus").SpeedLevelUp += EventIncreaseSpeed;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).SpeedLevelUp += EventIncreaseSpeed;
     }
 
     public override void _ExitTree()
     {
-        GetNode<Eventbus>("/root/Eventbus").SpeedLevelUp -= EventIncreaseSpeed;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).SpeedLevelUp -= EventIncreaseSpeed;
     }
 
     private void SetupProperties()

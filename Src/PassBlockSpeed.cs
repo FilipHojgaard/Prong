@@ -1,4 +1,5 @@
 using Godot;
+using Prong.Shared;
 
 namespace Prong.Src;
 
@@ -14,7 +15,7 @@ public partial class PassBlockSpeed : Area2D
         if (node is Ball ball)
         {
             QueueFree();
-            var eventBus = GetNode<Eventbus>("/root/Eventbus"); // TODO:  Can I avoid getting a static reference somehow? 
+            var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath); // TODO:  Can I avoid getting a static reference somehow? 
             eventBus.EmitSignal(Eventbus.SignalName.SpeedLevelUp, ball.LastProngHit.player2);
         }
     }
