@@ -17,11 +17,11 @@ public partial class ScoreLabel : Label
     {
         if (Player == PlayerEnum.LeftPlayer)
         {
-            Text = GameManager.ShowEasterEgg ? "10" : GameManager.RightPlayerScore.ToString();
+            Text = GameManager.ShowEasterEgg ? "28" : GameManager.LeftPlayerScore.ToString();
         }
         else
         {
-            Text = GameManager.ShowEasterEgg ? "28" : GameManager.LeftPlayerScore.ToString();
+            Text = GameManager.ShowEasterEgg ? "10" : GameManager.RightPlayerScore.ToString();
         }
     }
 }
