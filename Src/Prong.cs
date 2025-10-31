@@ -3,6 +3,7 @@ using Godot;
 using Godot.Collections;
 using Prong.Shared;
 using Prong.Src;
+using Prong.Src.Blocks;
 
 namespace Prong;
 

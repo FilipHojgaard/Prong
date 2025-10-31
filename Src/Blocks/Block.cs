@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Prong.Src;
+namespace Prong.Src.Blocks;
 
 public partial class Block : RigidBody2D
 {

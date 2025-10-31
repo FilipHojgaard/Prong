@@ -1,7 +1,7 @@
 using Godot;
 using Prong.Shared;
 
-namespace Prong.Src;
+namespace Prong.Src.Blocks;
 
 public partial class Fireball : RigidBody2D
 {

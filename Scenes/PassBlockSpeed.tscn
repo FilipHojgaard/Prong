@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cy0dclm6yrl13"]
 
 [ext_resource type="Texture2D" uid="uid://dytxhlxcmd4i" path="res://Assets/Sprites/block_sprite_sheet.png" id="1_2bp4p"]
-[ext_resource type="Script" uid="uid://4tgdb6pp4tj" path="res://Src/PassBlockSpeed.cs" id="1_ck5oa"]
+[ext_resource type="Script" uid="uid://cni2ecsc0ygg5" path="res://Src/Blocks/PassBlockSpeed.cs" id="1_ck5oa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ck5oa"]
 size = Vector2(14, 6)
