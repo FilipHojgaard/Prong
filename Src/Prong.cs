@@ -41,6 +41,8 @@ public partial class Prong : StaticBody2D
     public override void _EnterTree()
     {
         GetNode<Eventbus>(ProngConstants.EventHubPath).SpeedLevelUp += EventIncreaseSpeed;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).AttackLevelUp += EventIncreaseAttack;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).DefenceLevelUp += EventIncreaseDefence;
     }
 
     public override void _ExitTree()
@@ -211,5 +213,23 @@ public partial class Prong : StaticBody2D
         {
             indicator_2.Visible = true;
         }
+    }
+
+    private void EventIncreaseAttack(int EventPlayer)
+    {
+        if (Player != (PlayerEnum)EventPlayer)
+        {
+            return;
+        }
+        GD.Print("Attack level increased");
+    }
+
+    private void EventIncreaseDefence(int EventPlayer)
+    {
+        if (Player != (PlayerEnum)EventPlayer)
+        {
+            return;
+        }
+        GD.Print("Defence level increased");
     }
 }
