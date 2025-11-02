@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
-using Godot.Collections;
+//using Godot.Collections;
 using Prong.Shared;
 using Prong.Src;
 using Prong.Src.Blocks;
@@ -12,7 +14,7 @@ public partial class Prong : StaticBody2D
     [Export]
     public PlayerEnum Player { get; set; } = PlayerEnum.Undefined;
 
-    public bool Ammo { get; set; } = true;
+    public bool FireballReady { get; set; } = true;
 
     public bool ShieldUp { get; set; } = true;
 
@@ -22,12 +24,30 @@ public partial class Prong : StaticBody2D
 
     public int SpeedLevel { get; set; } = 1;
 
+    public int AttackLevel { get; set; } = 1;
+
     public Dictionary<int, float> SpeedLevelDict = new Dictionary<int, float>()
     {
         { 1, 300f },
         { 2, 380f },
-        { 3, 520f }
+        { 3, 520f },
     };
+
+    public Dictionary<int, float> AttackCooldownDict = new Dictionary<int, float>()
+    {
+        { 1, 10f },
+        { 2, 8f },
+        { 3, 7f },
+    };
+
+    public Dictionary<int, int> AttackSpeed = new Dictionary<int, int>()
+    {
+        { 1,  900 },
+        { 2, 1100 },
+        { 3, 1300 },
+    };
+
+    private Dictionary<int, Action> AttackActionDict;
 
     public override void _Ready()
     {
@@ -52,11 +72,12 @@ public partial class Prong : StaticBody2D
 
     private void SetupProperties()
     {
-        // Legacy from when Prong class was a RigidBody2D. 
-        //GravityScale = 0;
-        //LockRotation = true;
-
-        //FreezeMode = RigidBody2D.FreezeModeEnum.Kinematic;
+        AttackActionDict = new Dictionary<int, Action>()
+        {
+            { 1, FireFireballLevel1 },
+            { 2, FireFireballLevel2 },
+            { 3, FireFireballLevel3 }
+        };
     }
 
     public override void _PhysicsProcess(double delta)
@@ -112,29 +133,93 @@ public partial class Prong : StaticBody2D
 
     public async Task FireFireball(bool fireLeft = false)
     {
-        if (!Ammo)
+        if (!FireballReady)
         {
             return;
         }
 
+        AttackActionDict[AttackLevel]();
+
+        FireballReady = false;
+        SpriteUpdate();
+        await ToSignal(GetTree().CreateTimer(AttackCooldownDict[AttackLevel]), SceneTreeTimer.SignalName.Timeout);
+        FireballReady = true;
+        SpriteUpdate();
+    }
+
+    
+    private void FireFireballLevel1()
+    {
         var fireBallScene = GD.Load<PackedScene>("res://Scenes/fireball.tscn");
         var fireball = fireBallScene.Instantiate<Fireball>();
+        fireball.Initialize(AttackSpeed[AttackLevel]);
 
-        if (fireLeft) 
-        { 
-            fireball.FireLeft(); 
+        if (Player == PlayerEnum.RightPlayer)
+        {
+            fireball.FireLeft();
         }
 
-        var offset = fireLeft ? -20 : 20;
+        var offset = (Player == PlayerEnum.RightPlayer) ? -20 : 20;
         fireball.Position = new Vector2(Position.X + offset, Position.Y);
 
         GetTree().CurrentScene.AddChild(fireball);
+    }
 
-        Ammo = false;
-        SpriteUpdate();
-        await ToSignal(GetTree().CreateTimer(10.0), SceneTreeTimer.SignalName.Timeout);
-        Ammo = true;
-        SpriteUpdate();
+    void FireFireballLevel2()
+    {
+        var fireBallScene = GD.Load<PackedScene>("res://Scenes/fireball.tscn");
+        var fireballUpper = fireBallScene.Instantiate<Fireball>();
+        var fireballLower = fireBallScene.Instantiate<Fireball>();
+
+        fireballUpper.Initialize(AttackSpeed[AttackLevel]);
+        fireballLower.Initialize(AttackSpeed[AttackLevel]);
+
+        if (Player == PlayerEnum.RightPlayer)
+        {
+            fireballUpper.FireLeft();
+            fireballLower.FireLeft();
+        }
+
+        var offset = (Player == PlayerEnum.RightPlayer) ? -20 : 20;
+        fireballUpper.Position = new Vector2(Position.X + offset, Position.Y + 15);
+        fireballLower.Position = new Vector2(Position.X + offset, Position.Y - 15);
+
+        GetTree().CurrentScene.AddChild(fireballUpper);
+        GetTree().CurrentScene.AddChild(fireballLower);
+    }
+
+    async void FireFireballLevel3()
+    {
+        var fireBallScene = GD.Load<PackedScene>("res://Scenes/fireball.tscn");
+        var fireballUpper = fireBallScene.Instantiate<Fireball>();
+        var fireballLower = fireBallScene.Instantiate<Fireball>();
+        var fireballUpperDiagonally = fireBallScene.Instantiate<Fireball>();
+        var fireballLowerDiagonally = fireBallScene.Instantiate<Fireball>();
+
+        fireballUpper.Initialize(AttackSpeed[AttackLevel]);
+        fireballLower.Initialize(AttackSpeed[AttackLevel]);
+        fireballUpperDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Upwards);
+        fireballLowerDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Downwards);
+
+        if (Player == PlayerEnum.RightPlayer)
+        {
+            fireballUpper.FireLeft();
+            fireballLower.FireLeft();
+            fireballUpperDiagonally.FireLeft();
+            fireballLowerDiagonally.FireLeft();
+        }
+
+        var offset = (Player == PlayerEnum.RightPlayer) ? -20 : 20;
+        fireballUpper.Position = new Vector2(Position.X + offset, Position.Y + 15);
+        fireballLower.Position = new Vector2(Position.X + offset, Position.Y - 15);
+        fireballUpperDiagonally.Position = new Vector2(Position.X + offset, Position.Y + 40);
+        fireballLowerDiagonally.Position = new Vector2(Position.X + offset, Position.Y - 40);
+
+        GetTree().CurrentScene.AddChild(fireballUpper);
+        GetTree().CurrentScene.AddChild(fireballLower);
+        await ToSignal(GetTree().CreateTimer(0.02f), SceneTreeTimer.SignalName.Timeout);
+        GetTree().CurrentScene.AddChild(fireballUpperDiagonally);
+        GetTree().CurrentScene.AddChild(fireballLowerDiagonally);
     }
 
     private void SpriteUpdate()
@@ -142,15 +227,15 @@ public partial class Prong : StaticBody2D
         Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
         Texture2D newTexture = null;
         
-        if (Ammo && ShieldUp && Player == PlayerEnum.LeftPlayer)
+        if (FireballReady && ShieldUp && Player == PlayerEnum.LeftPlayer)
         {
             newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_red_blue.png");
         }
-        else if (Ammo && ShieldUp && Player == PlayerEnum.RightPlayer)
+        else if (FireballReady && ShieldUp && Player == PlayerEnum.RightPlayer)
         {
             newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue_red.png");
         }
-        else if (Ammo)
+        else if (FireballReady)
         {
             newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_red.png");
         }
@@ -221,7 +306,10 @@ public partial class Prong : StaticBody2D
         {
             return;
         }
-        GD.Print("Attack level increased");
+        if (AttackLevel < 3)
+        {
+            AttackLevel++;
+        }
     }
 
     private void EventIncreaseDefence(int EventPlayer)
