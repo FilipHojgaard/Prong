@@ -223,8 +223,16 @@ public partial class Prong : StaticBody2D
 
         fireballUpper.Initialize(AttackSpeed[AttackLevel]);
         fireballLower.Initialize(AttackSpeed[AttackLevel]);
-        fireballUpperDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Upwards);
-        fireballLowerDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Downwards);
+        if (Player == PlayerEnum.RightPlayer)
+        {
+            fireballUpperDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Upwards);
+            fireballLowerDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Downwards);
+        }
+        else if (Player == PlayerEnum.LeftPlayer)
+        {
+            fireballUpperDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Downwards);
+            fireballLowerDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Upwards);
+        }
 
         if (Player == PlayerEnum.RightPlayer)
         {
