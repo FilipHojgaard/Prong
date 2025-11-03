@@ -82,3 +82,15 @@ position = Vector2(-150, 251)
 
 [node name="PassBlockDefence4" parent="." instance=ExtResource("6_5ukr8")]
 position = Vector2(150, 251)
+
+[node name="PassBlockAttack3" parent="." instance=ExtResource("5_fo5ed")]
+position = Vector2(550, -399)
+
+[node name="PassBlockAttack4" parent="." instance=ExtResource("5_fo5ed")]
+position = Vector2(-550, 401)
+
+[node name="PassBlockDefence5" parent="." instance=ExtResource("6_5ukr8")]
+position = Vector2(-550, -399)
+
+[node name="PassBlockDefence6" parent="." instance=ExtResource("6_5ukr8")]
+position = Vector2(550, 401)
