@@ -117,7 +117,7 @@ public partial class Ball : RigidBody2D
 
     private void HandleBlockCollision(Block block)
     {
-        block.QueueFree();
+        block.TakeHit();
     }
 
     private async void HandleEasterEgg()

@@ -14,7 +14,7 @@ public partial class Fireball : RigidBody2D
     public override void _Ready()
     {
         GravityScale = 0;
-        Mass = 1000;
+        Mass = 0;
         LockRotation = true;
 
         ContactMonitor = true;
@@ -70,7 +70,8 @@ public partial class Fireball : RigidBody2D
     {
         if (body is Block block)
         {
-            block.QueueFree();
+            block.TakeHit();
+            QueueFree();
             GameManager.EasterEggStatus = EasterEggStatusEnum.Inactive;
         }
         if (body is Prong player)

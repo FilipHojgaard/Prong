@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvciffyj0kaoh"]
+[gd_scene load_steps=5 format=3 uid="uid://bvciffyj0kaoh"]
 
 [ext_resource type="Texture2D" uid="uid://dytxhlxcmd4i" path="res://Assets/Sprites/block_sprite_sheet.png" id="1_ovn4m"]
 [ext_resource type="Script" uid="uid://jeusbsp8kruv" path="res://Src/Blocks/Block.cs" id="1_x55lh"]
+[ext_resource type="Texture2D" uid="uid://be5b3vrkvc1g0" path="res://Assets/Sprites/block_sprite_sheet_v2.png" id="3_ujcp4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x55lh"]
 size = Vector2(6, 14)
@@ -13,9 +14,16 @@ script = ExtResource("1_x55lh")
 scale = Vector2(2.714, 2.714)
 shape = SubResource("RectangleShape2D_x55lh")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="OneHealth" type="Sprite2D" parent="."]
 rotation = -1.5708
 scale = Vector2(2.714, 2.714)
 texture = ExtResource("1_ovn4m")
 region_enabled = true
 region_rect = Rect2(48, 0, 15, 7)
+
+[node name="TwoHealth" type="Sprite2D" parent="."]
+rotation = 1.57079
+scale = Vector2(2.714, 2.714)
+texture = ExtResource("3_ujcp4")
+region_enabled = true
+region_rect = Rect2(16, 0, 15, 7)
