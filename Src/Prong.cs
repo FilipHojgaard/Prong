@@ -56,6 +56,13 @@ public partial class Prong : StaticBody2D
         { 3, 7f },
     };
 
+    public Dictionary<int, int> DefenceHpDict = new Dictionary<int, int>()
+    {
+        { 1, 1 },
+        { 2, 2 },
+        { 3, 2 },
+    };
+
     private Dictionary<int, Action> AttackActionDict;
 
     private Dictionary<int, Action> DefenceActionDict;
@@ -293,6 +300,7 @@ public partial class Prong : StaticBody2D
     {
         var blockScene = GD.Load<PackedScene>("res://Scenes/Block.tscn");
         var block = blockScene.Instantiate<Block>();
+        block.Initialize(DefenceHpDict[DefenceLevel]);
 
         var offset = Player == PlayerEnum.LeftPlayer ? -20 : 20;
 
@@ -303,14 +311,32 @@ public partial class Prong : StaticBody2D
 
     private void SetDefenceLevel2()
     {
-        SetDefenceLevel1();
-        GD.Print("Defence level 2 not yet implemetned");
+        var blockScene = GD.Load<PackedScene>("res://Scenes/Block.tscn");
+        var block = blockScene.Instantiate<Block>();
+        block.Initialize(DefenceHpDict[DefenceLevel]);
+
+        var offset = Player == PlayerEnum.LeftPlayer ? -20 : 20;
+
+        block.Position = new Vector2(Position.X + offset, Position.Y);
+
+        GetTree().CurrentScene.AddChild(block);
     }
 
     private void SetDefenceLevel3()
     {
-        SetDefenceLevel1();
-        GD.Print("Defence level 3 not yet implemented");
+        var blockScene = GD.Load<PackedScene>("res://Scenes/Block.tscn");
+        var blockUpper = blockScene.Instantiate<Block>();
+        var blockLower = blockScene.Instantiate<Block>();
+        blockUpper.Initialize(DefenceHpDict[DefenceLevel]);
+        blockLower.Initialize(DefenceHpDict[DefenceLevel]);
+
+        var offset = Player == PlayerEnum.LeftPlayer ? -20 : 20;
+
+        blockUpper.Position = new Vector2(Position.X + offset, Position.Y - 20);
+        blockLower.Position = new Vector2(Position.X + offset, Position.Y + 20);
+
+        GetTree().CurrentScene.AddChild(blockUpper);
+        GetTree().CurrentScene.AddChild(blockLower);
     }
 
     private void EventIncreaseSpeed(int EventPlayer)
