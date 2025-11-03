@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bf1xc3dmbb6bq" path="res://Assets/Sprites/speed_indicator.png" id="3_6t5aa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
-size = Vector2(24, 9.58361)
+size = Vector2(24, 8.03786)
 
 [node name="Player" type="StaticBody2D"]
 rotation = 1.57079
@@ -13,7 +13,7 @@ scale = Vector2(3.26043, 3.23469)
 script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.24606)
+position = Vector2(0, 2.47319)
 shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
