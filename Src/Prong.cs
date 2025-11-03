@@ -16,7 +16,7 @@ public partial class Prong : StaticBody2D
 
     public bool FireballReady { get; set; } = true;
 
-    public bool ShieldUp { get; set; } = true;
+    public bool ShieldReady { get; set; } = true;
 
     public Sprite2D indicator_1 { get; set; }
 
@@ -25,6 +25,8 @@ public partial class Prong : StaticBody2D
     public int SpeedLevel { get; set; } = 1;
 
     public int AttackLevel { get; set; } = 1;
+
+    public int DefenceLevel { get; set; } = 1;
 
     public Dictionary<int, float> SpeedLevelDict = new Dictionary<int, float>()
     {
@@ -47,7 +49,16 @@ public partial class Prong : StaticBody2D
         { 3, 1300 },
     };
 
+    public Dictionary<int, float> DefenceCooldownDict = new Dictionary<int, float>()
+    {
+        { 1, 10f },
+        { 2, 8f },
+        { 3, 7f },
+    };
+
     private Dictionary<int, Action> AttackActionDict;
+
+    private Dictionary<int, Action> DefenceActionDict;
 
     public override void _Ready()
     {
@@ -78,6 +89,13 @@ public partial class Prong : StaticBody2D
             { 2, FireFireballLevel2 },
             { 3, FireFireballLevel3 }
         };
+
+        DefenceActionDict = new Dictionary<int, Action>()
+        {
+            { 1, SetDefenceLevel1 },
+            { 2, SetDefenceLevel2 },
+            { 3, SetDefenceLevel3 },
+        };
     }
 
     public override void _PhysicsProcess(double delta)
@@ -105,7 +123,7 @@ public partial class Prong : StaticBody2D
             }
             if (Input.IsActionJustPressed("LeftDefence"))
             {
-                SetBlock();
+                SetDefence();
             }
         }
         else
@@ -124,7 +142,7 @@ public partial class Prong : StaticBody2D
             }
             if (Input.IsActionJustPressed("RightDefence"))
             {
-                SetBlock();
+                SetDefence();
             }
         }
 
@@ -227,11 +245,11 @@ public partial class Prong : StaticBody2D
         Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
         Texture2D newTexture = null;
         
-        if (FireballReady && ShieldUp && Player == PlayerEnum.LeftPlayer)
+        if (FireballReady && ShieldReady && Player == PlayerEnum.LeftPlayer)
         {
             newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_red_blue.png");
         }
-        else if (FireballReady && ShieldUp && Player == PlayerEnum.RightPlayer)
+        else if (FireballReady && ShieldReady && Player == PlayerEnum.RightPlayer)
         {
             newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue_red.png");
         }
@@ -239,7 +257,7 @@ public partial class Prong : StaticBody2D
         {
             newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_red.png");
         }
-        else if (ShieldUp)
+        else if (ShieldReady)
         {
             newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue.png");
         }
@@ -255,13 +273,24 @@ public partial class Prong : StaticBody2D
 
     }
 
-    public async Task SetBlock()
+    public async Task SetDefence()
     {
-        if (!ShieldUp)
+        if (!ShieldReady)
         {
             return;
         }
 
+        DefenceActionDict[DefenceLevel]();
+
+        ShieldReady = false;
+        SpriteUpdate();
+        await ToSignal(GetTree().CreateTimer(DefenceCooldownDict[DefenceLevel]), SceneTreeTimer.SignalName.Timeout);
+        ShieldReady = true;
+        SpriteUpdate();
+    }
+
+    private void SetDefenceLevel1()
+    {
         var blockScene = GD.Load<PackedScene>("res://Scenes/Block.tscn");
         var block = blockScene.Instantiate<Block>();
 
@@ -270,12 +299,18 @@ public partial class Prong : StaticBody2D
         block.Position = new Vector2(Position.X + offset, Position.Y);
 
         GetTree().CurrentScene.AddChild(block);
+    }
 
-        ShieldUp = false;
-        SpriteUpdate();
-        await ToSignal(GetTree().CreateTimer(10.0), SceneTreeTimer.SignalName.Timeout);
-        ShieldUp = true;
-        SpriteUpdate();
+    private void SetDefenceLevel2()
+    {
+        SetDefenceLevel1();
+        GD.Print("Defence level 2 not yet implemetned");
+    }
+
+    private void SetDefenceLevel3()
+    {
+        SetDefenceLevel1();
+        GD.Print("Defence level 3 not yet implemented");
     }
 
     private void EventIncreaseSpeed(int EventPlayer)
@@ -318,6 +353,9 @@ public partial class Prong : StaticBody2D
         {
             return;
         }
-        GD.Print("Defence level increased");
+        if (DefenceLevel < 3)
+        {
+            DefenceLevel++;
+        }
     }
 }
