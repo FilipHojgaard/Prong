@@ -128,10 +128,11 @@ public partial class Ball : RigidBody2D
             GD.Print("fireball hit");
             FireballHits++;
             fireball.HitBall = true;
-            if (FireballHits >= 2)
-            {
-                HandleEasterEgg();
-            }
+            // TODO: Remove fireball hit easteregg trigger thorougly, after attack levels have multiple fireballs. 
+            //if (FireballHits >= 2)
+            //{
+            //    HandleEasterEgg();
+            //}
         }
     }
 
