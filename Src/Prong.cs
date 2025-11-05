@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
-//using Godot.Collections;
 using Prong.Shared;
 using Prong.Src;
 using Prong.Src.Blocks;
@@ -27,6 +26,12 @@ public partial class Prong : StaticBody2D
     public int AttackLevel { get; set; } = 1;
 
     public int DefenceLevel { get; set; } = 1;
+
+    private AudioStreamPlayer _fireballSimpleSfx;
+
+    private AudioStreamPlayer _fireBallMaxLevelSfx;
+
+    private AudioStreamPlayer _setDefenceSfx;
 
     public Dictionary<int, float> SpeedLevelDict = new Dictionary<int, float>()
     {
@@ -103,6 +108,9 @@ public partial class Prong : StaticBody2D
             { 2, SetDefenceLevel2 },
             { 3, SetDefenceLevel3 },
         };
+        _fireballSimpleSfx = GetNode<AudioStreamPlayer>("FireballSimpleSfx");
+        _fireBallMaxLevelSfx = GetNode<AudioStreamPlayer>("FireballMaxLevelSfx");
+        _setDefenceSfx = GetNode<AudioStreamPlayer>("PlaceShieldSfx");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -188,6 +196,7 @@ public partial class Prong : StaticBody2D
         fireball.Position = new Vector2(Position.X + offset, Position.Y);
 
         GetTree().CurrentScene.AddChild(fireball);
+        _fireballSimpleSfx.Play();
     }
 
     void FireFireballLevel2()
@@ -211,6 +220,7 @@ public partial class Prong : StaticBody2D
 
         GetTree().CurrentScene.AddChild(fireballUpper);
         GetTree().CurrentScene.AddChild(fireballLower);
+        _fireballSimpleSfx.Play();
     }
 
     async void FireFireballLevel3()
@@ -253,6 +263,7 @@ public partial class Prong : StaticBody2D
         await ToSignal(GetTree().CreateTimer(0.02f), SceneTreeTimer.SignalName.Timeout);
         GetTree().CurrentScene.AddChild(fireballUpperDiagonally);
         GetTree().CurrentScene.AddChild(fireballLowerDiagonally);
+        _fireBallMaxLevelSfx.Play();
     }
 
     private void SpriteUpdate()
@@ -296,12 +307,14 @@ public partial class Prong : StaticBody2D
         }
 
         DefenceActionDict[DefenceLevel]();
+        _setDefenceSfx.Play();
 
         ShieldReady = false;
         SpriteUpdate();
         await ToSignal(GetTree().CreateTimer(DefenceCooldownDict[DefenceLevel]), SceneTreeTimer.SignalName.Timeout);
         ShieldReady = true;
         SpriteUpdate();
+
     }
 
     private void SetDefenceLevel1()

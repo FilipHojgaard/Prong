@@ -12,6 +12,12 @@ public partial class Ball : RigidBody2D
 
     public int FireballHits { get; set; } = 0;
 
+    private AudioStreamPlayer _prongHitSfx;
+
+    private AudioStreamPlayer _goalSfx;
+
+    private AudioStreamPlayer _blockHitSfx;
+
     public override void _Ready()
     {
         GravityScale = 0;
@@ -20,6 +26,10 @@ public partial class Ball : RigidBody2D
         MaxContactsReported = 20;
 
         BodyShapeEntered += OnBodyEntered;
+
+        _prongHitSfx = GetNode<AudioStreamPlayer>("ProngHitSfx");
+        _goalSfx = GetNode<AudioStreamPlayer>("GoalSfx");
+        _blockHitSfx = GetNode<AudioStreamPlayer>("BlockHitSfx");
 
         SetupDefaultBallMaterial();
         if (SpawnInCenter)
@@ -73,6 +83,10 @@ public partial class Ball : RigidBody2D
     {
         if (Position.X <= GameManager.LeftBoundaryPosition)
         {
+            _goalSfx.Reparent(GetTree().Root);
+            _goalSfx.Finished += () => _goalSfx.QueueFree();
+            _goalSfx.Play();
+
             GameManager.RightPlayerScore++;
             GameManager.PrintScore();
             QueueFree();
@@ -81,6 +95,10 @@ public partial class Ball : RigidBody2D
 
         if (Position.X >= GameManager.RightBoundaryPosition)
         {
+            _goalSfx.Reparent(GetTree().Root);
+            _goalSfx.Finished += () => _goalSfx.QueueFree();
+            _goalSfx.Play();
+
             GameManager.LeftPlayerScore++;
             GameManager.PrintScore();
             QueueFree();
@@ -92,6 +110,7 @@ public partial class Ball : RigidBody2D
     {
         if (body is Prong paddle)
         {
+            _prongHitSfx.Play();
             HandlePaddleCollision(paddle);
             if (Speed <= 900)
             {
@@ -101,6 +120,7 @@ public partial class Ball : RigidBody2D
         }
         if (body is Block block)
         {
+            _blockHitSfx.Play();
             HandleBlockCollision(block);
         }
         if (body is Fireball fireball && !fireball.HitBall)

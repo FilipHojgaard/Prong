@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://botop038mpbg7"]
+[gd_scene load_steps=7 format=3 uid="uid://botop038mpbg7"]
 
 [ext_resource type="Texture2D" uid="uid://civu63evh6i2w" path="res://Assets/Sprites/ball.png" id="1_d60mj"]
 [ext_resource type="Script" uid="uid://bv11d1y12femf" path="res://Src/Ball.cs" id="2_ij5cq"]
+[ext_resource type="AudioStream" uid="uid://cl4tlovoeo6ov" path="res://Assets/SFX/ProngHit_4.wav" id="3_376qj"]
+[ext_resource type="AudioStream" uid="uid://chelejttbqhdm" path="res://Assets/SFX/Score_1.wav" id="4_yk4cr"]
+[ext_resource type="AudioStream" uid="uid://vj82q25aal77" path="res://Assets/SFX/BlockHit_1.wav" id="5_aw2wy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d60mj"]
 radius = 9.0
@@ -16,3 +19,12 @@ texture = ExtResource("1_d60mj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d60mj")
+
+[node name="ProngHitSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_376qj")
+
+[node name="GoalSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yk4cr")
+
+[node name="BlockHitSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_aw2wy")
