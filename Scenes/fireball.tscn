@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c583wbdv0lssk"]
+[gd_scene load_steps=5 format=3 uid="uid://c583wbdv0lssk"]
 
 [ext_resource type="Script" uid="uid://bnxlg0cp2adx4" path="res://Src/Fireball.cs" id="1_0mxqg"]
 [ext_resource type="Texture2D" uid="uid://2sbpcojn88wu" path="res://Assets/Sprites/firebullet.png" id="1_xi7wk"]
+[ext_resource type="AudioStream" uid="uid://njd76ylkpe7u" path="res://Assets/SFX/FireballHitProngSfx.wav" id="3_ne4qj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0mxqg"]
 radius = 9.0
@@ -15,3 +16,6 @@ texture = ExtResource("1_xi7wk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 0)
 shape = SubResource("CircleShape2D_0mxqg")
+
+[node name="HitSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ne4qj")

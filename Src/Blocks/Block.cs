@@ -6,8 +6,13 @@ public partial class Block : RigidBody2D
 {
 
     private int _hp { get; set; }
+
+    private AudioStreamPlayer _hitSfx;
+
     public override void _Ready()
     {
+        _hitSfx = GetNode<AudioStreamPlayer>("HitSfx");
+
         GravityScale = 0;
         Mass = 1000;
     }
@@ -23,10 +28,18 @@ public partial class Block : RigidBody2D
         _hp--;
         if (_hp < 1)
         {
+            _hitSfx.Reparent(GetTree().Root);
+            _hitSfx.Finished += () => _hitSfx.QueueFree();
+            _hitSfx.Play();
             QueueFree();
             return;
         }
+        else
+        {
+            _hitSfx.Play();
+        }
         UpdateSprite();
+
     }
 
     private void UpdateSprite()

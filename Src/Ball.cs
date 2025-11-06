@@ -16,7 +16,7 @@ public partial class Ball : RigidBody2D
 
     private AudioStreamPlayer _goalSfx;
 
-    private AudioStreamPlayer _blockHitSfx;
+    private AudioStreamPlayer _otherHitSfx;
 
     public override void _Ready()
     {
@@ -29,7 +29,7 @@ public partial class Ball : RigidBody2D
 
         _prongHitSfx = GetNode<AudioStreamPlayer>("ProngHitSfx");
         _goalSfx = GetNode<AudioStreamPlayer>("GoalSfx");
-        _blockHitSfx = GetNode<AudioStreamPlayer>("BlockHitSfx");
+        _otherHitSfx = GetNode<AudioStreamPlayer>("OtherHitSfx");
 
         SetupDefaultBallMaterial();
         if (SpawnInCenter)
@@ -120,12 +120,11 @@ public partial class Ball : RigidBody2D
         }
         if (body is Block block)
         {
-            _blockHitSfx.Play();
             HandleBlockCollision(block);
         }
         if (body is Fireball fireball && !fireball.HitBall)
         {
-            GD.Print("fireball hit");
+            _otherHitSfx.Play();
             FireballHits++;
             fireball.HitBall = true;
             // TODO: Remove fireball hit easteregg trigger thorougly, after attack levels have multiple fireballs. 
@@ -134,6 +133,14 @@ public partial class Ball : RigidBody2D
             //    HandleEasterEgg();
             //}
         }
+        if (body is Ball otherBall)
+        {
+            if (GetInstanceId() < otherBall.GetInstanceId())
+            {
+                _otherHitSfx.Play();
+            }
+        }
+        // TODO: Also play _otherHitSfx() if ball hits the horizontal borders. 
     }
 
     private void HandleBlockCollision(Block block)

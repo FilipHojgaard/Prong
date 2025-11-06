@@ -9,10 +9,14 @@ public partial class Fireball : RigidBody2D
     public bool HitBall { get; set; } = false;
     public DiagonalTypeEnum Diagonal { get; set; }
 
+    private AudioStreamPlayer _hitSfx;
+
     // TODO: Implement diagonal here, and an Initialize method to set it. then in LinearVelocity under _Process, we can set the 0 to be the diaganal value or 0 dynamically for level 3 attack. 
 
     public override void _Ready()
     {
+        _hitSfx = GetNode<AudioStreamPlayer>("HitSfx");
+
         GravityScale = 0;
         Mass = 0;
         LockRotation = true;
@@ -76,6 +80,10 @@ public partial class Fireball : RigidBody2D
         }
         if (body is Prong player)
         {
+            _hitSfx.Reparent(GetTree().Root);
+            _hitSfx.Finished += () => _hitSfx.QueueFree();
+            _hitSfx.Play();
+
             QueueFree();
             GameManager.EasterEggStatus = EasterEggStatusEnum.Inactive;
         }
@@ -88,6 +96,10 @@ public partial class Fireball : RigidBody2D
                     GameManager.HandleEasterEgg();
                 }
             }
+            _hitSfx.Reparent(GetTree().Root);
+            _hitSfx.Finished += () => _hitSfx.QueueFree();
+            _hitSfx.Play();
+
             QueueFree();
         }
     }

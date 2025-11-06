@@ -5,8 +5,11 @@ namespace Prong.Src.Blocks;
 
 public partial class PassBlockSpeed : Area2D
 {
+    private AudioStreamPlayer _hitSfx;
     public override void _Ready()
     {
+        _hitSfx = GetNode<AudioStreamPlayer>("PassBlockSpeedSfx");
+
         BodyEntered += BallHit;
     }
     
@@ -14,6 +17,10 @@ public partial class PassBlockSpeed : Area2D
     {
         if (node is Ball ball)
         {
+            _hitSfx.Reparent(GetTree().Root);
+            _hitSfx.Finished += () => _hitSfx.QueueFree();
+            _hitSfx.Play();
+
             QueueFree();
             var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath); // TODO:  Can I avoid getting a static reference somehow? 
             eventBus.EmitSignal(Eventbus.SignalName.SpeedLevelUp, (int)ball.LastProngHit.Player);

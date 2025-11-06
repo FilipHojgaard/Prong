@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy0dclm6yrl13"]
+[gd_scene load_steps=5 format=3 uid="uid://cy0dclm6yrl13"]
 
 [ext_resource type="Texture2D" uid="uid://dytxhlxcmd4i" path="res://Assets/Sprites/block_sprite_sheet.png" id="1_2bp4p"]
 [ext_resource type="Script" uid="uid://cni2ecsc0ygg5" path="res://Src/Blocks/PassBlockSpeed.cs" id="1_ck5oa"]
+[ext_resource type="AudioStream" uid="uid://byjb85diksldo" path="res://Assets/SFX/ObtainPassBlockSpeedSfx.wav" id="3_bai8y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ck5oa"]
 size = Vector2(14, 6)
@@ -18,3 +19,6 @@ region_rect = Rect2(32, 0, 15, 7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ck5oa")
+
+[node name="PassBlockSpeedSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bai8y")
