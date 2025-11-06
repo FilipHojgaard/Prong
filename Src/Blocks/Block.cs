@@ -15,6 +15,7 @@ public partial class Block : RigidBody2D
 
         GravityScale = 0;
         Mass = 1000;
+        LockRotation = true;
     }
 
     public void Initialize(int hp)
