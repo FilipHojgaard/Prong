@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Godot;
 using Prong.Shared;
 
@@ -79,6 +80,12 @@ public partial class GameManager : Node
         ball.StartAtPosition(position, rotation);
 
         Instance.GetTree().CurrentScene.AddChild(ball);
+    }
+
+    public static void SpawnBallAtCenter()
+    {
+        BallCount++;
+        Instance.SpawnBall();
     }
 
     private async void CheckForButtonPresses()

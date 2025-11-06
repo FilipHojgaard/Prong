@@ -9,6 +9,7 @@ public partial class Ball : RigidBody2D
     public float Speed { get; set; } = 550f;
     public bool SpawnInCenter { get; set; } = true;
     public Prong LastProngHit { get; set; } = null;
+    public int Bounces { get; set; } = 0;
 
     public int FireballHits { get; set; } = 0;
 
@@ -79,6 +80,16 @@ public partial class Ball : RigidBody2D
         PhysicsMaterialOverride = material;
     }
 
+    private void HandleBounceCount()
+    {
+        Bounces++;
+        if (Bounces >= 14)
+        {
+            GameManager.SpawnBallAtCenter();
+            Bounces = 0;
+        }
+    }
+
     private void CheckForGoal()
     {
         if (Position.X <= GameManager.LeftBoundaryPosition)
@@ -117,10 +128,12 @@ public partial class Ball : RigidBody2D
                 Speed += 60;
             }
             LastProngHit = paddle;
+            HandleBounceCount();
         }
         if (body is Block block)
         {
             HandleBlockCollision(block);
+            HandleBounceCount();
         }
         if (body is Fireball fireball && !fireball.HitBall)
         {
