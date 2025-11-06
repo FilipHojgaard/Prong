@@ -140,7 +140,10 @@ public partial class Ball : RigidBody2D
                 _otherHitSfx.Play();
             }
         }
-        // TODO: Also play _otherHitSfx() if ball hits the horizontal borders. 
+        if (body is Border border)
+        {
+            _otherHitSfx.Play();
+        }
     }
 
     private void HandleBlockCollision(Block block)

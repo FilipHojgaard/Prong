@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://btdnu6vpqwmqn"]
+[gd_scene load_steps=3 format=3 uid="uid://btdnu6vpqwmqn"]
+
+[ext_resource type="Script" uid="uid://di0wjwmdptlvm" path="res://Src/Border.cs" id="1_fo2j5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w6mxv"]
 
 [node name="HorizontalBorder" type="StaticBody2D"]
+script = ExtResource("1_fo2j5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("WorldBoundaryShape2D_w6mxv")
