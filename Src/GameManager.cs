@@ -15,9 +15,12 @@ public partial class GameManager : Node
     public static int BallCount { get; set; } = 0;
     public static EasterEggStatusEnum EasterEggStatus { get; set; } = EasterEggStatusEnum.Inactive;
     public static bool ShowEasterEgg { get; set; } = false;
+
+    public bool Pause { get; set; } = false;
     public override void _Ready()
     {
         Instance = this;
+        ProcessMode = ProcessModeEnum.Always; // To be able to unpuase again. 
 
         SetHorizontalBorders();
         SetVerticalBorders();
@@ -30,6 +33,7 @@ public partial class GameManager : Node
             BallCount++;
             SpawnBall();
         }
+        CheckForButtonPresses();
         CheckBallCount();
     }
 
@@ -75,6 +79,28 @@ public partial class GameManager : Node
         ball.StartAtPosition(position, rotation);
 
         Instance.GetTree().CurrentScene.AddChild(ball);
+    }
+
+    private async void CheckForButtonPresses()
+    {
+        if (Input.IsActionJustPressed("Reset"))
+        {
+            BallCount = default;
+            LeftPlayerScore = default;
+            RightPlayerScore = default;
+            Pause = false;
+            GetTree().Paused = Pause;
+            GetTree().ReloadCurrentScene();
+
+            // Waiting one frame for it to reset scene, then calling SetHorizontalBorders on the new scene. 
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            SetHorizontalBorders();
+        }
+        if (Input.IsActionJustPressed("Pause"))
+        {
+            Pause = !Pause;
+            GetTree().Paused = Pause;
+        }
     }
 
     private void SpawnBall()
