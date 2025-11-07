@@ -19,6 +19,8 @@ public partial class Ball : RigidBody2D
 
     private AudioStreamPlayer _otherHitSfx;
 
+    private AudioStreamPlayer _spawnSfx;
+
     public override void _Ready()
     {
         GravityScale = 0;
@@ -31,12 +33,18 @@ public partial class Ball : RigidBody2D
         _prongHitSfx = GetNode<AudioStreamPlayer>("ProngHitSfx");
         _goalSfx = GetNode<AudioStreamPlayer>("GoalSfx");
         _otherHitSfx = GetNode<AudioStreamPlayer>("OtherHitSfx");
-
+        _spawnSfx = GetNode<AudioStreamPlayer>("SpawnSfx");
+        
         SetupDefaultBallMaterial();
         if (SpawnInCenter)
         {
             StartRandomDirection();
         }
+    }
+
+    public void SpawnedInMiddle()
+    {
+        _spawnSfx.Play();
     }
 
     public override void _Process(double delta)

@@ -122,6 +122,9 @@ public partial class GameManager : Node
 
         // Placing the ball on the current scene.
         GetTree().CurrentScene.AddChild(ball);
+        
+        // Run ball code when spawned in middle
+        ball.SpawnedInMiddle();
     }
 
     private async void CheckBallCount()
