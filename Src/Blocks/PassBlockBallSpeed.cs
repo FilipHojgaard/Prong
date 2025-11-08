@@ -6,8 +6,12 @@ namespace Prong.Src.Blocks;
 public partial class PassBlockBallSpeed : Area2D
 {
 
+    private AudioStreamPlayer _hitSfx;
+
     public override void _Ready()
     {
+        _hitSfx = GetNode<AudioStreamPlayer>("HitSfx");
+
         BodyEntered += BallHit;
     }
 
@@ -15,9 +19,9 @@ public partial class PassBlockBallSpeed : Area2D
     {
         if (node is Ball ball)
         {
-            //_hitSfx.Reparent(GetTree().Root);
-            //_hitSfx.Finished += () => _hitSfx.QueueFree();
-            //_hitSfx.Play();
+            _hitSfx.Reparent(GetTree().Root);
+            _hitSfx.Finished += () => _hitSfx.QueueFree();
+            _hitSfx.Play();
 
             ball.BoostSpeed();
             QueueFree();
