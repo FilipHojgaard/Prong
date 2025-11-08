@@ -97,16 +97,25 @@ position = Vector2(-550, -399)
 position = Vector2(550, 401)
 
 [node name="PassBlockBallSpeed" parent="." instance=ExtResource("7_o06y3")]
-position = Vector2(0, 51)
+position = Vector2(400, 101)
 
 [node name="PassBlockBallSpeed2" parent="." instance=ExtResource("7_o06y3")]
-position = Vector2(100, 151)
+position = Vector2(400, -99)
 
 [node name="PassBlockBallSpeed3" parent="." instance=ExtResource("7_o06y3")]
-position = Vector2(100, 201)
+position = Vector2(400, -199)
 
 [node name="PassBlockBallSpeed4" parent="." instance=ExtResource("7_o06y3")]
-position = Vector2(100, 251)
+position = Vector2(400, 201)
 
 [node name="PassBlockBallSpeed5" parent="." instance=ExtResource("7_o06y3")]
-position = Vector2(100, 301)
+position = Vector2(-400, -199)
+
+[node name="PassBlockBallSpeed6" parent="." instance=ExtResource("7_o06y3")]
+position = Vector2(-400, -99)
+
+[node name="PassBlockBallSpeed7" parent="." instance=ExtResource("7_o06y3")]
+position = Vector2(-400, 201)
+
+[node name="PassBlockBallSpeed8" parent="." instance=ExtResource("7_o06y3")]
+position = Vector2(-400, 101)
