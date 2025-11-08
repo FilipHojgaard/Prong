@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmv6clvswj3q1"]
+
+[ext_resource type="Script" uid="uid://djtuxa5g1delc" path="res://Src/Blocks/PassBlockBallSpeed.cs" id="1_7aa5w"]
+[ext_resource type="Texture2D" uid="uid://7id2up38dtku" path="res://Assets/Sprites/PassBlockBallSpeed.png" id="1_h53wx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7aa5w"]
+size = Vector2(18, 38)
+
+[node name="PassBlockBallSpeed" type="Area2D"]
+script = ExtResource("1_7aa5w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h53wx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7aa5w")
