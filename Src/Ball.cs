@@ -7,6 +7,9 @@ public partial class Ball : RigidBody2D
 {
     [Export]
     public float Speed { get; set; } = 550f;
+
+    public float MaxSpeed { get; set; } = 1500f;
+
     public bool SpawnInCenter { get; set; } = true;
     public Prong LastProngHit { get; set; } = null;
     public int Bounces { get; set; } = 0;
@@ -98,6 +101,15 @@ public partial class Ball : RigidBody2D
         }
     }
 
+    public void BoostSpeed()
+    {
+        Speed += 400;
+        if (Speed > MaxSpeed)
+        {
+            Speed = MaxSpeed;
+        }
+    }
+
     private void CheckForGoal()
     {
         if (Position.X <= GameManager.LeftBoundaryPosition)
@@ -131,7 +143,7 @@ public partial class Ball : RigidBody2D
         {
             _prongHitSfx.Play();
             HandlePaddleCollision(paddle);
-            if (Speed <= 900)
+            if (Speed <= MaxSpeed)
             {
                 Speed += 60;
             }

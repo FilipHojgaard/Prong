@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://baqjofqhljr20"]
+[gd_scene load_steps=8 format=3 uid="uid://baqjofqhljr20"]
 
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="4_5ukr8"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="4_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://csmbh7mgg8cgm" path="res://Scenes/PassBlockAttack.tscn" id="5_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="6_5ukr8"]
+[ext_resource type="PackedScene" uid="uid://cmv6clvswj3q1" path="res://Scenes/PassBlockBallSpeed.tscn" id="7_o06y3"]
 
 [node name="World" type="Node2D"]
 position = Vector2(0, -1)
@@ -94,3 +95,18 @@ position = Vector2(-550, -399)
 
 [node name="PassBlockDefence6" parent="." instance=ExtResource("6_5ukr8")]
 position = Vector2(550, 401)
+
+[node name="PassBlockBallSpeed" parent="." instance=ExtResource("7_o06y3")]
+position = Vector2(0, 51)
+
+[node name="PassBlockBallSpeed2" parent="." instance=ExtResource("7_o06y3")]
+position = Vector2(100, 151)
+
+[node name="PassBlockBallSpeed3" parent="." instance=ExtResource("7_o06y3")]
+position = Vector2(100, 201)
+
+[node name="PassBlockBallSpeed4" parent="." instance=ExtResource("7_o06y3")]
+position = Vector2(100, 251)
+
+[node name="PassBlockBallSpeed5" parent="." instance=ExtResource("7_o06y3")]
+position = Vector2(100, 301)
