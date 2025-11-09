@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg80jgkskyq1k"]
+
+[ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_fjl53"]
+[ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="2_8m24v"]
+[ext_resource type="PackedScene" uid="uid://cy0dclm6yrl13" path="res://Scenes/PassBlockSpeed.tscn" id="3_va3nj"]
+[ext_resource type="PackedScene" uid="uid://csmbh7mgg8cgm" path="res://Scenes/PassBlockAttack.tscn" id="4_b6ar4"]
+[ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="5_fumjw"]
+
+[node name="map_fastAndFurious" type="Node2D"]
+position = Vector2(0, -1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.00501389
+scale = Vector2(3.08762, -0.380489)
+
+[node name="LeftPlayer" parent="." instance=ExtResource("1_fjl53")]
+position = Vector2(-909, -1)
+Player = 1
+
+[node name="RightPlayer" parent="." instance=ExtResource("1_fjl53")]
+position = Vector2(908, -1)
+rotation = 4.71238
+Player = 2
+
+[node name="Control" parent="." instance=ExtResource("2_8m24v")]
+offset_left = -986.0
+offset_top = -500.0
+offset_right = -946.0
+offset_bottom = -460.0
+
+[node name="PassBlockSpeed" parent="." instance=ExtResource("3_va3nj")]
+position = Vector2(0, 451)
+
+[node name="PassBlockSpeed2" parent="." instance=ExtResource("3_va3nj")]
+position = Vector2(0, -449)
+
+[node name="PassBlockAttack" parent="." instance=ExtResource("4_b6ar4")]
+position = Vector2(0, 351)
+
+[node name="PassBlockAttack2" parent="." instance=ExtResource("4_b6ar4")]
+position = Vector2(0, -349)
+
+[node name="PassBlockDefence" parent="." instance=ExtResource("5_fumjw")]
+position = Vector2(0, 251)
+
+[node name="PassBlockDefence2" parent="." instance=ExtResource("5_fumjw")]
+position = Vector2(0, -256)

@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg0mtnfktbu2y"]
+
+[ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_tpq11"]
+[ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="2_c2w8q"]
+[ext_resource type="PackedScene" uid="uid://bvciffyj0kaoh" path="res://Scenes/Block.tscn" id="3_bam8k"]
+[ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="5_p1npf"]
+[ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="7_ffm4c"]
+
+[node name="map_fastAndFurious" type="Node2D"]
+position = Vector2(0, -1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.00501389
+scale = Vector2(3.08762, -0.380489)
+
+[node name="LeftPlayer" parent="." instance=ExtResource("1_tpq11")]
+position = Vector2(-909, -1)
+Player = 1
+
+[node name="RightPlayer" parent="." instance=ExtResource("1_tpq11")]
+position = Vector2(908, -1)
+rotation = 4.71238
+Player = 2
+
+[node name="Control" parent="." instance=ExtResource("2_c2w8q")]
+offset_left = -986.0
+offset_top = -500.0
+offset_right = -946.0
+offset_bottom = -460.0
+
+[node name="Block" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, -249)
+
+[node name="Block2" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, 1)
+
+[node name="Block3" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, 251)
+
+[node name="Block4" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, 1)
+
+[node name="Block5" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, -249)
+
+[node name="Block6" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, 251)
+
+[node name="PassBlockDefence" parent="." instance=ExtResource("5_p1npf")]
+position = Vector2(-800, -399)
+
+[node name="PassBlockDefence2" parent="." instance=ExtResource("5_p1npf")]
+position = Vector2(-800, -249)
+
+[node name="PassBlockDefence3" parent="." instance=ExtResource("5_p1npf")]
+position = Vector2(-800, 251)
+
+[node name="PassBlockDefence4" parent="." instance=ExtResource("5_p1npf")]
+position = Vector2(-800, 401)
+
+[node name="PassBlockDefence5" parent="." instance=ExtResource("5_p1npf")]
+position = Vector2(800, -399)
+
+[node name="PassBlockDefence6" parent="." instance=ExtResource("5_p1npf")]
+position = Vector2(800, -249)
+
+[node name="PassBlockDefence7" parent="." instance=ExtResource("5_p1npf")]
+position = Vector2(800, 251)
+
+[node name="PassBlockDefence8" parent="." instance=ExtResource("5_p1npf")]
+position = Vector2(800, 401)
+
+[node name="PassBlockBall" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(0, 151)
+
+[node name="PassBlockBall2" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(0, 251)
+
+[node name="PassBlockBall3" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(0, 351)
+
+[node name="PassBlockBall4" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(0, 451)
+
+[node name="PassBlockBall5" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(0, -149)
+
+[node name="PassBlockBall6" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(0, -249)
+
+[node name="PassBlockBall7" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(0, -349)
+
+[node name="PassBlockBall8" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(0, -449)
+
+[node name="PassBlockBall9" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(200, -249)
+
+[node name="PassBlockBall10" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(400, -249)
+
+[node name="PassBlockBall11" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(200, -399)
+
+[node name="PassBlockBall12" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(-200, 251)
+
+[node name="PassBlockBall13" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(-400, 251)
+
+[node name="PassBlockBall14" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(-200, 401)
+
+[node name="PassBlockBall15" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(400, 301)
+
+[node name="PassBlockBall16" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(-400, -249)

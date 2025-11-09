@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://dixk7nbol7laa"]
+
+[ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_vs481"]
+[ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="2_aefww"]
+[ext_resource type="PackedScene" uid="uid://bvciffyj0kaoh" path="res://Scenes/Block.tscn" id="3_afnqb"]
+[ext_resource type="PackedScene" uid="uid://cmv6clvswj3q1" path="res://Scenes/PassBlockBallSpeed.tscn" id="3_k233f"]
+[ext_resource type="PackedScene" uid="uid://csmbh7mgg8cgm" path="res://Scenes/PassBlockAttack.tscn" id="4_fgqk6"]
+[ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="5_fgqk6"]
+[ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="5_qrmpv"]
+
+[node name="map_fastAndFurious" type="Node2D"]
+position = Vector2(0, -1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.00501389
+scale = Vector2(3.08762, -0.380489)
+
+[node name="LeftPlayer" parent="." instance=ExtResource("1_vs481")]
+position = Vector2(-909, -1)
+Player = 1
+
+[node name="RightPlayer" parent="." instance=ExtResource("1_vs481")]
+position = Vector2(908, -1)
+rotation = 4.71238
+Player = 2
+
+[node name="Control" parent="." instance=ExtResource("2_aefww")]
+offset_left = -986.0
+offset_top = -500.0
+offset_right = -946.0
+offset_bottom = -460.0
+
+[node name="Block" parent="." instance=ExtResource("3_afnqb")]
+position = Vector2(-950, -249)
+
+[node name="Block2" parent="." instance=ExtResource("3_afnqb")]
+position = Vector2(-950, 1)
+
+[node name="Block3" parent="." instance=ExtResource("3_afnqb")]
+position = Vector2(-950, 251)
+
+[node name="Block4" parent="." instance=ExtResource("3_afnqb")]
+position = Vector2(950, 1)
+
+[node name="Block5" parent="." instance=ExtResource("3_afnqb")]
+position = Vector2(950, -249)
+
+[node name="Block6" parent="." instance=ExtResource("3_afnqb")]
+position = Vector2(950, 251)
+
+[node name="PassBlockAttack" parent="." instance=ExtResource("4_fgqk6")]
+position = Vector2(-150, 251)
+
+[node name="PassBlockAttack2" parent="." instance=ExtResource("4_fgqk6")]
+position = Vector2(150, -249)
+
+[node name="PassBlockAttack3" parent="." instance=ExtResource("4_fgqk6")]
+position = Vector2(400, -249)
+
+[node name="PassBlockAttack4" parent="." instance=ExtResource("4_fgqk6")]
+position = Vector2(-400, 251)
+
+[node name="PassBlockAttack5" parent="." instance=ExtResource("4_fgqk6")]
+position = Vector2(-400, 401)
+
+[node name="PassBlockAttack6" parent="." instance=ExtResource("4_fgqk6")]
+position = Vector2(400, -399)
+
+[node name="PassBlockDefence" parent="." instance=ExtResource("5_qrmpv")]
+position = Vector2(150, 251)
+
+[node name="PassBlockDefence2" parent="." instance=ExtResource("5_qrmpv")]
+position = Vector2(400, 251)
+
+[node name="PassBlockDefence3" parent="." instance=ExtResource("5_qrmpv")]
+position = Vector2(400, 401)
+
+[node name="PassBlockDefence4" parent="." instance=ExtResource("5_qrmpv")]
+position = Vector2(-150, -249)
+
+[node name="PassBlockDefence5" parent="." instance=ExtResource("5_qrmpv")]
+position = Vector2(-400, -249)
+
+[node name="PassBlockDefence6" parent="." instance=ExtResource("5_qrmpv")]
+position = Vector2(-400, -399)
+
+[node name="PassBlockBallSpeed" parent="." instance=ExtResource("3_k233f")]
+position = Vector2(100, 1)
+
+[node name="PassBlockBallSpeed2" parent="." instance=ExtResource("3_k233f")]
+position = Vector2(-100, 1)
+
+[node name="PassBlockBall" parent="." instance=ExtResource("5_fgqk6")]
+position = Vector2(0, 451)
+
+[node name="PassBlockBall2" parent="." instance=ExtResource("5_fgqk6")]
+position = Vector2(0, 501)
+
+[node name="PassBlockBall3" parent="." instance=ExtResource("5_fgqk6")]
+position = Vector2(0, -449)
+
+[node name="PassBlockBall4" parent="." instance=ExtResource("5_fgqk6")]
+position = Vector2(0, -499)
