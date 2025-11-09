@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Godot;
 using Prong.Shared;
 
@@ -19,7 +18,7 @@ public partial class GameManager : Node
     public static bool ShowEasterEgg { get; set; } = false;
     private Dictionary<int, string> _maps { get; set; }
 
-    private Queue<int> _mapHistory { get; set; }
+    private int? _mapHistory { get; set; } = null;
 
     public bool Pause { get; set; } = false;
     public override void _Ready()
@@ -136,7 +135,15 @@ public partial class GameManager : Node
         RightPlayerScore = default;
         Pause = false;
         GetTree().Paused = Pause;
-        var mapName = _maps[GD.RandRange(0, _maps.Count)];
+        int? newMap = null;
+        while (newMap == _mapHistory || newMap is null)
+        {
+            newMap = GD.RandRange(0, _maps.Count - 1);
+            GD.Print("same map, trying again");
+            GD.Print(newMap);
+        }
+        _mapHistory = (int)newMap;
+        var mapName = _maps[(int)newMap];
         GetTree().ChangeSceneToFile($"res://Scenes/Maps/{mapName}.tscn");
 
         // Waiting one frame for it to reset scene, then calling SetHorizontalBorders on the new scene. 
