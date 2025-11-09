@@ -135,6 +135,7 @@ public partial class Ball : RigidBody2D
             GameManager.PrintScore();
             QueueFree();
             GameManager.DecreaseBallCount();
+            GameManager.Instance.CheckForWinner();
         }
     }
 
