@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Godot;
 using Prong.Shared;
@@ -16,6 +17,9 @@ public partial class GameManager : Node
     public static int BallCount { get; set; } = 0;
     public static EasterEggStatusEnum EasterEggStatus { get; set; } = EasterEggStatusEnum.Inactive;
     public static bool ShowEasterEgg { get; set; } = false;
+    private Dictionary<int, string> _maps { get; set; }
+
+    private Queue<int> _mapHistory { get; set; }
 
     public bool Pause { get; set; } = false;
     public override void _Ready()
@@ -25,6 +29,15 @@ public partial class GameManager : Node
 
         SetHorizontalBorders();
         SetVerticalBorders();
+
+        _maps = new Dictionary<int, string>()
+        {
+            {0, "map_original"},
+            {1, "map_fastAndFurious"},
+            {2, "map_bases"},
+            {3, "map_growth"},
+            {4, "map_scarce" },
+        };
     }
 
     public override void _Process(double delta)
@@ -59,7 +72,7 @@ public partial class GameManager : Node
         GetTree().CurrentScene.AddChild(upperBorder);
         GetTree().CurrentScene.AddChild(lowerBorder);
     }
-
+    
     public void SetVerticalBorders()
     {
         var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
@@ -107,6 +120,35 @@ public partial class GameManager : Node
         {
             Pause = !Pause;
             GetTree().Paused = Pause;
+        }
+        if (Input.IsActionJustPressed("Next"))
+        {
+            PickRandomMap();
+        }
+    }
+
+    private async void PickRandomMap()
+    {
+        // TODO: Implement such that the same map can't be picked again.  
+
+        BallCount = default;
+        LeftPlayerScore = default;
+        RightPlayerScore = default;
+        Pause = false;
+        GetTree().Paused = Pause;
+        var mapName = _maps[GD.RandRange(0, _maps.Count)];
+        GetTree().ChangeSceneToFile($"res://Scenes/Maps/{mapName}.tscn");
+
+        // Waiting one frame for it to reset scene, then calling SetHorizontalBorders on the new scene. 
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        SetHorizontalBorders();
+    }
+
+    public void CheckForWinner()
+    {
+        if (LeftPlayerScore >= 10 || RightPlayerScore >= 10)
+        {
+            PickRandomMap();
         }
     }
 
