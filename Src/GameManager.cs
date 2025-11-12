@@ -16,6 +16,8 @@ public partial class GameManager : Node
     public static int BallCount { get; set; } = 0;
     public static EasterEggStatusEnum EasterEggStatus { get; set; } = EasterEggStatusEnum.Inactive;
     public static bool ShowEasterEgg { get; set; } = false;
+
+    public bool InMainMenu { get; set; } = true;
     private Dictionary<int, string> _maps { get; set; }
 
     private int? _mapHistory { get; set; } = null;
@@ -23,11 +25,15 @@ public partial class GameManager : Node
     public bool Pause { get; set; } = false;
     public override void _Ready()
     {
+        GD.Print("IN READY");
         Instance = this;
         ProcessMode = ProcessModeEnum.Always; // To be able to unpuase again. 
 
-        SetHorizontalBorders();
-        SetVerticalBorders();
+        if (!InMainMenu)
+        {
+            SetHorizontalBorders();
+            SetVerticalBorders();
+        }
 
         _maps = new Dictionary<int, string>()
         {
@@ -41,6 +47,10 @@ public partial class GameManager : Node
 
     public override void _Process(double delta)
     {
+        if (InMainMenu)
+        {
+            return;
+        }
         if (Input.IsActionJustReleased("Test"))
         {
             BallCount++;
@@ -56,6 +66,8 @@ public partial class GameManager : Node
         var upperBorder = borderScene.Instantiate<StaticBody2D>();
         var lowerBorder = borderScene.Instantiate<StaticBody2D>();
 
+        GD.Print("in sethorizontalborders");
+
         var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
         var viewportSize = GetViewport().GetVisibleRect().Size;
         var cameraPos = camera.GlobalPosition;
@@ -70,6 +82,9 @@ public partial class GameManager : Node
 
         GetTree().CurrentScene.AddChild(upperBorder);
         GetTree().CurrentScene.AddChild(lowerBorder);
+
+        GD.Print(UpperBoundaryPosition);
+        GD.Print(LowerBoundaryPosition);
     }
     
     public void SetVerticalBorders()
@@ -126,10 +141,10 @@ public partial class GameManager : Node
         }
     }
 
-    private async void PickRandomMap()
+    public async void StartGame()
     {
         // TODO: Implement such that the same map can't be picked again.  
-
+        InMainMenu = false;
         BallCount = default;
         LeftPlayerScore = default;
         RightPlayerScore = default;
@@ -139,16 +154,40 @@ public partial class GameManager : Node
         while (newMap == _mapHistory || newMap is null)
         {
             newMap = GD.RandRange(0, _maps.Count - 1);
-            GD.Print("same map, trying again");
-            GD.Print(newMap);
         }
         _mapHistory = (int)newMap;
         var mapName = _maps[(int)newMap];
         GetTree().ChangeSceneToFile($"res://Scenes/Maps/{mapName}.tscn");
 
         // Waiting one frame for it to reset scene, then calling SetHorizontalBorders on the new scene. 
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // Wait for new treescene
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // Wait for nodes to load
+        Instance.SetHorizontalBorders();
+        Instance.SetVerticalBorders();
+    }
+
+    private async void PickRandomMap()
+    {
+        // TODO: Implement such that the same map can't be picked again.  
+        BallCount = default;
+        LeftPlayerScore = default;
+        RightPlayerScore = default;
+        Pause = false;
+        GetTree().Paused = Pause;
+        int? newMap = null;
+        while (newMap == _mapHistory || newMap is null)
+        {
+            newMap = GD.RandRange(0, _maps.Count - 1);
+        }
+        _mapHistory = (int)newMap;
+        var mapName = _maps[(int)newMap];
+        GetTree().ChangeSceneToFile($"res://Scenes/Maps/{mapName}.tscn");
+
+        // Wait for the new scehe tree to change
+        //await ToSignal(GetTree(), SceneTree.SignalName.TreeChanged);
+        // Waiting one frame for it to reset scene, then calling SetHorizontalBorders on the new scene. 
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        SetHorizontalBorders();
+        Instance.SetHorizontalBorders();
     }
 
     public void CheckForWinner()
@@ -189,11 +228,6 @@ public partial class GameManager : Node
     public static void DecreaseBallCount()
     {
         BallCount--;
-    }
-
-    public static void PrintScore()
-    {
-        GD.Print($"{LeftPlayerScore} - {RightPlayerScore}");
     }
 
     public static async void HandleEasterEgg()

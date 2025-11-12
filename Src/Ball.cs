@@ -119,7 +119,6 @@ public partial class Ball : RigidBody2D
             _goalSfx.Play();
 
             GameManager.RightPlayerScore++;
-            GameManager.PrintScore();
             QueueFree();
             GameManager.DecreaseBallCount();
             GameManager.Instance.CheckForWinner();
@@ -132,7 +131,6 @@ public partial class Ball : RigidBody2D
             _goalSfx.Play();
 
             GameManager.LeftPlayerScore++;
-            GameManager.PrintScore();
             QueueFree();
             GameManager.DecreaseBallCount();
             GameManager.Instance.CheckForWinner();
