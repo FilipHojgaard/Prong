@@ -177,6 +177,15 @@ public partial class GameManager : Node
         }
     }
 
+    public void GoToMainMenu()
+    {
+        InMainMenu = true;
+        BallCount = default;
+        LeftPlayerScore = default;
+        RightPlayerScore = default;
+        GetTree().ChangeSceneToFile($"res://Scenes/MainMenu.tscn");
+    }
+
     public async void StartGame()
     {
         // TODO: Implement such that the same map can't be picked again.  

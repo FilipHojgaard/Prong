@@ -13,6 +13,8 @@ public partial class MainMenu : Control
 
     public override void _Ready()
     {
+        ProcessMode = ProcessModeEnum.Always;
+
         PlayButton = GetNode<Button>("VBoxContainer/Play");
         PlayButton.Pressed += PlayGame;
         PlayButton.MouseEntered += OnButtonHovered;

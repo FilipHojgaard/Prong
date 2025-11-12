@@ -33,5 +33,7 @@ public partial class PauseMenu : Control
     private void MenuHandler()
     {
         GD.Print("back to menu...");
+        GameManager.Instance.GoToMainMenu();
+        QueueFree();
     }
 }
