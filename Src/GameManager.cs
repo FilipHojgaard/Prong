@@ -18,6 +18,9 @@ public partial class GameManager : Node
     public static bool ShowEasterEgg { get; set; } = false;
 
     public bool InMainMenu { get; set; } = true;
+
+    private PauseMenu _pauseMenu;
+    private PackedScene _pauseMenuScene;
     private Dictionary<int, string> _maps { get; set; }
 
     private int? _mapHistory { get; set; } = null;
@@ -28,6 +31,8 @@ public partial class GameManager : Node
         GD.Print("IN READY");
         Instance = this;
         ProcessMode = ProcessModeEnum.Always; // To be able to unpuase again. 
+
+        _pauseMenuScene = GD.Load<PackedScene>("res://Scenes/PauseMenu.tscn");
 
         if (!InMainMenu)
         {
@@ -132,12 +137,43 @@ public partial class GameManager : Node
         }
         if (Input.IsActionJustPressed("Pause"))
         {
-            Pause = !Pause;
-            GetTree().Paused = Pause;
+            TogglePause();
         }
         if (Input.IsActionJustPressed("Next"))
         {
             PickRandomMap();
+        }
+    }
+
+    public void TogglePause()
+    {
+        Pause = !Pause;
+        GetTree().Paused = Pause;
+
+        if (Pause)
+        {
+            ShowPauseMenu();
+        }
+        else
+        {
+            HidePauseMenu();
+        }
+    }
+
+    private void ShowPauseMenu()
+    {
+        GD.Print("showing pause menu");
+        _pauseMenu = _pauseMenuScene.Instantiate<PauseMenu>();
+        _pauseMenu.ProcessMode = ProcessModeEnum.Always;
+        //GetTree().CurrentScene.AddChild(_pauseMenu);
+        GetTree().Root.AddChild(_pauseMenu);
+    }
+
+    private void HidePauseMenu()
+    {
+        if (_pauseMenu != null)
+        {
+            _pauseMenu.QueueFree();
         }
     }
 
