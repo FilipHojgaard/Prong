@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://crr0gos1yian4"
+path="res://.godot/imported/Pong Odyssey.mp3-0c3cfb45aeb8338db2d451192f7f98bc.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Pong Odyssey.mp3"
+dest_files=["res://.godot/imported/Pong Odyssey.mp3-0c3cfb45aeb8338db2d451192f7f98bc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
