@@ -1,21 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://5k68loeeld0a"]
 
 [ext_resource type="Script" uid="uid://dpcaj0lau722h" path="res://Src/Blocks/PassBlockDefence.cs" id="1_vla4k"]
-[ext_resource type="Texture2D" uid="uid://be5b3vrkvc1g0" path="res://Assets/Sprites/block_sprite_sheet_v2.png" id="2_ku61f"]
+[ext_resource type="Texture2D" uid="uid://du1tctg22xlnn" path="res://Assets/Sprites/PassBlockDefence_v2.png" id="2_ku61f"]
 [ext_resource type="AudioStream" uid="uid://b2hii7osoykta" path="res://Assets/SFX/ObtainPassBlockDefenceSfx.wav" id="3_ku61f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phey3"]
-size = Vector2(18, 36)
+size = Vector2(18, 38)
 
 [node name="PassBlockDefence" type="Area2D"]
 script = ExtResource("1_vla4k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -1.57079
-scale = Vector2(2.714, 2.714)
 texture = ExtResource("2_ku61f")
-region_enabled = true
-region_rect = Rect2(273, 0, 14, 7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_phey3")
