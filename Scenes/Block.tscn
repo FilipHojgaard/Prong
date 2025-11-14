@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://vj82q25aal77" path="res://Assets/SFX/BlockHit_1.wav" id="4_rjsgv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x55lh"]
-size = Vector2(6.63228, 14.0015)
+size = Vector2(7.3692, 14.7384)
 
 [node name="Block" type="RigidBody2D"]
 script = ExtResource("1_x55lh")
@@ -22,5 +22,6 @@ visible = false
 texture = ExtResource("4_kcwjl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.55651e-07)
 scale = Vector2(2.714, 2.714)
 shape = SubResource("RectangleShape2D_x55lh")

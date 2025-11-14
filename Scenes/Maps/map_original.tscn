@@ -35,7 +35,7 @@ Player = 1
 
 [node name="RightPlayer" parent="." instance=ExtResource("1_8co16")]
 position = Vector2(908, -1)
-rotation = 4.71238
+rotation = 3.14159
 Player = 2
 
 [node name="PassBlockSpeed" parent="." instance=ExtResource("2_5xddj")]

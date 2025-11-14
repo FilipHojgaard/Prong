@@ -273,23 +273,23 @@ public partial class Prong : StaticBody2D
         
         if (FireballReady && ShieldReady && Player == PlayerEnum.LeftPlayer)
         {
-            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_red_blue.png");
+            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/player_red_blue.png");
         }
         else if (FireballReady && ShieldReady && Player == PlayerEnum.RightPlayer)
         {
-            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue_red.png");
+            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/player_blue_red.png");
         }
         else if (FireballReady)
         {
-            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_red.png");
+            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/player_red.png");
         }
         else if (ShieldReady)
         {
-            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle_blue.png");
+            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/player_blue.png");
         }
         else
         {
-            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/paddle.png");
+            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/player.png");
         }
 
         if (newTexture is not null)

@@ -33,7 +33,7 @@ Player = 1
 
 [node name="RightPlayer" parent="." instance=ExtResource("1_tpq11")]
 position = Vector2(908, -1)
-rotation = 4.71238
+rotation = 3.14159
 Player = 2
 
 [node name="Control" parent="." instance=ExtResource("2_c2w8q")]
