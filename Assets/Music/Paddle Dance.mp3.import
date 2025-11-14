@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bdna376ecqt7m"
+path="res://.godot/imported/Paddle Dance.mp3-634dc6cee730d55f0fd147f377ba70db.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Paddle Dance.mp3"
+dest_files=["res://.godot/imported/Paddle Dance.mp3-634dc6cee730d55f0fd147f377ba70db.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
