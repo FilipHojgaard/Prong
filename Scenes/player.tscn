@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bop2qoc87ujvq"]
 
 [ext_resource type="Script" uid="uid://c07qs0sh5tu8j" path="res://Src/Prong.cs" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://bf1xc3dmbb6bq" path="res://Assets/Sprites/speed_indicator.png" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://6tog5jcsgknm" path="res://Assets/Sprites/speed_indicator_v2.png" id="3_x3wgy"]
 [ext_resource type="AudioStream" uid="uid://beasa51b8knha" path="res://Assets/SFX/FireballLevel1SFX.wav" id="4_fkybt"]
 [ext_resource type="AudioStream" uid="uid://ckmiyu161tptd" path="res://Assets/SFX/FireballLevel3SFX.wav" id="5_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://dn6ukndvdq88u" path="res://Assets/Sprites/Player.png" id="6_3smsa"]
@@ -23,17 +23,17 @@ texture = ExtResource("6_3smsa")
 
 [node name="speed_2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-9.81467, 2.78228)
+position = Vector2(-9, -6.42514e-12)
 rotation = 1.57081
 scale = Vector2(0.309149, 0.306708)
-texture = ExtResource("3_6t5aa")
+texture = ExtResource("3_x3wgy")
 
 [node name="speed_3" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(9.81464, 2.7824)
+position = Vector2(-14, 4.12207e-12)
 rotation = 1.5708
 scale = Vector2(0.309149, 0.306708)
-texture = ExtResource("3_6t5aa")
+texture = ExtResource("3_x3wgy")
 
 [node name="FireballSimpleSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_fkybt")
