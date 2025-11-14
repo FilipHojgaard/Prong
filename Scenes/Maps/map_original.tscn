@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://baqjofqhljr20"]
+[gd_scene load_steps=9 format=3 uid="uid://baqjofqhljr20"]
 
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_8co16"]
 [ext_resource type="PackedScene" uid="uid://cy0dclm6yrl13" path="res://Scenes/PassBlockSpeed.tscn" id="2_5xddj"]
@@ -8,8 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="6_d7qcf"]
 [ext_resource type="PackedScene" uid="uid://cmv6clvswj3q1" path="res://Scenes/PassBlockBallSpeed.tscn" id="7_w0y45"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8co16"]
+bg_color = Color(0.235294, 0.411765, 0.290196, 1)
+
 [node name="map_original" type="Node2D"]
 position = Vector2(0, -1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8co16")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 rotation = 0.00501389
