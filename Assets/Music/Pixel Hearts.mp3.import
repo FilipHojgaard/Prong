@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://okgvy1f0a316"
+path="res://.godot/imported/Pixel Hearts.mp3-7b597966eb0d0e807172ea42ab5233e7.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Pixel Hearts.mp3"
+dest_files=["res://.godot/imported/Pixel Hearts.mp3-7b597966eb0d0e807172ea42ab5233e7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cumws3iv5k6pe"
+path="res://.godot/imported/Pixel Love Adventures.mp3-f6d9583c208d4726fd2b25796f79e2bb.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Pixel Love Adventures.mp3"
+dest_files=["res://.godot/imported/Pixel Love Adventures.mp3-f6d9583c208d4726fd2b25796f79e2bb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
