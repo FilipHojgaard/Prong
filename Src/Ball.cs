@@ -27,6 +27,7 @@ public partial class Ball : RigidBody2D
     public override void _Ready()
     {
         GravityScale = 0;
+        ContinuousCd = CcdMode.CastRay;
 
         ContactMonitor = true;
         MaxContactsReported = 20;
