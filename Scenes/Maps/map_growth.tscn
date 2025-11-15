@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bg0mtnfktbu2y"]
+[gd_scene load_steps=8 format=3 uid="uid://bg0mtnfktbu2y"]
 
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_tpq11"]
 [ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="2_c2w8q"]
 [ext_resource type="PackedScene" uid="uid://bvciffyj0kaoh" path="res://Scenes/Block.tscn" id="3_bam8k"]
 [ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="5_p1npf"]
+[ext_resource type="AudioStream" uid="uid://dajdtwydejbju" path="res://Assets/Music/Pixel Paddle Adventures_2.mp3" id="6_l0sue"]
 [ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="7_ffm4c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihj21"]
@@ -131,3 +132,7 @@ position = Vector2(400, 301)
 
 [node name="PassBlockBall16" parent="." instance=ExtResource("7_ffm4c")]
 position = Vector2(-400, -249)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_l0sue")
+autoplay = true

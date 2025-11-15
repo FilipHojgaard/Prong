@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dg80jgkskyq1k"]
+[gd_scene load_steps=8 format=3 uid="uid://dg80jgkskyq1k"]
 
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_fjl53"]
 [ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="2_8m24v"]
 [ext_resource type="PackedScene" uid="uid://cy0dclm6yrl13" path="res://Scenes/PassBlockSpeed.tscn" id="3_va3nj"]
 [ext_resource type="PackedScene" uid="uid://csmbh7mgg8cgm" path="res://Scenes/PassBlockAttack.tscn" id="4_b6ar4"]
 [ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="5_fumjw"]
+[ext_resource type="AudioStream" uid="uid://ct4cbg52rbswq" path="res://Assets/Music/Pixel Bounce.mp3" id="6_ac04m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_va3nj"]
 bg_color = Color(0.235294, 0.411765, 0.290196, 1)
@@ -59,3 +60,7 @@ position = Vector2(0, 251)
 
 [node name="PassBlockDefence2" parent="." instance=ExtResource("5_fumjw")]
 position = Vector2(0, -256)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ac04m")
+autoplay = true

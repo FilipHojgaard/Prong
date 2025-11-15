@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dixk7nbol7laa"]
+[gd_scene load_steps=10 format=3 uid="uid://dixk7nbol7laa"]
 
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_vs481"]
 [ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="2_aefww"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://csmbh7mgg8cgm" path="res://Scenes/PassBlockAttack.tscn" id="4_fgqk6"]
 [ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="5_fgqk6"]
 [ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="5_qrmpv"]
+[ext_resource type="AudioStream" uid="uid://df36bunuxck4m" path="res://Assets/Music/Pixel Groove.mp3" id="8_afnqb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k233f"]
 bg_color = Color(0.235751, 0.413155, 0.291535, 1)
@@ -115,3 +116,7 @@ position = Vector2(0, -449)
 
 [node name="PassBlockBall4" parent="." instance=ExtResource("5_fgqk6")]
 position = Vector2(0, -499)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_afnqb")
+autoplay = true

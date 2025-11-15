@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://baqjofqhljr20"]
+[gd_scene load_steps=10 format=3 uid="uid://baqjofqhljr20"]
 
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_8co16"]
 [ext_resource type="PackedScene" uid="uid://cy0dclm6yrl13" path="res://Scenes/PassBlockSpeed.tscn" id="2_5xddj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://csmbh7mgg8cgm" path="res://Scenes/PassBlockAttack.tscn" id="5_xcgnm"]
 [ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="6_d7qcf"]
 [ext_resource type="PackedScene" uid="uid://cmv6clvswj3q1" path="res://Scenes/PassBlockBallSpeed.tscn" id="7_w0y45"]
+[ext_resource type="AudioStream" uid="uid://bdna376ecqt7m" path="res://Assets/Music/Paddle Dance.mp3" id="8_5xddj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8co16"]
 bg_color = Color(0.235294, 0.411765, 0.290196, 1)
@@ -133,3 +134,7 @@ position = Vector2(-400, 201)
 
 [node name="PassBlockBallSpeed8" parent="." instance=ExtResource("7_w0y45")]
 position = Vector2(-400, 101)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_5xddj")
+autoplay = true

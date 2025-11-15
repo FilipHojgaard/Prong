@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://0lgjet41v584"]
+[gd_scene load_steps=8 format=3 uid="uid://0lgjet41v584"]
 
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_oogsr"]
 [ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="2_oaiq3"]
 [ext_resource type="PackedScene" uid="uid://cmv6clvswj3q1" path="res://Scenes/PassBlockBallSpeed.tscn" id="3_jm10v"]
 [ext_resource type="PackedScene" uid="uid://cy0dclm6yrl13" path="res://Scenes/PassBlockSpeed.tscn" id="4_30m3x"]
 [ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="5_2yyns"]
+[ext_resource type="AudioStream" uid="uid://cumws3iv5k6pe" path="res://Assets/Music/Pixel Love Adventures.mp3" id="6_oaiq3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oogsr"]
 bg_color = Color(0.235751, 0.413155, 0.291535, 1)
@@ -95,3 +96,9 @@ position = Vector2(-100, 301)
 
 [node name="PassBlockBall4" parent="." instance=ExtResource("5_2yyns")]
 position = Vector2(-250, 301)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="PixelLoveAdventures" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_oaiq3")
+autoplay = true
