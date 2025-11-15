@@ -237,7 +237,7 @@ public partial class GameManager : Node
 
     public void CheckForWinner()
     {
-        if (LeftPlayerScore >= 10 || RightPlayerScore >= 10)
+        if (LeftPlayerScore >= 8 || RightPlayerScore >= 8)
         {
             PickRandomMap();
         }
