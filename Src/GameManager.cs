@@ -13,6 +13,10 @@ public partial class GameManager : Node
     public static float RightBoundaryPosition { get; set; }
     public static int RightPlayerScore { get; set; } = 0;
     public static int LeftPlayerScore { get; set; } = 0;
+    public static int RightPlayerOverallScore { get; set; } = 0;
+    public static int LeftPlayerOverallScore { get; set; } = 0;
+    public static int RightPlayerOverallScoreBefore { get; set; } = 0;
+    public static int LeftPlayerOverallScoreAfter { get; set; } = 0;
     public static int BallCount { get; set; } = 0;
     public static EasterEggStatusEnum EasterEggStatus { get; set; } = EasterEggStatusEnum.Inactive;
     public static bool ShowEasterEgg { get; set; } = false;
@@ -237,10 +241,23 @@ public partial class GameManager : Node
 
     public void CheckForWinner()
     {
-        if (LeftPlayerScore >= 8 || RightPlayerScore >= 8)
+        if (LeftPlayerScore >= 8)
         {
-            PickRandomMap();
+            HandleRoundWin(PlayerEnum.LeftPlayer);
         }
+        if (RightPlayerScore >= 8)
+        {
+            HandleRoundWin(PlayerEnum.RightPlayer);
+        }
+    }
+
+    private void HandleRoundWin(PlayerEnum player)
+    {
+        // Increment overall score
+        // Show score UI scene
+        // Update overall before score
+        // Pick new map
+        PickRandomMap();
     }
 
     private void SpawnBall()
