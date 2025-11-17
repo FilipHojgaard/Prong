@@ -283,14 +283,14 @@ public partial class GameManager : Node
         GD.Print("Showing ui score");
         _scoreOverview = _scoreOverviewScene.Instantiate<ScoreOverview>();
         GetTree().Root.AddChild( _scoreOverview );
-        // Wait one frame for scoreOverview UI to have called _Ready()
+        // Wait two frame for scoreOverview UI to have called _Ready()
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         _scoreOverview.Initialize(player);
 
-        await ToSignal(GetTree().CreateTimer(2.0), SceneTreeTimer.SignalName.Timeout);
+        await ToSignal(GetTree().CreateTimer(1.5), SceneTreeTimer.SignalName.Timeout);
         _scoreOverview.AnimateScores();
-        await ToSignal(GetTree().CreateTimer(2.0), SceneTreeTimer.SignalName.Timeout);
+        await ToSignal(GetTree().CreateTimer(2.5), SceneTreeTimer.SignalName.Timeout);
         //_scoreOverview.AnimationPlayer.AnimationFinished += (anyAnimationName) => 
         _scoreOverview.QueueFree();
 
@@ -302,9 +302,9 @@ public partial class GameManager : Node
         PickRandomMap();
     }
 
-    public void RemoveAllBalls()
+    private void RemoveAllBalls()
     {
-        var balls = GetTree().GetNodesInGroup("balls");
+        var balls = GetTree().GetNodesInGroup("Balls");
         foreach (Node ball in balls)
         {
             ball.QueueFree();

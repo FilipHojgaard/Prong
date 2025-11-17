@@ -32,7 +32,7 @@ public partial class Ball : RigidBody2D
         ContactMonitor = true;
         MaxContactsReported = 20;
 
-        AddToGroup("balls");
+        AddToGroup("Balls");
 
         BodyShapeEntered += OnBodyEntered;
 
