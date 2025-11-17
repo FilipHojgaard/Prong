@@ -32,6 +32,8 @@ public partial class Ball : RigidBody2D
         ContactMonitor = true;
         MaxContactsReported = 20;
 
+        AddToGroup("balls");
+
         BodyShapeEntered += OnBodyEntered;
 
         _prongHitSfx = GetNode<AudioStreamPlayer>("ProngHitSfx");
@@ -53,6 +55,10 @@ public partial class Ball : RigidBody2D
 
     public override void _Process(double delta)
     {
+        if (GameManager.LockNewRoundWinner)
+        {
+            return;
+        }
         CheckForGoal();
     }
 

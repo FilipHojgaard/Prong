@@ -15,16 +15,21 @@ public partial class GameManager : Node
     public static int LeftPlayerScore { get; set; } = 0;
     public static int RightPlayerOverallScore { get; set; } = 0;
     public static int LeftPlayerOverallScore { get; set; } = 0;
-    public static int RightPlayerOverallScoreBefore { get; set; } = 0;
-    public static int LeftPlayerOverallScoreAfter { get; set; } = 0;
+    public static int RightPlayerOverallScorePrevious { get; set; } = 0;
+    public static int LeftPlayerOverallScorePrevious { get; set; } = 0;
     public static int BallCount { get; set; } = 0;
     public static EasterEggStatusEnum EasterEggStatus { get; set; } = EasterEggStatusEnum.Inactive;
     public static bool ShowEasterEgg { get; set; } = false;
+    public static bool LockNewRoundWinner { get; set; } = false;
 
     public bool InMainMenu { get; set; } = true;
 
     private PauseMenu _pauseMenu;
     private PackedScene _pauseMenuScene;
+
+    private ScoreOverview _scoreOverview;
+    private PackedScene _scoreOverviewScene;
+
     private Dictionary<int, string> _maps { get; set; }
 
     private int? _mapHistory { get; set; } = null;
@@ -37,6 +42,7 @@ public partial class GameManager : Node
         ProcessMode = ProcessModeEnum.Always; // To be able to unpuase again. 
 
         _pauseMenuScene = GD.Load<PackedScene>("res://Scenes/PauseMenu.tscn");
+        _scoreOverviewScene = GD.Load<PackedScene>("res://Scenes/ScoreScene.tscn");
 
         if (!InMainMenu)
         {
@@ -217,6 +223,7 @@ public partial class GameManager : Node
 
     private async void PickRandomMap()
     {
+        LockNewRoundWinner = false;
         // TODO: Implement such that the same map can't be picked again.  
         BallCount = default;
         LeftPlayerScore = default;
@@ -235,29 +242,73 @@ public partial class GameManager : Node
         // Wait for the new scehe tree to change
         //await ToSignal(GetTree(), SceneTree.SignalName.TreeChanged);
         // Waiting one frame for it to reset scene, then calling SetHorizontalBorders on the new scene. 
+        //await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         Instance.SetHorizontalBorders();
     }
 
     public void CheckForWinner()
     {
-        if (LeftPlayerScore >= 8)
+        if (LeftPlayerScore == 8)
         {
             HandleRoundWin(PlayerEnum.LeftPlayer);
         }
-        if (RightPlayerScore >= 8)
+        if (RightPlayerScore == 8)
         {
             HandleRoundWin(PlayerEnum.RightPlayer);
         }
     }
 
-    private void HandleRoundWin(PlayerEnum player)
+    private async void HandleRoundWin(PlayerEnum player)
     {
+        if (LockNewRoundWinner)
+        {
+            return;
+        }
+        // Lock round win
+        LockNewRoundWinner = true;
+        RemoveAllBalls();
         // Increment overall score
+        if (player == PlayerEnum.LeftPlayer)
+        {
+            LeftPlayerOverallScore++;
+        }
+        else if (player == PlayerEnum.RightPlayer)
+        {
+            RightPlayerOverallScore++;
+        }
+    
         // Show score UI scene
-        // Update overall before score
+        GD.Print("Showing ui score");
+        _scoreOverview = _scoreOverviewScene.Instantiate<ScoreOverview>();
+        GetTree().Root.AddChild( _scoreOverview );
+        // Wait one frame for scoreOverview UI to have called _Ready()
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        _scoreOverview.Initialize(player);
+
+        await ToSignal(GetTree().CreateTimer(2.0), SceneTreeTimer.SignalName.Timeout);
+        _scoreOverview.AnimateScores();
+        await ToSignal(GetTree().CreateTimer(2.0), SceneTreeTimer.SignalName.Timeout);
+        //_scoreOverview.AnimationPlayer.AnimationFinished += (anyAnimationName) => 
+        _scoreOverview.QueueFree();
+
+        // Update previous overall score
+        LeftPlayerOverallScorePrevious = LeftPlayerOverallScore;
+        RightPlayerOverallScorePrevious = RightPlayerOverallScore;
+        
         // Pick new map
         PickRandomMap();
+    }
+
+    public void RemoveAllBalls()
+    {
+        var balls = GetTree().GetNodesInGroup("balls");
+        foreach (Node ball in balls)
+        {
+            ball.QueueFree();
+        }
     }
 
     private void SpawnBall()
