@@ -8,19 +8,25 @@ public partial class PauseMenu : Control
     Button Menu;
     Button Exit;
 
+    Label LeftScore;
+    Label RightScore;
+
     public override void _Ready()
     {
-        GD.Print("in pause menu");
+        // Score
+        LeftScore = GetNode<Label>("CanvasLayer/LeftScore");
+        RightScore = GetNode<Label>("CanvasLayer/RightScore");
+        LeftScore.Text = GameManager.LeftPlayerOverallScore.ToString();
+        RightScore.Text = GameManager.RightPlayerOverallScore.ToString();
+
+        // Buttons
         Continue = GetNode<Button>("CanvasLayer/VBoxContainer/Continue");
-        //Continue.ProcessMode = ProcessModeEnum.Always;
         Continue.Pressed += ContinueHandler;
 
         Menu = GetNode<Button>("CanvasLayer/VBoxContainer/Menu");
-        //Menu.ProcessMode = ProcessModeEnum.Always;
         Menu.Pressed += MenuHandler;
 
         Exit = GetNode<Button>("CanvasLayer/VBoxContainer/Exit");
-        //Exit.ProcessMode = ProcessModeEnum.Always;
         Exit.Pressed += () => GetTree().Quit();
     }
 
