@@ -13,6 +13,7 @@ public partial class Ball : RigidBody2D
     public bool SpawnInCenter { get; set; } = true;
     public Prong LastProngHit { get; set; } = null;
     public int Bounces { get; set; } = 0;
+    private int BounceThresholdForNewBall { get; } = 10;
 
     public int FireballHits { get; set; } = 0;
 
@@ -101,7 +102,7 @@ public partial class Ball : RigidBody2D
     private void HandleBounceCount()
     {
         Bounces++;
-        if (Bounces >= 14)
+        if (Bounces >= BounceThresholdForNewBall)
         {
             GameManager.SpawnBallAtCenter();
             Bounces = 0;
