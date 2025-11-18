@@ -193,6 +193,10 @@ public partial class GameManager : Node
         BallCount = default;
         LeftPlayerScore = default;
         RightPlayerScore = default;
+        RightPlayerOverallScore = default;
+        LeftPlayerOverallScore = default;
+        RightPlayerOverallScorePrevious = default;
+        LeftPlayerOverallScorePrevious = default;
         GetTree().ChangeSceneToFile($"res://Scenes/MainMenu.tscn");
     }
 
