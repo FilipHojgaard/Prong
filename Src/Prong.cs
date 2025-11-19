@@ -17,9 +17,17 @@ public partial class Prong : StaticBody2D
 
     public bool ShieldReady { get; set; } = true;
 
-    public Sprite2D indicator_1 { get; set; }
+    public Sprite2D SpeedIndicatorLvl2 { get; set; }
 
-    public Sprite2D indicator_2 { get; set; }
+    public Sprite2D SpeedIndicatorLvl3 { get; set; }
+
+    public Sprite2D AttackIndicatorLvl2 { get; set; }
+
+    public Sprite2D AttackIndicatorLvl3 { get; set; }
+    
+    public Sprite2D DefenceIndicatorLvl2 { get; set; }
+    
+    public Sprite2D DefenceIndicatorLvl3 { get; set; }
 
     public int SpeedLevel { get; set; } = 1;
 
@@ -77,8 +85,14 @@ public partial class Prong : StaticBody2D
         SetupProperties();
         SpriteUpdate();
 
-        indicator_1 = GetNode<Sprite2D>("speed_2");
-        indicator_2 = GetNode<Sprite2D>("speed_3");
+        SpeedIndicatorLvl2 = GetNode<Sprite2D>("speed_2");
+        SpeedIndicatorLvl3 = GetNode<Sprite2D>("speed_3");
+
+        AttackIndicatorLvl2 = GetNode<Sprite2D>("attack_2");
+        AttackIndicatorLvl3 = GetNode<Sprite2D>("attack_3");
+
+        DefenceIndicatorLvl2 = GetNode<Sprite2D>("defence_2");
+        DefenceIndicatorLvl3 = GetNode<Sprite2D>("defence_3");
     }
 
     public override void _EnterTree()
@@ -374,11 +388,11 @@ public partial class Prong : StaticBody2D
 
         if (SpeedLevel == 2)
         {
-            indicator_1.Visible = true;
+            SpeedIndicatorLvl2.Visible = true;
         }
         if (SpeedLevel == 3)
         {
-            indicator_2.Visible = true;
+            SpeedIndicatorLvl3.Visible = true;
         }
     }
 
@@ -392,6 +406,15 @@ public partial class Prong : StaticBody2D
         {
             AttackLevel++;
         }
+
+        if (AttackLevel == 2)
+        {
+            AttackIndicatorLvl2.Visible = true;
+        }
+        if (AttackLevel == 3)
+        {
+            AttackIndicatorLvl3.Visible = true;
+        }
     }
 
     private void EventIncreaseDefence(int EventPlayer)
@@ -403,6 +426,15 @@ public partial class Prong : StaticBody2D
         if (DefenceLevel < 3)
         {
             DefenceLevel++;
+        }
+
+        if (DefenceLevel == 2)
+        {
+            DefenceIndicatorLvl2.Visible = true;
+        }
+        if (DefenceLevel == 3)
+        {
+            DefenceIndicatorLvl3.Visible = true;
         }
     }
 }
