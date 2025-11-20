@@ -1,4 +1,5 @@
 using Godot;
+using Prong.Shared;
 
 namespace Prong.Src.Blocks;
 
@@ -8,6 +9,7 @@ public partial class Block : RigidBody2D
     private int _hp { get; set; }
 
     private AudioStreamPlayer _hitSfx;
+    public Prong Owner { get; set; }
 
     public override void _Ready()
     {
@@ -18,10 +20,11 @@ public partial class Block : RigidBody2D
         LockRotation = true;
     }
 
-    public void Initialize(int hp)
+    public void Initialize(int hp, Prong player)
     {
         _hp = hp;
         UpdateSprite();
+        Owner = player;
     }
 
     public void TakeHit()

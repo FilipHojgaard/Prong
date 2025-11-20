@@ -176,6 +176,7 @@ public partial class Ball : RigidBody2D
         {
             HandleBlockCollision(block);
             HandleBounceCount();
+            LastProngHit = block.Owner;
         }
         if (body is Fireball fireball && !fireball.HitBall)
         {

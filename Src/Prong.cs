@@ -345,7 +345,7 @@ public partial class Prong : StaticBody2D
     {
         var blockScene = GD.Load<PackedScene>("res://Scenes/Block.tscn");
         var block = blockScene.Instantiate<Block>();
-        block.Initialize(DefenceHpDict[DefenceLevel]);
+        block.Initialize(DefenceHpDict[DefenceLevel], this);
 
         var offset = Player == PlayerEnum.LeftPlayer ? -20 : 20;
 
@@ -358,7 +358,7 @@ public partial class Prong : StaticBody2D
     {
         var blockScene = GD.Load<PackedScene>("res://Scenes/Block.tscn");
         var block = blockScene.Instantiate<Block>();
-        block.Initialize(DefenceHpDict[DefenceLevel]);
+        block.Initialize(DefenceHpDict[DefenceLevel], this);
 
         var offset = Player == PlayerEnum.LeftPlayer ? -20 : 20;
 
@@ -372,8 +372,8 @@ public partial class Prong : StaticBody2D
         var blockScene = GD.Load<PackedScene>("res://Scenes/Block.tscn");
         var blockUpper = blockScene.Instantiate<Block>();
         var blockLower = blockScene.Instantiate<Block>();
-        blockUpper.Initialize(DefenceHpDict[DefenceLevel]);
-        blockLower.Initialize(DefenceHpDict[DefenceLevel]);
+        blockUpper.Initialize(DefenceHpDict[DefenceLevel], this);
+        blockLower.Initialize(DefenceHpDict[DefenceLevel], this);
 
         var offset = Player == PlayerEnum.LeftPlayer ? -20 : 20;
 
