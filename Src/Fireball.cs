@@ -18,7 +18,7 @@ public partial class Fireball : RigidBody2D
         _hitSfx = GetNode<AudioStreamPlayer>("HitSfx");
 
         GravityScale = 0;
-        Mass = 0;
+        //Mass = 0f; // TODO: This does not work. It seems to work when I don't set the Mass at all. Check out if we reallyl need it. 
         LockRotation = true;
 
         ContactMonitor = true;

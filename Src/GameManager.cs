@@ -345,6 +345,7 @@ public partial class GameManager : Node
     public static void DecreaseBallCount()
     {
         BallCount--;
+        // TODO: Consider calling CheckBallCount() here and remove it from Process(). Will need a first ball initializer though. 
     }
 
     public static async void HandleEasterEgg()
