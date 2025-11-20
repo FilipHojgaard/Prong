@@ -13,6 +13,9 @@ public partial class Ball : RigidBody2D
     public bool SpawnInCenter { get; set; } = true;
     public Prong LastProngHit { get; set; } = null;
     public int Bounces { get; set; } = 0;
+
+    public int VerticalBounces { get; set; } = 0;
+    public int MaxVerticalBounces { get; } = 5;
     private int BounceThresholdForNewBall { get; } = 10;
 
     public int FireballHits { get; set; } = 0;
@@ -101,6 +104,7 @@ public partial class Ball : RigidBody2D
 
     private void HandleBounceCount()
     {
+        VerticalBounces = default;
         Bounces++;
         if (Bounces >= BounceThresholdForNewBall)
         {
@@ -184,6 +188,13 @@ public partial class Ball : RigidBody2D
         if (body is Border border)
         {
             _otherHitSfx.Play();
+            VerticalBounces++;
+            if (VerticalBounces >= MaxVerticalBounces)
+            {
+                QueueFree();
+                GameManager.DecreaseBallCount();
+                GameManager.SpawnBallAtCenter();
+            }
         }
     }
 
