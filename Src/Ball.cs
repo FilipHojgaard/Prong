@@ -50,6 +50,8 @@ public partial class Ball : RigidBody2D
         {
             StartRandomDirection();
         }
+
+        SetStartSpeed();
     }
 
     public void SpawnedInMiddle()
@@ -69,6 +71,14 @@ public partial class Ball : RigidBody2D
     public override void _PhysicsProcess(double delta)
     {
         LinearVelocity = LinearVelocity.Normalized() * Speed;
+    }
+
+    public void SetStartSpeed()
+    {
+        if (GameManager.LeftPlayerScore + GameManager.RightPlayerScore >= 7)
+        {
+            Speed = 780;
+        }
     }
 
     public void StartAtPosition(Vector2 position, float rotation)
