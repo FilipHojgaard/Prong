@@ -82,9 +82,6 @@ public partial class Prong : StaticBody2D
 
     public override void _Ready()
     {
-        SetupProperties();
-        SpriteUpdate();
-
         SpeedIndicatorLvl2 = GetNode<Sprite2D>("speed_2");
         SpeedIndicatorLvl3 = GetNode<Sprite2D>("speed_3");
 
@@ -93,6 +90,9 @@ public partial class Prong : StaticBody2D
 
         DefenceIndicatorLvl2 = GetNode<Sprite2D>("defence_2");
         DefenceIndicatorLvl3 = GetNode<Sprite2D>("defence_3");
+
+        SetupProperties();
+        SpriteUpdate();
     }
 
     public override void _EnterTree()
@@ -105,6 +105,8 @@ public partial class Prong : StaticBody2D
     public override void _ExitTree()
     {
         GetNode<Eventbus>(ProngConstants.EventHubPath).SpeedLevelUp -= EventIncreaseSpeed;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).AttackLevelUp -= EventIncreaseAttack;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).DefenceLevelUp -= EventIncreaseDefence;
     }
 
     private void SetupProperties()
@@ -125,6 +127,14 @@ public partial class Prong : StaticBody2D
         _fireballSimpleSfx = GetNode<AudioStreamPlayer>("FireballSimpleSfx");
         _fireBallMaxLevelSfx = GetNode<AudioStreamPlayer>("FireballMaxLevelSfx");
         _setDefenceSfx = GetNode<AudioStreamPlayer>("PlaceShieldSfx");
+
+        if (Player == PlayerEnum.RightPlayer)
+        {
+            AttackIndicatorLvl2.Position = new Vector2(AttackIndicatorLvl2.Position.X, 18);
+            AttackIndicatorLvl3.Position = new Vector2(AttackIndicatorLvl3.Position.X, 18);
+            DefenceIndicatorLvl2.Position = new Vector2(DefenceIndicatorLvl2.Position.X, -18);
+            DefenceIndicatorLvl3.Position = new Vector2(DefenceIndicatorLvl3.Position.X, -18);
+        }
     }
 
     public override void _PhysicsProcess(double delta)
