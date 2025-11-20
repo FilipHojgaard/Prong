@@ -77,7 +77,7 @@ public partial class Ball : RigidBody2D
     {
         if (GameManager.LeftPlayerScore + GameManager.RightPlayerScore >= 7)
         {
-            Speed = 780;
+            Speed = 740;
         }
     }
 
