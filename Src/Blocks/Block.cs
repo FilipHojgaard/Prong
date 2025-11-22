@@ -6,10 +6,12 @@ namespace Prong.Src.Blocks;
 public partial class Block : RigidBody2D
 {
 
+    [Export]
+    public Prong Owner { get; set; }
     private int _hp { get; set; }
 
     private AudioStreamPlayer _hitSfx;
-    public Prong Owner { get; set; }
+    
 
     public override void _Ready()
     {
