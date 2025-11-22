@@ -7,8 +7,8 @@ namespace Prong.Src;
 public partial class GameManager : Node
 {
     public static GameManager Instance { get; private set; }
-    public static Vector2 UpperBoundaryPosition { get; set; }
-    public static Vector2 LowerBoundaryPosition { get; set; }
+    public static Vector2 UpperBoundaryPosition { get; set; } = new Vector2(0, 0);
+    public static Vector2 LowerBoundaryPosition { get; set; } = new Vector2(0, 0);
     public static float LeftBoundaryPosition { get; set; }
     public static float RightBoundaryPosition { get; set; }
     public static int RightPlayerScore { get; set; } = 0;
@@ -46,7 +46,6 @@ public partial class GameManager : Node
 
         if (!InMainMenu)
         {
-            SetHorizontalBorders();
             SetVerticalBorders();
         }
 
@@ -75,13 +74,13 @@ public partial class GameManager : Node
         CheckBallCount();
     }
 
-    public void SetHorizontalBorders()
+    public void CalculateBorderPositions()
     {
-        var borderScene = GD.Load<PackedScene>("res://Scenes/horizontal_border.tscn");
-        var upperBorder = borderScene.Instantiate<StaticBody2D>();
-        var lowerBorder = borderScene.Instantiate<StaticBody2D>();
-
-        GD.Print("in sethorizontalborders");
+        // Only calculate border positions once
+        if (UpperBoundaryPosition != new Vector2(0,0) && LowerBoundaryPosition != new Vector2(0,0))
+        {
+            return;
+        }
 
         var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
         var viewportSize = GetViewport().GetVisibleRect().Size;
@@ -90,18 +89,8 @@ public partial class GameManager : Node
 
         UpperBoundaryPosition = new Vector2(cameraPos.X, cameraPos.Y - halfViewportHeight + 10);
         LowerBoundaryPosition = new Vector2(cameraPos.X, cameraPos.Y + halfViewportHeight - 10);
-
-        upperBorder.Position = UpperBoundaryPosition;
-        upperBorder.Rotation = Mathf.Pi;
-        lowerBorder.Position = LowerBoundaryPosition;
-
-        GetTree().CurrentScene.AddChild(upperBorder);
-        GetTree().CurrentScene.AddChild(lowerBorder);
-
-        GD.Print(UpperBoundaryPosition);
-        GD.Print(LowerBoundaryPosition);
     }
-    
+
     public void SetVerticalBorders()
     {
         var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
@@ -140,10 +129,6 @@ public partial class GameManager : Node
             Pause = false;
             GetTree().Paused = Pause;
             GetTree().ReloadCurrentScene();
-
-            // Waiting one frame for it to reset scene, then calling SetHorizontalBorders on the new scene. 
-            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-            SetHorizontalBorders();
         }
         if (Input.IsActionJustPressed("Pause"))
         {
@@ -218,10 +203,8 @@ public partial class GameManager : Node
         var mapName = _maps[(int)newMap];
         GetTree().ChangeSceneToFile($"res://Scenes/Maps/{mapName}.tscn");
 
-        // Waiting one frame for it to reset scene, then calling SetHorizontalBorders on the new scene. 
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // Wait for new treescene
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // Wait for nodes to load
-        Instance.SetHorizontalBorders();
         Instance.SetVerticalBorders();
     }
 
@@ -242,14 +225,6 @@ public partial class GameManager : Node
         _mapHistory = (int)newMap;
         var mapName = _maps[(int)newMap];
         GetTree().ChangeSceneToFile($"res://Scenes/Maps/{mapName}.tscn");
-
-        // Wait for the new scehe tree to change
-        //await ToSignal(GetTree(), SceneTree.SignalName.TreeChanged);
-        // Waiting one frame for it to reset scene, then calling SetHorizontalBorders on the new scene. 
-        //await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        Instance.SetHorizontalBorders();
     }
 
     public void CheckForWinner()

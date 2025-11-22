@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dixk7nbol7laa"]
+[gd_scene load_steps=11 format=3 uid="uid://dixk7nbol7laa"]
 
+[ext_resource type="Script" uid="uid://g888fnysph0e" path="res://Src/GenericMap.cs" id="1_fgqk6"]
 [ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="1_vs481"]
 [ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="2_aefww"]
 [ext_resource type="PackedScene" uid="uid://bvciffyj0kaoh" path="res://Scenes/Block.tscn" id="3_afnqb"]
@@ -14,6 +15,7 @@ bg_color = Color(0.235751, 0.413155, 0.291535, 1)
 
 [node name="map_fastAndFurious" type="Node2D"]
 position = Vector2(0, -1)
+script = ExtResource("1_fgqk6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
