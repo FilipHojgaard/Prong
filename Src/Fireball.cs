@@ -63,7 +63,7 @@ public partial class Fireball : RigidBody2D
 
     private void CheckForLeftMap()
     {
-        if (Position.X > GameManager.RightBoundaryPosition + 50 || Position.X < GameManager.LeftBoundaryPosition - 50)
+        if (Position.X > GameManager.RightGoalPosition + 50 || Position.X < GameManager.LeftGoalPosition - 50)
         {
             GameManager.EasterEggStatus = EasterEggStatusEnum.Inactive;
             QueueFree();

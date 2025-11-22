@@ -6,6 +6,7 @@ public partial class GenericMap : Node2D
 {
     public override void _Ready()
     {
+        GameManager.Instance.CalculateGoalPositions();
         GameManager.Instance.CalculateBorderPositions();
         SpawnHorizontalBorders();
     }

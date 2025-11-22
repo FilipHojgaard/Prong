@@ -134,7 +134,7 @@ public partial class Ball : RigidBody2D
 
     private void CheckForGoal()
     {
-        if (Position.X <= GameManager.LeftBoundaryPosition)
+        if (Position.X <= GameManager.LeftGoalPosition)
         {
             _goalSfx.Reparent(GetTree().Root);
             _goalSfx.Finished += () => _goalSfx.QueueFree();
@@ -146,7 +146,7 @@ public partial class Ball : RigidBody2D
             GameManager.Instance.CheckForWinner();
         }
 
-        if (Position.X >= GameManager.RightBoundaryPosition)
+        if (Position.X >= GameManager.RightGoalPosition)
         {
             _goalSfx.Reparent(GetTree().Root);
             _goalSfx.Finished += () => _goalSfx.QueueFree();

@@ -9,8 +9,8 @@ public partial class GameManager : Node
     public static GameManager Instance { get; private set; }
     public static Vector2 UpperBoundaryPosition { get; set; } = new Vector2(0, 0);
     public static Vector2 LowerBoundaryPosition { get; set; } = new Vector2(0, 0);
-    public static float LeftBoundaryPosition { get; set; }
-    public static float RightBoundaryPosition { get; set; }
+    public static float LeftGoalPosition { get; set; } = -1f;
+    public static float RightGoalPosition { get; set; } = -1f;
     public static int RightPlayerScore { get; set; } = 0;
     public static int LeftPlayerScore { get; set; } = 0;
     public static int RightPlayerOverallScore { get; set; } = 0;
@@ -43,11 +43,6 @@ public partial class GameManager : Node
 
         _pauseMenuScene = GD.Load<PackedScene>("res://Scenes/PauseMenu.tscn");
         _scoreOverviewScene = GD.Load<PackedScene>("res://Scenes/ScoreScene.tscn");
-
-        if (!InMainMenu)
-        {
-            SetVerticalBorders();
-        }
 
         _maps = new Dictionary<int, string>()
         {
@@ -91,15 +86,19 @@ public partial class GameManager : Node
         LowerBoundaryPosition = new Vector2(cameraPos.X, cameraPos.Y + halfViewportHeight - 10);
     }
 
-    public void SetVerticalBorders()
+    public void CalculateGoalPositions()
     {
+        if (LeftGoalPosition != -1f && RightGoalPosition != -1f)
+        {
+            return;
+        }
         var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
         var viewPortSize = GetViewport().GetVisibleRect().Size;
         var cameraPos = camera.GlobalPosition;
         var halfViewPortLength = viewPortSize.X / 2;
 
-        LeftBoundaryPosition = cameraPos.X - halfViewPortLength;
-        RightBoundaryPosition = cameraPos.X + halfViewPortLength;
+        LeftGoalPosition = cameraPos.X - halfViewPortLength;
+        RightGoalPosition = cameraPos.X + halfViewPortLength;
     }
 
     public static void SpawnBallAtPosition(Vector2 position, float rotation)
@@ -205,7 +204,6 @@ public partial class GameManager : Node
 
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // Wait for new treescene
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // Wait for nodes to load
-        Instance.SetVerticalBorders();
     }
 
     private async void PickRandomMap()
