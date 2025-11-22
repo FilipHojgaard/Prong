@@ -23,6 +23,10 @@ public partial class PassBlockAttack : Area2D
 
             QueueFree();
             var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath); // TODO:  Can I avoid getting a static reference somehow? 
+            if (ball.LastProngHit is null)
+            {
+                return;
+            }
             eventBus.EmitSignal(Eventbus.SignalName.AttackLevelUp, (int)ball.LastProngHit.Player);
         }
     }
