@@ -12,10 +12,10 @@ tracks/0/path = NodePath("../PreviousLeftOverallScore:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(796, 481)]
+"values": [Vector2(710, 481)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -36,10 +36,10 @@ tracks/2/path = NodePath("../NewLeftOverallScore:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector2(796, 599)]
+"values": []
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -127,7 +127,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(796, 481), Vector2(796, 381)]
+"values": [Vector2(710, 481), Vector2(710, 374)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -151,7 +151,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(796, 599), Vector2(796, 481)]
+"values": [Vector2(710, 599), Vector2(710, 481)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -274,14 +274,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -164.0
+offset_left = -248.0
 offset_top = -59.0
-offset_right = -96.0
+offset_right = -98.0
 offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_kinnm")
 theme_override_font_sizes/font_size = 100
+horizontal_alignment = 2
 
 [node name="PreviousRightOverallScore" type="Label" parent="CanvasLayer"]
 anchors_preset = 8
@@ -291,7 +292,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 95.0
 offset_top = -59.0
-offset_right = 163.0
+offset_right = 245.0
 offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -311,14 +312,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -164.0
-offset_top = 59.0
-offset_right = -96.0
-offset_bottom = 177.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -810.0
+offset_bottom = -422.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_kinnm")
 theme_override_font_sizes/font_size = 100
+horizontal_alignment = 2
 
 [node name="NewRightOverallScore" type="Label" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
@@ -329,7 +331,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 95.0
 offset_top = 59.0
-offset_right = 163.0
+offset_right = 245.0
 offset_bottom = 177.0
 grow_horizontal = 2
 grow_vertical = 2
