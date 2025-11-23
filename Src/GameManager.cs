@@ -72,11 +72,13 @@ public partial class GameManager : Node
     public override void _EnterTree()
     {
         GetNode<Eventbus>(ProngConstants.EventHubPath).Goal += GoalHandler;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).PassBlockBall += PassBlockBallHandler;
     }
 
     public override void _ExitTree()
     {
         GetNode<Eventbus>(ProngConstants.EventHubPath).Goal -= GoalHandler;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).PassBlockBall -= PassBlockBallHandler;
     }
 
     public void CalculateBorderPositions()
@@ -111,14 +113,16 @@ public partial class GameManager : Node
         RightGoalPosition = cameraPos.X + halfViewPortLength;
     }
 
-    public static void SpawnBallAtPosition(Vector2 position, float rotation)
+    private async void SpawnBallAtPosition(Vector2 position, float rotation)
     {
+        BallCount++;
         var ballScene = GD.Load<PackedScene>("res://Scenes/ball.tscn");
         var ball = ballScene.Instantiate<Ball>();
 
         ball.SpawnInCenter = false;
         ball.StartAtPosition(position, rotation);
 
+        await ToSignal(GetTree().CreateTimer(0.05), SceneTreeTimer.SignalName.Timeout);
         Instance.GetTree().CurrentScene.AddChild(ball);
     }
 
@@ -126,6 +130,11 @@ public partial class GameManager : Node
     {
         BallCount++;
         Instance.SpawnBall();
+    }
+
+    private void PassBlockBallHandler(Vector2 Position, float MovementAngle)
+    {
+        SpawnBallAtPosition(Position, MovementAngle);
     }
 
     private async void CheckForButtonPresses()
