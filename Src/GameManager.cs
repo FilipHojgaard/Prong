@@ -69,6 +69,16 @@ public partial class GameManager : Node
         CheckBallCount();
     }
 
+    public override void _EnterTree()
+    {
+        GetNode<Eventbus>(ProngConstants.EventHubPath).Goal += GoalHandler;
+    }
+
+    public override void _ExitTree()
+    {
+        GetNode<Eventbus>(ProngConstants.EventHubPath).Goal -= GoalHandler;
+    }
+
     public void CalculateBorderPositions()
     {
         // Only calculate border positions once
@@ -223,6 +233,21 @@ public partial class GameManager : Node
         _mapHistory = (int)newMap;
         var mapName = _maps[(int)newMap];
         GetTree().ChangeSceneToFile($"res://Scenes/Maps/{mapName}.tscn");
+    }
+    
+    private void GoalHandler(int PlayerScored)
+    {
+        if ((PlayerEnum)PlayerScored == PlayerEnum.LeftPlayer)
+        {
+            LeftPlayerScore++;
+        }
+        else
+        {
+            RightPlayerScore++;
+        }
+        DecreaseBallCount();
+        CheckForWinner();
+
     }
 
     public void CheckForWinner()

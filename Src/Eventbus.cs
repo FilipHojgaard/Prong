@@ -13,4 +13,7 @@ public partial class Eventbus : Node
 
     [Signal]
     public delegate void DefenceLevelUpEventHandler(int EventPlayer);
+
+    [Signal]
+    public delegate void GoalEventHandler(int PlayerScored);
 }
