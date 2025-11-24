@@ -285,6 +285,7 @@ public partial class GameManager : Node
         PickRandomMap();
     }
 
+    // TODO: Consider moving this logic to GenericMap, so GameManager has nothing to do with balls in the map anymore. 
     private void RemoveAllBalls()
     {
         var balls = GetTree().GetNodesInGroup("Balls");
