@@ -66,7 +66,6 @@ public partial class Ball : RigidBody2D
         {
             return;
         }
-        CheckForGoal();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -130,34 +129,6 @@ public partial class Ball : RigidBody2D
         if (Speed > MaxSpeed)
         {
             Speed = MaxSpeed;
-        }
-    }
-
-    private void CheckForGoal()
-    {
-        // Right player score
-        if (Position.X <= GameManager.LeftGoalPosition)
-        {
-            _goalSfx.Reparent(GetTree().Root);
-            _goalSfx.Finished += () => _goalSfx.QueueFree();
-            _goalSfx.Play();
-
-            var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath);
-            eventBus.EmitSignal(Eventbus.SignalName.Goal, (int)PlayerEnum.RightPlayer);
-
-            QueueFree();
-        }
-        // Lefdt player score
-        if (Position.X >= GameManager.RightGoalPosition)
-        {
-            _goalSfx.Reparent(GetTree().Root);
-            _goalSfx.Finished += () => _goalSfx.QueueFree();
-            _goalSfx.Play();
-
-            var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath);
-            eventBus.EmitSignal(Eventbus.SignalName.Goal, (int)PlayerEnum.LeftPlayer);
-
-            QueueFree();
         }
     }
 
