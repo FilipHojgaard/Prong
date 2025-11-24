@@ -22,7 +22,7 @@ public partial class Goal : Area2D
 
         if (Owner == PlayerEnum.RightPlayer)
         {
-            Rotation = Mathf.Pi;
+            Rotate(Mathf.Pi);
         }
     }
 

@@ -1,4 +1,5 @@
 using Godot;
+using Prong.Shared;
 
 namespace Prong.Src;
 
@@ -9,6 +10,7 @@ public partial class GenericMap : Node2D
         GameManager.Instance.CalculateGoalPositions();
         GameManager.Instance.CalculateBorderPositions();
         SpawnHorizontalBorders();
+        SpawnGoals();
     }
 
     public void SpawnHorizontalBorders()
@@ -25,5 +27,23 @@ public partial class GenericMap : Node2D
         GetTree().CurrentScene.AddChild(lowerBorder);
 
         GD.Print("Horizontal border spawned");
+    }
+
+    public void SpawnGoals()
+    {
+        var goalScene = GD.Load<PackedScene>("res://Scenes/goal.tscn");
+        var leftGoal = goalScene.Instantiate<Goal>();
+        var rightGoal = goalScene.Instantiate<Goal>();
+
+        leftGoal.Initialize(PlayerEnum.LeftPlayer);
+        rightGoal.Initialize(PlayerEnum.RightPlayer);
+
+        leftGoal.Position = new Vector2(GameManager.LeftGoalPosition, 0);
+        rightGoal.Position = new Vector2(GameManager.RightGoalPosition, 0);
+
+        GetTree().CurrentScene.AddChild(leftGoal);
+        GetTree().CurrentScene.AddChild(rightGoal);
+
+        GD.Print("Goals spawned");
     }
 }
