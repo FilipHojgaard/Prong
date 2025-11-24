@@ -118,7 +118,8 @@ public partial class Ball : RigidBody2D
         Bounces++;
         if (Bounces >= BounceThresholdForNewBall)
         {
-            GameManager.SpawnBallAtCenter();
+            var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath);
+            eventBus.EmitSignal(Eventbus.SignalName.RequestBall, 0);
             Bounces = 0;
         }
     }
@@ -176,8 +177,8 @@ public partial class Ball : RigidBody2D
             if (VerticalBounces >= MaxVerticalBounces)
             {
                 QueueFree();
-                GameManager.DecreaseBallCount();
-                GameManager.SpawnBallAtCenter();
+                var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath);
+                eventBus.EmitSignal(Eventbus.SignalName.RequestBall, 1);
             }
         }
     }

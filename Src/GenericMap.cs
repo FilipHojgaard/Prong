@@ -5,12 +5,31 @@ namespace Prong.Src;
 
 public partial class GenericMap : Node2D
 {
+    public int BallCount { get; set; } = 0;
+
     public override void _Ready()
     {
         GameManager.Instance.CalculateGoalPositions();
         GameManager.Instance.CalculateBorderPositions();
+        GameManager.Instance.CalculateMapCenter();
         SpawnHorizontalBorders();
         SpawnGoals();
+
+        SpawnInitialBall();
+    }
+
+    public override void _EnterTree()
+    {
+        GetNode<Eventbus>(ProngConstants.EventHubPath).Goal += HandleGoal;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).PassBlockBall += HandlePassBLockBall;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).RequestBall += HandleRequestBall;
+    }
+
+    public override void _ExitTree()
+    {
+        GetNode<Eventbus>(ProngConstants.EventHubPath).Goal -= HandleGoal;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).PassBlockBall -= HandlePassBLockBall;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).RequestBall -= HandleRequestBall;
     }
 
     public void SpawnHorizontalBorders()
@@ -46,4 +65,69 @@ public partial class GenericMap : Node2D
 
         GD.Print("Goals spawned");
     }
+
+    private async void SpawnInitialBall()
+    {
+        await ToSignal(GetTree().CreateTimer(1), SceneTreeTimer.SignalName.Timeout);
+        SpawnBallAtCenter();
+    }
+
+    private void HandleGoal(int EventPlayer)
+    {
+        BallCount--;
+        if (BallCount <= 0)
+        {
+            SpawnBallAtCenter();
+        }
+    }
+
+    private void HandlePassBLockBall(Vector2 position, float movementAngle)
+    {
+        SpawnBallAtPosition(position, movementAngle);
+    }
+
+    private void HandleRequestBall(int DeleteBalls)
+    {
+        for (int i = 0; i < DeleteBalls; i++)
+        {
+            BallCount--;
+        }
+        SpawnBallAtCenter();
+    }
+
+    public async void SpawnBallAtCenter()
+    {
+        BallCount++;
+
+        // Fetching the ball scene and instantiating a ball using it. 
+        var ballScene = GD.Load<PackedScene>("res://Scenes/ball.tscn");
+        var ball = ballScene.Instantiate<Ball>();
+
+        // Because I have a camera on the game scene, I use that to determine the center of the screen for sparning the balls. 
+        var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
+        ball.Position = GameManager.MapCenter;
+
+        await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
+
+        // Placing the ball on the current scene.
+        GetTree().CurrentScene.AddChild(ball);
+
+        // Run ball code when spawned in middle
+        ball.SpawnedInMiddle();
+    }
+
+    public async void SpawnBallAtPosition(Vector2 position, float rotation)
+    {
+        BallCount++;
+
+        var ballScene = GD.Load<PackedScene>("res://Scenes/ball.tscn");
+        var ball = ballScene.Instantiate<Ball>();
+
+        ball.SpawnInCenter = false;
+        ball.StartAtPosition(position, rotation);
+
+        await ToSignal(GetTree().CreateTimer(0.05), SceneTreeTimer.SignalName.Timeout);
+        GetTree().CurrentScene.AddChild(ball);
+    }
+
 }
