@@ -19,4 +19,8 @@ public partial class Eventbus : Node
 
     [Signal]
     public delegate void GoalEventHandler(int PlayerScored);
+
+    [Signal]
+    public delegate void RequestBallEventHandler(int DeleteBalls);
+
 }
