@@ -11,13 +11,13 @@ public partial class GameManager : Node
     public static Vector2 LowerBoundaryPosition { get; set; } = new Vector2(0, 0);
     public static float LeftGoalPosition { get; set; } = -1f;
     public static float RightGoalPosition { get; set; } = -1f;
+    public static Vector2 MapCenter { get; set; } = new Vector2(0, 0);
     public static int RightPlayerScore { get; set; } = 0;
     public static int LeftPlayerScore { get; set; } = 0;
     public static int RightPlayerOverallScore { get; set; } = 0;
     public static int LeftPlayerOverallScore { get; set; } = 0;
     public static int RightPlayerOverallScorePrevious { get; set; } = 0;
     public static int LeftPlayerOverallScorePrevious { get; set; } = 0;
-    public static int BallCount { get; set; } = 0;
     public static EasterEggStatusEnum EasterEggStatus { get; set; } = EasterEggStatusEnum.Inactive;
     public static bool ShowEasterEgg { get; set; } = false;
     public static bool LockNewRoundWinner { get; set; } = false;
@@ -60,25 +60,17 @@ public partial class GameManager : Node
         {
             return;
         }
-        if (Input.IsActionJustReleased("Test"))
-        {
-            BallCount++;
-            SpawnBall();
-        }
         CheckForButtonPresses();
-        CheckBallCount();
     }
 
     public override void _EnterTree()
     {
         GetNode<Eventbus>(ProngConstants.EventHubPath).Goal += GoalHandler;
-        GetNode<Eventbus>(ProngConstants.EventHubPath).PassBlockBall += PassBlockBallHandler;
     }
 
     public override void _ExitTree()
     {
         GetNode<Eventbus>(ProngConstants.EventHubPath).Goal -= GoalHandler;
-        GetNode<Eventbus>(ProngConstants.EventHubPath).PassBlockBall -= PassBlockBallHandler;
     }
 
     public void CalculateBorderPositions()
@@ -113,35 +105,20 @@ public partial class GameManager : Node
         RightGoalPosition = cameraPos.X + halfViewPortLength;
     }
 
-    private async void SpawnBallAtPosition(Vector2 position, float rotation)
+    public void CalculateMapCenter()
     {
-        BallCount++;
-        var ballScene = GD.Load<PackedScene>("res://Scenes/ball.tscn");
-        var ball = ballScene.Instantiate<Ball>();
-
-        ball.SpawnInCenter = false;
-        ball.StartAtPosition(position, rotation);
-
-        await ToSignal(GetTree().CreateTimer(0.05), SceneTreeTimer.SignalName.Timeout);
-        Instance.GetTree().CurrentScene.AddChild(ball);
-    }
-
-    public static void SpawnBallAtCenter()
-    {
-        BallCount++;
-        Instance.SpawnBall();
-    }
-
-    private void PassBlockBallHandler(Vector2 Position, float MovementAngle)
-    {
-        SpawnBallAtPosition(Position, MovementAngle);
+        if (MapCenter != new Vector2(0, 0))
+        {
+            return;
+        }
+        var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
+        MapCenter = camera.GlobalPosition;
     }
 
     private async void CheckForButtonPresses()
     {
         if (Input.IsActionJustPressed("Reset"))
         {
-            BallCount = default;
             LeftPlayerScore = default;
             RightPlayerScore = default;
             Pause = false;
@@ -178,7 +155,6 @@ public partial class GameManager : Node
         GD.Print("showing pause menu");
         _pauseMenu = _pauseMenuScene.Instantiate<PauseMenu>();
         _pauseMenu.ProcessMode = ProcessModeEnum.Always;
-        //GetTree().CurrentScene.AddChild(_pauseMenu);
         GetTree().Root.AddChild(_pauseMenu);
     }
 
@@ -193,7 +169,6 @@ public partial class GameManager : Node
     public void GoToMainMenu()
     {
         InMainMenu = true;
-        BallCount = default;
         LeftPlayerScore = default;
         RightPlayerScore = default;
         RightPlayerOverallScore = default;
@@ -207,7 +182,6 @@ public partial class GameManager : Node
     {
         // TODO: Implement such that the same map can't be picked again.  
         InMainMenu = false;
-        BallCount = default;
         LeftPlayerScore = default;
         RightPlayerScore = default;
         Pause = false;
@@ -229,7 +203,6 @@ public partial class GameManager : Node
     {
         LockNewRoundWinner = false;
         // TODO: Implement such that the same map can't be picked again.  
-        BallCount = default;
         LeftPlayerScore = default;
         RightPlayerScore = default;
         Pause = false;
@@ -254,7 +227,6 @@ public partial class GameManager : Node
         {
             RightPlayerScore++;
         }
-        DecreaseBallCount();
         CheckForWinner();
 
     }
@@ -320,39 +292,6 @@ public partial class GameManager : Node
         {
             ball.QueueFree();
         }
-    }
-
-    private void SpawnBall()
-    {
-        // Fetching the ball scene and instantiating a ball using it. 
-        var ballScene = GD.Load<PackedScene>("res://Scenes/ball.tscn");
-        var ball = ballScene.Instantiate<Ball>();
-
-        // Because I have a camera on the game scene, I use that to determine the center of the screen for sparning the balls. 
-        var camera = GetTree().CurrentScene.GetNodeOrNull<Camera2D>("Camera2D");
-        ball.Position = camera.GlobalPosition;
-
-        // Placing the ball on the current scene.
-        GetTree().CurrentScene.AddChild(ball);
-        
-        // Run ball code when spawned in middle
-        ball.SpawnedInMiddle();
-    }
-
-    private async void CheckBallCount()
-    {
-        if (BallCount <= 0)
-        {
-            BallCount++;
-            await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
-            SpawnBall();
-        }
-    }
-
-    public static void DecreaseBallCount()
-    {
-        BallCount--;
-        // TODO: Consider calling CheckBallCount() here and remove it from Process(). Will need a first ball initializer though. 
     }
 
     public static async void HandleEasterEgg()
