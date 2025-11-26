@@ -229,6 +229,9 @@ public partial class GameManager : Node
         }
         CheckForWinner();
 
+        var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath);
+        eventBus.EmitSignal(Eventbus.SignalName.ScoresUpdated, LeftPlayerScore, RightPlayerScore);
+
     }
 
     public void CheckForWinner()
