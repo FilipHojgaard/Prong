@@ -1,4 +1,5 @@
 using Godot;
+using Prong.Shared;
 
 namespace Prong.Src;
 
@@ -28,6 +29,8 @@ public partial class MainMenu : Control
 
         HoverSfx = GetNode<AudioStreamPlayer>("HoverSfx");
         ClickSfx = GetNode<AudioStreamPlayer>("ClickSfx");
+
+        GameManager.Instance.SetStateMachine(StateMachineEnum.InMainMenu);
     }
 
     private void OnButtonHovered()
@@ -38,6 +41,7 @@ public partial class MainMenu : Control
     private void PlayGame()
     {
         ClickSfx.Play();
+        GameManager.Instance.SetStateMachine(StateMachineEnum.Playing);
         GameManager.Instance.StartGame();
     }
 

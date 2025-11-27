@@ -22,6 +22,7 @@ public partial class GameManager : Node
     public static bool ShowEasterEgg { get; set; } = false;
     public static bool LockNewRoundWinner { get; set; } = false;
 
+    public StateMachineEnum StateMachine { get; set; } = StateMachineEnum.Undefined;
     public bool InMainMenu { get; set; } = true;
 
     private PauseMenu _pauseMenu;
@@ -117,7 +118,7 @@ public partial class GameManager : Node
 
     private async void CheckForButtonPresses()
     {
-        if (Input.IsActionJustPressed("Reset"))
+        if (Input.IsActionJustPressed("Reset") && StateMachine == StateMachineEnum.Playing)
         {
             LeftPlayerScore = default;
             RightPlayerScore = default;
@@ -125,11 +126,11 @@ public partial class GameManager : Node
             GetTree().Paused = Pause;
             GetTree().ReloadCurrentScene();
         }
-        if (Input.IsActionJustPressed("Pause"))
+        if (Input.IsActionJustPressed("Pause") && (StateMachine == StateMachineEnum.Playing || StateMachine == StateMachineEnum.InPauseMenu))
         {
             TogglePause();
         }
-        if (Input.IsActionJustPressed("Next"))
+        if (Input.IsActionJustPressed("Next") && StateMachine == StateMachineEnum.Playing)
         {
             PickRandomMap();
         }
@@ -146,6 +147,7 @@ public partial class GameManager : Node
         }
         else
         {
+            SetStateMachine(StateMachineEnum.Playing);
             HidePauseMenu();
         }
     }
@@ -270,6 +272,7 @@ public partial class GameManager : Node
         _scoreOverview = _scoreOverviewScene.Instantiate<ScoreOverview>();
         GetTree().Root.AddChild( _scoreOverview );
         // Wait two frame for scoreOverview UI to have called _Ready()
+        GameManager.Instance.SetStateMachine(Shared.StateMachineEnum.InScoreOverview);
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         _scoreOverview.Initialize(player);
@@ -283,8 +286,9 @@ public partial class GameManager : Node
         // Update previous overall score
         LeftPlayerOverallScorePrevious = LeftPlayerOverallScore;
         RightPlayerOverallScorePrevious = RightPlayerOverallScore;
-        
+
         // Pick new map
+        GameManager.Instance.SetStateMachine(Shared.StateMachineEnum.Playing);
         PickRandomMap();
     }
 
@@ -312,6 +316,12 @@ public partial class GameManager : Node
             EasterEggStatus = EasterEggStatusEnum.ReadyForEasterEgg;
         }
 
+    }
+
+    public void SetStateMachine(StateMachineEnum newState)
+    {
+        StateMachine = newState;
+        GD.Print(StateMachine);
     }
 
 }

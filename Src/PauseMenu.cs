@@ -19,6 +19,9 @@ public partial class PauseMenu : Control
         LeftScore.Text = GameManager.LeftPlayerOverallScore.ToString();
         RightScore.Text = GameManager.RightPlayerOverallScore.ToString();
 
+        // State Machine
+        GameManager.Instance.SetStateMachine(Shared.StateMachineEnum.InPauseMenu);
+
         // Buttons
         Continue = GetNode<Button>("CanvasLayer/VBoxContainer/Continue");
         Continue.Pressed += ContinueHandler;
@@ -33,6 +36,7 @@ public partial class PauseMenu : Control
     private void ContinueHandler()
     {
         GD.Print("continuing");
+        GameManager.Instance.SetStateMachine(Shared.StateMachineEnum.Playing);
         GameManager.Instance.TogglePause();
     }
 
