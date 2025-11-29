@@ -10,6 +10,9 @@ public partial class PassBlockSpeed : Area2D
     {
         _hitSfx = GetNode<AudioStreamPlayer>("PassBlockSpeedSfx");
 
+        CollisionLayer = 4;
+        CollisionMask = 3;
+
         BodyEntered += BallHit;
     }
     

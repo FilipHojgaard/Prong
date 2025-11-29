@@ -14,6 +14,9 @@ public partial class Goal : Area2D
         BodyEntered += BallHit;
 
         _goal_sfx = GetNode<AudioStreamPlayer>("goal_sfx");
+
+        CollisionLayer = 4;
+        CollisionMask = 2| 3; 
     }
 
     public void Initialize(PlayerEnum owner)

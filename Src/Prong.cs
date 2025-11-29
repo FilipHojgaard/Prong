@@ -31,7 +31,7 @@ public partial class Prong : StaticBody2D
 
     public int SpeedLevel { get; set; } = 1;
 
-    public int AttackLevel { get; set; } = 1;
+    public int AttackLevel { get; set; } = 3;
 
     public int DefenceLevel { get; set; } = 1;
 

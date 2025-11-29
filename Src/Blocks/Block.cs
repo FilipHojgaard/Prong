@@ -17,6 +17,9 @@ public partial class Block : RigidBody2D
     {
         _hitSfx = GetNode<AudioStreamPlayer>("HitSfx");
 
+        CollisionLayer = 4;
+        CollisionMask = 3 | 4;
+
         GravityScale = 0;
         Mass = 1000;
         LockRotation = true;

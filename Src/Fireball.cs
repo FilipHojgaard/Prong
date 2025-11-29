@@ -24,6 +24,9 @@ public partial class Fireball : RigidBody2D
         ContactMonitor = true;
         MaxContactsReported = 20;
 
+        CollisionLayer = 3;
+        CollisionMask = 2 | 3;
+
         BodyShapeEntered += OnBodyEntered;
     }
 

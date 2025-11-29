@@ -37,6 +37,9 @@ public partial class Ball : RigidBody2D
         ContactMonitor = true;
         MaxContactsReported = 20;
 
+        CollisionLayer = 2;
+        CollisionMask = 1 | 2 | 3 | 4;
+
         AddToGroup("Balls");
 
         BodyShapeEntered += OnBodyEntered;

@@ -10,6 +10,9 @@ public partial class PassBlockDefence : Area2D
     {
         _hitSfx = GetNode<AudioStreamPlayer>("PassBlockDefenceHitSfx");
 
+        CollisionLayer = 4;
+        CollisionMask = 3;
+
         BodyEntered += BallHit;
     }
 
