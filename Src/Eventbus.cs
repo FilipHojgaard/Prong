@@ -26,4 +26,7 @@ public partial class Eventbus : Node
     [Signal]
     public delegate void RequestBallEventHandler(int DeleteBalls);
 
+    [Signal]
+    public delegate void EasterEggEventHandler();
+
 }

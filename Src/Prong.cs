@@ -337,7 +337,8 @@ public partial class Prong : StaticBody2D
 
         if (LastDefencePosition == Position)
         {
-            GD.Print("Handle easteregg");
+            var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath);
+            eventBus.EmitSignal(Eventbus.SignalName.EasterEgg);
         }
 
         LastDefencePosition = Position;
