@@ -29,9 +29,11 @@ public partial class Prong : StaticBody2D
     
     public Sprite2D DefenceIndicatorLvl3 { get; set; }
 
+    public Vector2 LastDefencePosition { get; set; } = new Vector2();
+
     public int SpeedLevel { get; set; } = 1;
 
-    public int AttackLevel { get; set; } = 3;
+    public int AttackLevel { get; set; } = 1;
 
     public int DefenceLevel { get; set; } = 1;
 
@@ -332,6 +334,13 @@ public partial class Prong : StaticBody2D
 
         DefenceActionDict[DefenceLevel]();
         _setDefenceSfx.Play();
+
+        if (LastDefencePosition == Position)
+        {
+            GD.Print("Handle easteregg");
+        }
+
+        LastDefencePosition = Position;
 
         ShieldReady = false;
         SpriteUpdate();
