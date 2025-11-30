@@ -11,12 +11,12 @@ public partial class Goal : Area2D
 
     public override void _Ready()
     {
-        BodyEntered += BallHit;
+        BodyEntered += CollisionHandler;
 
         _goal_sfx = GetNode<AudioStreamPlayer>("goal_sfx");
 
         CollisionLayer = 4;
-        CollisionMask = 2| 3; 
+        CollisionMask = 2 | 3; 
     }
 
     public void Initialize(PlayerEnum owner)
@@ -29,7 +29,7 @@ public partial class Goal : Area2D
         }
     }
 
-    private void BallHit(Node2D node)
+    private void CollisionHandler(Node2D node)
     {
         if (node is Ball ball)
         {
@@ -39,6 +39,10 @@ public partial class Goal : Area2D
 
             _goal_sfx.Play();
             ball.QueueFree();
+        }
+        if (node is Fireball fireball)
+        {
+            fireball.Deconstruct();
         }
     }
 

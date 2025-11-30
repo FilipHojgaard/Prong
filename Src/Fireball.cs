@@ -1,7 +1,8 @@
 using Godot;
 using Prong.Shared;
+using Prong.Src.Blocks;
 
-namespace Prong.Src.Blocks;
+namespace Prong.Src;
 
 public partial class Fireball : RigidBody2D
 {
@@ -25,7 +26,7 @@ public partial class Fireball : RigidBody2D
         MaxContactsReported = 20;
 
         CollisionLayer = 3;
-        CollisionMask = 2 | 3;
+        CollisionMask = 2 | 3 | 4;
 
         BodyShapeEntered += OnBodyEntered;
     }
@@ -49,7 +50,6 @@ public partial class Fireball : RigidBody2D
                 break;
         }
         LinearVelocity = new Vector2(Speed, 0).Rotated(yDirection);
-        CheckForLeftMap();
     }
 
     public void Initialize(int speed, DiagonalTypeEnum diagonal = DiagonalTypeEnum.Straight)
@@ -64,13 +64,9 @@ public partial class Fireball : RigidBody2D
         Speed *= -1;
     }
 
-    // TODO: Use the goal to QueueFree() instead. 
-    private void CheckForLeftMap()
+    public void Deconstruct()
     {
-        if (Position.X > GameManager.RightGoalPosition + 50 || Position.X < GameManager.LeftGoalPosition - 50)
-        {
-            QueueFree();
-        }
+        QueueFree();
     }
 
     private void OnBodyEntered(Rid bodyRid, Node body, long bodyShapeIndex, long localShapeIndex)
