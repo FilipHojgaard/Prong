@@ -64,11 +64,11 @@ public partial class Fireball : RigidBody2D
         Speed *= -1;
     }
 
+    // TODO: Use the goal to QueueFree() instead. 
     private void CheckForLeftMap()
     {
         if (Position.X > GameManager.RightGoalPosition + 50 || Position.X < GameManager.LeftGoalPosition - 50)
         {
-            GameManager.EasterEggStatus = EasterEggStatusEnum.Inactive;
             QueueFree();
         }
     }
@@ -79,7 +79,6 @@ public partial class Fireball : RigidBody2D
         {
             block.TakeHit();
             QueueFree();
-            GameManager.EasterEggStatus = EasterEggStatusEnum.Inactive;
         }
         if (body is Prong player)
         {
@@ -88,21 +87,15 @@ public partial class Fireball : RigidBody2D
             _hitSfx.Play();
 
             QueueFree();
-            GameManager.EasterEggStatus = EasterEggStatusEnum.Inactive;
         }
         if (body is Fireball otherFireball)
         {
             if (GetInstanceId() < otherFireball.GetInstanceId())
             {
-                if (this.Position.Y <= GameManager.UpperBoundaryPosition.Y + 10)
-                {
-                    GameManager.HandleEasterEgg();
-                }
+                _hitSfx.Reparent(GetTree().Root);
+                _hitSfx.Finished += () => _hitSfx.QueueFree();
+                _hitSfx.Play();
             }
-            _hitSfx.Reparent(GetTree().Root);
-            _hitSfx.Finished += () => _hitSfx.QueueFree();
-            _hitSfx.Play();
-
             QueueFree();
         }
     }

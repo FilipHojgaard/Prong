@@ -18,8 +18,6 @@ public partial class GameManager : Node
     public static int LeftPlayerOverallScore { get; set; } = 0;
     public static int RightPlayerOverallScorePrevious { get; set; } = 0;
     public static int LeftPlayerOverallScorePrevious { get; set; } = 0;
-    public static EasterEggStatusEnum EasterEggStatus { get; set; } = EasterEggStatusEnum.Inactive;
-    public static bool ShowEasterEgg { get; set; } = false;
     public static bool LockNewRoundWinner { get; set; } = false;
 
     public StateMachineEnum StateMachine { get; set; } = StateMachineEnum.Undefined;
@@ -300,22 +298,6 @@ public partial class GameManager : Node
         {
             ball.QueueFree();
         }
-    }
-
-    public static async void HandleEasterEgg()
-    {
-        if (EasterEggStatus == EasterEggStatusEnum.ReadyForEasterEgg)
-        {
-            ShowEasterEgg = true;
-            await Instance.ToSignal(Instance.GetTree().CreateTimer(3.0), SceneTreeTimer.SignalName.Timeout);
-            ShowEasterEgg = false;
-            EasterEggStatus = EasterEggStatusEnum.Inactive;
-        }
-        else 
-        { 
-            EasterEggStatus = EasterEggStatusEnum.ReadyForEasterEgg;
-        }
-
     }
 
     public void SetStateMachine(StateMachineEnum newState)

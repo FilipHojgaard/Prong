@@ -160,11 +160,6 @@ public partial class Ball : RigidBody2D
             _otherHitSfx.Play();
             FireballHits++;
             fireball.HitBall = true;
-            // TODO: Remove fireball hit easteregg trigger thorougly, after attack levels have multiple fireballs. 
-            //if (FireballHits >= 2)
-            //{
-            //    HandleEasterEgg();
-            //}
         }
         if (body is Ball otherBall)
         {
@@ -189,14 +184,6 @@ public partial class Ball : RigidBody2D
     private void HandleBlockCollision(Block block)
     {
         block.TakeHit();
-    }
-
-    private async void HandleEasterEgg()
-    {
-        GD.Print("Handeling easter egg");
-        GameManager.ShowEasterEgg = true;
-        await ToSignal(GetTree().CreateTimer(3.0), SceneTreeTimer.SignalName.Timeout);
-        GameManager.ShowEasterEgg = false;
     }
 
     private void HandlePaddleCollision(Prong paddle)
