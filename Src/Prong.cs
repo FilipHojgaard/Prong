@@ -211,7 +211,7 @@ public partial class Prong : StaticBody2D
     {
         var fireBallScene = GD.Load<PackedScene>("res://Scenes/fireball.tscn");
         var fireball = fireBallScene.Instantiate<Fireball>();
-        fireball.Initialize(AttackSpeed[AttackLevel]);
+        fireball.Initialize(this, AttackSpeed[AttackLevel]);
 
         if (Player == PlayerEnum.RightPlayer)
         {
@@ -231,8 +231,8 @@ public partial class Prong : StaticBody2D
         var fireballUpper = fireBallScene.Instantiate<Fireball>();
         var fireballLower = fireBallScene.Instantiate<Fireball>();
 
-        fireballUpper.Initialize(AttackSpeed[AttackLevel]);
-        fireballLower.Initialize(AttackSpeed[AttackLevel]);
+        fireballUpper.Initialize(this, AttackSpeed[AttackLevel]);
+        fireballLower.Initialize(this, AttackSpeed[AttackLevel]);
 
         if (Player == PlayerEnum.RightPlayer)
         {
@@ -257,17 +257,17 @@ public partial class Prong : StaticBody2D
         var fireballUpperDiagonally = fireBallScene.Instantiate<Fireball>();
         var fireballLowerDiagonally = fireBallScene.Instantiate<Fireball>();
 
-        fireballUpper.Initialize(AttackSpeed[AttackLevel]);
-        fireballLower.Initialize(AttackSpeed[AttackLevel]);
+        fireballUpper.Initialize(this, AttackSpeed[AttackLevel]);
+        fireballLower.Initialize(this, AttackSpeed[AttackLevel]);
         if (Player == PlayerEnum.RightPlayer)
         {
-            fireballUpperDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Upwards);
-            fireballLowerDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Downwards);
+            fireballUpperDiagonally.Initialize(this, AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Upwards);
+            fireballLowerDiagonally.Initialize(this, AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Downwards);
         }
         else if (Player == PlayerEnum.LeftPlayer)
         {
-            fireballUpperDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Downwards);
-            fireballLowerDiagonally.Initialize(AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Upwards);
+            fireballUpperDiagonally.Initialize(this, AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Downwards);
+            fireballLowerDiagonally.Initialize(this, AttackSpeed[AttackLevel], diagonal: DiagonalTypeEnum.Upwards);
         }
 
         if (Player == PlayerEnum.RightPlayer)

@@ -19,8 +19,6 @@ public partial class Ball : RigidBody2D
     public int MaxVerticalBounces { get; } = 5;
     private int BounceThresholdForNewBall { get; } = 10;
 
-    public int FireballHits { get; set; } = 0;
-
     private AudioStreamPlayer _prongHitSfx;
 
     private AudioStreamPlayer _goalSfx;
@@ -158,7 +156,7 @@ public partial class Ball : RigidBody2D
         if (body is Fireball fireball && !fireball.HitBall)
         {
             _otherHitSfx.Play();
-            FireballHits++;
+            LastProngHit = fireball.Owner;
             fireball.HitBall = true;
         }
         if (body is Ball otherBall)

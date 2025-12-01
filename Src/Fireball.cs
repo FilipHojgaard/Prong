@@ -8,6 +8,7 @@ public partial class Fireball : RigidBody2D
 {
     public int Speed { get; set; }
     public bool HitBall { get; set; } = false;
+    public Prong Owner { get; set; }
     public DiagonalTypeEnum Diagonal { get; set; }
 
     private AudioStreamPlayer _hitSfx;
@@ -52,8 +53,9 @@ public partial class Fireball : RigidBody2D
         LinearVelocity = new Vector2(Speed, 0).Rotated(yDirection);
     }
 
-    public void Initialize(int speed, DiagonalTypeEnum diagonal = DiagonalTypeEnum.Straight)
+    public void Initialize(Prong owner, int speed, DiagonalTypeEnum diagonal = DiagonalTypeEnum.Straight)
     {
+        Owner = owner;
         Speed = speed;
         Diagonal = diagonal;
     }
@@ -96,4 +98,3 @@ public partial class Fireball : RigidBody2D
         }
     }
 }
-
