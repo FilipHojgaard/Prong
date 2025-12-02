@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8lhphsqjxn73"
+path="res://.godot/imported/Pixel Arcade.mp3-5329715446d19396d82cb3750e833675.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/new maps/Pixel Arcade.mp3"
+dest_files=["res://.godot/imported/Pixel Arcade.mp3-5329715446d19396d82cb3750e833675.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

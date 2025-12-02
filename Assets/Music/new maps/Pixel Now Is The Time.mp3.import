@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://beabao60pr3y7"
+path="res://.godot/imported/Pixel Now Is The Time.mp3-9c7a690d3cf0d89fdd153c0af8a78a76.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/new maps/Pixel Now Is The Time.mp3"
+dest_files=["res://.godot/imported/Pixel Now Is The Time.mp3-9c7a690d3cf0d89fdd153c0af8a78a76.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

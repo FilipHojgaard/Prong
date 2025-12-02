@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dp1o18d3fmr2"
+path="res://.godot/imported/Paddle Love.mp3-e2db9d5e3de54edb383c867395458850.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/new maps/Paddle Love.mp3"
+dest_files=["res://.godot/imported/Paddle Love.mp3-e2db9d5e3de54edb383c867395458850.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
