@@ -11,6 +11,8 @@ public partial class PauseMenu : Control
     Label LeftScore;
     Label RightScore;
 
+    AudioStreamPlayer Hoversfx;
+
     public override void _Ready()
     {
         // Score
@@ -24,13 +26,19 @@ public partial class PauseMenu : Control
 
         // Buttons
         Continue = GetNode<Button>("CanvasLayer/VBoxContainer/Continue");
+        Continue.MouseEntered += OnButtonHovered;
         Continue.Pressed += ContinueHandler;
 
         Menu = GetNode<Button>("CanvasLayer/VBoxContainer/Menu");
+        Menu.MouseEntered += OnButtonHovered;
         Menu.Pressed += MenuHandler;
 
         Exit = GetNode<Button>("CanvasLayer/VBoxContainer/Exit");
+        Exit.MouseEntered += OnButtonHovered;
         Exit.Pressed += () => GetTree().Quit();
+
+        // sfx
+        Hoversfx = GetNode<AudioStreamPlayer>("HoverSfx");
     }
 
     private void ContinueHandler()
@@ -45,5 +53,10 @@ public partial class PauseMenu : Control
         GD.Print("back to menu...");
         GameManager.Instance.GoToMainMenu();
         QueueFree();
+    }
+
+    private void OnButtonHovered()
+    {
+        Hoversfx.Play();
     }
 }
