@@ -1,0 +1,220 @@
+[gd_scene load_steps=11 format=3 uid="uid://nk2ng2uy3agj"]
+
+[ext_resource type="Script" uid="uid://g888fnysph0e" path="res://Src/GenericMap.cs" id="1_pd185"]
+[ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="2_jdgn6"]
+[ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="3_vv36d"]
+[ext_resource type="AudioStream" uid="uid://crw1rbcgw15ru" path="res://Assets/Music/new maps/Pixel Pong Pong Pong.mp3" id="4_jdgn6"]
+[ext_resource type="PackedScene" uid="uid://bvciffyj0kaoh" path="res://Scenes/Block.tscn" id="5_jdgn6"]
+[ext_resource type="PackedScene" uid="uid://csmbh7mgg8cgm" path="res://Scenes/PassBlockAttack.tscn" id="5_qkygi"]
+[ext_resource type="PackedScene" uid="uid://cy0dclm6yrl13" path="res://Scenes/PassBlockSpeed.tscn" id="6_qpfg1"]
+[ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="7_vf82r"]
+[ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="9_vv36d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k233f"]
+bg_color = Color(0.235751, 0.413155, 0.291535, 1)
+
+[node name="map_fastAndFurious" type="Node2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_pd185")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k233f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.00501389
+scale = Vector2(3.08762, -0.380489)
+
+[node name="LeftPlayer" parent="." instance=ExtResource("2_jdgn6")]
+position = Vector2(-909, -1)
+Player = 1
+
+[node name="RightPlayer" parent="." instance=ExtResource("2_jdgn6")]
+position = Vector2(908, -1)
+rotation = 3.14159
+Player = 2
+
+[node name="Control" parent="." instance=ExtResource("3_vv36d")]
+offset_left = -986.0
+offset_top = -500.0
+offset_right = -946.0
+offset_bottom = -460.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jdgn6")
+autoplay = true
+
+[node name="Block" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(0, -449)
+
+[node name="Block2" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(0, -349)
+
+[node name="Block3" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(0, -249)
+
+[node name="Block4" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-550, -299)
+
+[node name="Block5" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-550, -149)
+
+[node name="Block6" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-550, 1)
+
+[node name="Block7" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-550, 151)
+
+[node name="Block8" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-550, 301)
+
+[node name="Block9" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-550, -449)
+
+[node name="Block10" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-550, 451)
+
+[node name="Block11" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(550, 1)
+
+[node name="Block12" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(550, -149)
+
+[node name="Block13" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(550, -299)
+
+[node name="Block14" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(550, -449)
+
+[node name="Block15" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(550, 151)
+
+[node name="Block16" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(550, 301)
+
+[node name="Block17" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(550, 451)
+
+[node name="Block18" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(0, -149)
+
+[node name="Block19" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(0, 251)
+
+[node name="Block20" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(0, 351)
+
+[node name="Block21" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(0, 451)
+
+[node name="PassBlockSpeed" parent="." instance=ExtResource("6_qpfg1")]
+position = Vector2(-550, 351)
+
+[node name="PassBlockSpeed2" parent="." instance=ExtResource("6_qpfg1")]
+position = Vector2(-550, 401)
+
+[node name="PassBlockSpeed3" parent="." instance=ExtResource("6_qpfg1")]
+position = Vector2(-550, -399)
+
+[node name="PassBlockSpeed4" parent="." instance=ExtResource("6_qpfg1")]
+position = Vector2(-550, -349)
+
+[node name="PassBlockSpeed5" parent="." instance=ExtResource("6_qpfg1")]
+position = Vector2(550, -399)
+
+[node name="PassBlockSpeed6" parent="." instance=ExtResource("6_qpfg1")]
+position = Vector2(550, -349)
+
+[node name="PassBlockSpeed7" parent="." instance=ExtResource("6_qpfg1")]
+position = Vector2(550, 351)
+
+[node name="PassBlockSpeed8" parent="." instance=ExtResource("6_qpfg1")]
+position = Vector2(550, 401)
+
+[node name="PassBlockAttack" parent="." instance=ExtResource("5_qkygi")]
+position = Vector2(-550, 51)
+
+[node name="PassBlockAttack2" parent="." instance=ExtResource("5_qkygi")]
+position = Vector2(-550, 101)
+
+[node name="PassBlockAttack3" parent="." instance=ExtResource("5_qkygi")]
+position = Vector2(550, 51)
+
+[node name="PassBlockAttack4" parent="." instance=ExtResource("5_qkygi")]
+position = Vector2(550, 101)
+
+[node name="PassBlockDefence" parent="." instance=ExtResource("7_vf82r")]
+position = Vector2(-550, -99)
+
+[node name="PassBlockDefence2" parent="." instance=ExtResource("7_vf82r")]
+position = Vector2(-550, -49)
+
+[node name="PassBlockDefence3" parent="." instance=ExtResource("7_vf82r")]
+position = Vector2(550, -99)
+
+[node name="PassBlockDefence4" parent="." instance=ExtResource("7_vf82r")]
+position = Vector2(550, -49)
+
+[node name="PassBlockBall" parent="." instance=ExtResource("9_vv36d")]
+position = Vector2(0, -399)
+
+[node name="PassBlockBall2" parent="." instance=ExtResource("9_vv36d")]
+position = Vector2(0, -299)
+
+[node name="PassBlockBall3" parent="." instance=ExtResource("9_vv36d")]
+position = Vector2(0, 301)
+
+[node name="PassBlockBall4" parent="." instance=ExtResource("9_vv36d")]
+position = Vector2(0, 401)
+
+[node name="Block22" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(0, 151)
+
+[node name="PassBlockBall5" parent="." instance=ExtResource("9_vv36d")]
+position = Vector2(0, -199)
+
+[node name="PassBlockBall6" parent="." instance=ExtResource("9_vv36d")]
+position = Vector2(0, 201)
+
+[node name="Block23" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-300, -299)
+
+[node name="Block24" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-300, -199)
+
+[node name="Block25" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-300, -399)
+
+[node name="Block26" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-300, 201)
+
+[node name="Block27" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-300, 301)
+
+[node name="Block28" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(-300, 401)
+
+[node name="Block29" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(300, -399)
+
+[node name="Block30" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(300, -299)
+
+[node name="Block31" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(300, -199)
+
+[node name="Block32" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(300, 201)
+
+[node name="Block33" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(300, 301)
+
+[node name="Block34" parent="." instance=ExtResource("5_jdgn6")]
+position = Vector2(300, 401)

@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="2_c2w8q"]
 [ext_resource type="PackedScene" uid="uid://bvciffyj0kaoh" path="res://Scenes/Block.tscn" id="3_bam8k"]
 [ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="5_p1npf"]
-[ext_resource type="AudioStream" uid="uid://dajdtwydejbju" path="res://Assets/Music/Pixel Paddle Adventures_2.mp3" id="6_l0sue"]
 [ext_resource type="PackedScene" uid="uid://btq087ab1xydn" path="res://Scenes/PassBlockBall.tscn" id="7_ffm4c"]
+[ext_resource type="AudioStream" uid="uid://c8lhphsqjxn73" path="res://Assets/Music/new maps/Pixel Arcade.mp3" id="7_tpq11"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihj21"]
 bg_color = Color(0.235294, 0.411765, 0.290196, 1)
@@ -49,17 +49,9 @@ offset_bottom = -460.0
 position = Vector2(-950, -249)
 Owner = NodePath("../LeftPlayer")
 
-[node name="Block2" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
-position = Vector2(-950, 1)
-Owner = NodePath("../LeftPlayer")
-
 [node name="Block3" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, 251)
 Owner = NodePath("../LeftPlayer")
-
-[node name="Block4" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
-position = Vector2(950, 1)
-Owner = NodePath("../RightPlayer")
 
 [node name="Block5" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, -249)
@@ -117,30 +109,102 @@ position = Vector2(0, -349)
 [node name="PassBlockBall8" parent="." instance=ExtResource("7_ffm4c")]
 position = Vector2(0, -449)
 
-[node name="PassBlockBall9" parent="." instance=ExtResource("7_ffm4c")]
-position = Vector2(200, -249)
-
 [node name="PassBlockBall10" parent="." instance=ExtResource("7_ffm4c")]
 position = Vector2(400, -249)
-
-[node name="PassBlockBall11" parent="." instance=ExtResource("7_ffm4c")]
-position = Vector2(200, -399)
-
-[node name="PassBlockBall12" parent="." instance=ExtResource("7_ffm4c")]
-position = Vector2(-200, 251)
 
 [node name="PassBlockBall13" parent="." instance=ExtResource("7_ffm4c")]
 position = Vector2(-400, 251)
 
-[node name="PassBlockBall14" parent="." instance=ExtResource("7_ffm4c")]
-position = Vector2(-200, 401)
-
 [node name="PassBlockBall15" parent="." instance=ExtResource("7_ffm4c")]
-position = Vector2(400, 301)
+position = Vector2(400, 251)
 
 [node name="PassBlockBall16" parent="." instance=ExtResource("7_ffm4c")]
 position = Vector2(-400, -249)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_l0sue")
+stream = ExtResource("7_tpq11")
 autoplay = true
+
+[node name="PassBlockBall25" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(400, -399)
+
+[node name="PassBlockBall26" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(-400, -399)
+
+[node name="PassBlockBall27" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(-400, 401)
+
+[node name="PassBlockBall28" parent="." instance=ExtResource("7_ffm4c")]
+position = Vector2(400, 401)
+
+[node name="Block7" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, -499)
+
+[node name="Block8" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, -399)
+
+[node name="Block9" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, -449)
+
+[node name="Block10" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, -349)
+
+[node name="Block11" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, -299)
+
+[node name="Block15" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, 201)
+
+[node name="Block16" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, 301)
+
+[node name="Block17" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, 351)
+
+[node name="Block18" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, 401)
+
+[node name="Block19" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, 451)
+
+[node name="Block20" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, 501)
+
+[node name="Block2" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(-950, -199)
+
+[node name="Block12" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, -499)
+
+[node name="Block13" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, -449)
+
+[node name="Block14" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, -399)
+
+[node name="Block21" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, -349)
+
+[node name="Block22" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, -299)
+
+[node name="Block23" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, -199)
+
+[node name="Block24" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, 501)
+
+[node name="Block25" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, 451)
+
+[node name="Block26" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, 401)
+
+[node name="Block27" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, 351)
+
+[node name="Block28" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, 301)
+
+[node name="Block29" parent="." instance=ExtResource("3_bam8k")]
+position = Vector2(950, 201)

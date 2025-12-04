@@ -50,6 +50,8 @@ public partial class GameManager : Node
             {2, "map_bases"},
             {3, "map_growth"},
             {4, "map_scarce" },
+            {5, "map_love" },
+            {6, "map_blocks" },
         };
     }
 

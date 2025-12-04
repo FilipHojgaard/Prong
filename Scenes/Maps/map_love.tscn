@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3fctla3qlmn3"]
+
+[ext_resource type="Script" uid="uid://g888fnysph0e" path="res://Src/GenericMap.cs" id="1_rj5a2"]
+[ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="2_632e1"]
+[ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="3_b4onj"]
+[ext_resource type="AudioStream" uid="uid://cp0eop80poyhd" path="res://Assets/Music/new maps/Pixel Hearts.mp3" id="4_rj5a2"]
+[ext_resource type="PackedScene" uid="uid://csmbh7mgg8cgm" path="res://Scenes/PassBlockAttack.tscn" id="5_1wpqo"]
+[ext_resource type="PackedScene" uid="uid://cy0dclm6yrl13" path="res://Scenes/PassBlockSpeed.tscn" id="6_t5xdy"]
+[ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="7_xd1qt"]
+[ext_resource type="PackedScene" uid="uid://cmv6clvswj3q1" path="res://Scenes/PassBlockBallSpeed.tscn" id="8_nqvtv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k233f"]
+bg_color = Color(0.235751, 0.413155, 0.291535, 1)
+
+[node name="map_fastAndFurious" type="Node2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_rj5a2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k233f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.00501389
+scale = Vector2(3.08762, -0.380489)
+
+[node name="LeftPlayer" parent="." instance=ExtResource("2_632e1")]
+position = Vector2(-909, -1)
+Player = 1
+
+[node name="RightPlayer" parent="." instance=ExtResource("2_632e1")]
+position = Vector2(908, -1)
+rotation = 3.14159
+Player = 2
+
+[node name="Control" parent="." instance=ExtResource("3_b4onj")]
+offset_left = -986.0
+offset_top = -500.0
+offset_right = -946.0
+offset_bottom = -460.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rj5a2")
+autoplay = true
+
+[node name="PassBlockAttack" parent="." instance=ExtResource("5_1wpqo")]
+position = Vector2(0, -99)
+
+[node name="PassBlockSpeed" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(-50, -149)
+
+[node name="PassBlockSpeed2" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(50, -149)
+
+[node name="PassBlockSpeed3" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(-100, -199)
+
+[node name="PassBlockSpeed4" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(100, -199)
+
+[node name="PassBlockDefence" parent="." instance=ExtResource("7_xd1qt")]
+position = Vector2(-150, -249)
+
+[node name="PassBlockDefence2" parent="." instance=ExtResource("7_xd1qt")]
+position = Vector2(150, -249)
+
+[node name="PassBlockDefence3" parent="." instance=ExtResource("7_xd1qt")]
+position = Vector2(-200, -249)
+
+[node name="PassBlockDefence4" parent="." instance=ExtResource("7_xd1qt")]
+position = Vector2(-250, -249)
+
+[node name="PassBlockDefence5" parent="." instance=ExtResource("7_xd1qt")]
+position = Vector2(200, -249)
+
+[node name="PassBlockDefence6" parent="." instance=ExtResource("7_xd1qt")]
+position = Vector2(250, -249)
+
+[node name="PassBlockDefence7" parent="." instance=ExtResource("7_xd1qt")]
+position = Vector2(300, -199)
+
+[node name="PassBlockDefence8" parent="." instance=ExtResource("7_xd1qt")]
+position = Vector2(-300, -199)
+
+[node name="PassBlockBallSpeed5" parent="." instance=ExtResource("8_nqvtv")]
+position = Vector2(-250, -49)
+
+[node name="PassBlockBallSpeed6" parent="." instance=ExtResource("8_nqvtv")]
+position = Vector2(250, -49)
+
+[node name="PassBlockBallSpeed7" parent="." instance=ExtResource("8_nqvtv")]
+position = Vector2(250, 1)
+
+[node name="PassBlockBallSpeed8" parent="." instance=ExtResource("8_nqvtv")]
+position = Vector2(-250, 1)
+
+[node name="PassBlockBallSpeed9" parent="." instance=ExtResource("8_nqvtv")]
+position = Vector2(-200, 51)
+
+[node name="PassBlockBallSpeed10" parent="." instance=ExtResource("8_nqvtv")]
+position = Vector2(200, 51)
+
+[node name="PassBlockAttack2" parent="." instance=ExtResource("5_1wpqo")]
+position = Vector2(-100, 201)
+
+[node name="PassBlockAttack3" parent="." instance=ExtResource("5_1wpqo")]
+position = Vector2(100, 201)
+
+[node name="PassBlockAttack4" parent="." instance=ExtResource("5_1wpqo")]
+position = Vector2(-50, 251)
+
+[node name="PassBlockAttack5" parent="." instance=ExtResource("5_1wpqo")]
+position = Vector2(50, 251)
+
+[node name="PassBlockAttack6" parent="." instance=ExtResource("5_1wpqo")]
+position = Vector2(0, 301)
+
+[node name="PassBlockSpeed5" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(-300, -149)
+
+[node name="PassBlockSpeed6" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(-300, -99)
+
+[node name="PassBlockSpeed7" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(-150, 151)
+
+[node name="PassBlockSpeed8" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(-200, 101)
+
+[node name="PassBlockSpeed9" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(150, 151)
+
+[node name="PassBlockSpeed10" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(200, 101)
+
+[node name="PassBlockSpeed11" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(300, -149)
+
+[node name="PassBlockSpeed12" parent="." instance=ExtResource("6_t5xdy")]
+position = Vector2(300, -99)
