@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnux1jwo82nqm"]
+
+[ext_resource type="Script" uid="uid://g888fnysph0e" path="res://Src/GenericMap.cs" id="1_qp3fa"]
+[ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="2_wemi0"]
+[ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="3_p2ae0"]
+[ext_resource type="AudioStream" uid="uid://beabao60pr3y7" path="res://Assets/Music/new maps/Pixel Now Is The Time.mp3" id="4_oenh0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k233f"]
+bg_color = Color(0.235751, 0.413155, 0.291535, 1)
+
+[node name="map_fastAndFurious" type="Node2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_qp3fa")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k233f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.00501389
+scale = Vector2(3.08762, -0.380489)
+
+[node name="LeftPlayer" parent="." instance=ExtResource("2_wemi0")]
+position = Vector2(-909, -1)
+Player = 1
+SpeedLevel = 3
+AttackLevel = 3
+DefenceLevel = 3
+
+[node name="RightPlayer" parent="." instance=ExtResource("2_wemi0")]
+position = Vector2(908, -1)
+rotation = 3.14159
+Player = 2
+SpeedLevel = 3
+AttackLevel = 3
+DefenceLevel = 3
+
+[node name="Control" parent="." instance=ExtResource("3_p2ae0")]
+offset_left = -986.0
+offset_top = -500.0
+offset_right = -946.0
+offset_bottom = -460.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_oenh0")
+autoplay = true

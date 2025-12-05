@@ -31,10 +31,13 @@ public partial class Prong : StaticBody2D
 
     public Vector2 LastDefencePosition { get; set; } = new Vector2();
 
+    [Export]
     public int SpeedLevel { get; set; } = 1;
 
+    [Export]
     public int AttackLevel { get; set; } = 1;
 
+    [Export]
     public int DefenceLevel { get; set; } = 1;
 
     private AudioStreamPlayer _fireballSimpleSfx;
@@ -95,6 +98,7 @@ public partial class Prong : StaticBody2D
 
         SetupProperties();
         SpriteUpdate();
+        InitialLevelsIndicators();
     }
 
     public override void _EnterTree()
@@ -412,6 +416,37 @@ public partial class Prong : StaticBody2D
         }
         if (SpeedLevel == 3)
         {
+            SpeedIndicatorLvl3.Visible = true;
+        }
+    }
+
+    private void InitialLevelsIndicators()
+    {
+        if (AttackLevel == 2)
+        {
+            AttackIndicatorLvl2.Visible = true;
+        }
+        if (AttackLevel == 3)
+        {
+            AttackIndicatorLvl2.Visible = true;
+            AttackIndicatorLvl3.Visible = true;
+        }
+        if (DefenceLevel == 2)
+        {
+            DefenceIndicatorLvl2.Visible = true;
+        }
+        if (DefenceLevel == 3)
+        {
+            DefenceIndicatorLvl2.Visible = true;
+            DefenceIndicatorLvl3.Visible = true;
+        }
+        if (SpeedLevel == 2)
+        {
+            SpeedIndicatorLvl2.Visible = true;
+        }
+        if (SpeedLevel == 3)
+        {
+            SpeedIndicatorLvl2.Visible = true;
             SpeedIndicatorLvl3.Visible = true;
         }
     }
