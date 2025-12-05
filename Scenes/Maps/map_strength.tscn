@@ -31,16 +31,12 @@ scale = Vector2(3.08762, -0.380489)
 position = Vector2(-909, -1)
 Player = 1
 SpeedLevel = 3
-AttackLevel = 3
-DefenceLevel = 3
 
 [node name="RightPlayer" parent="." instance=ExtResource("2_wemi0")]
 position = Vector2(908, -1)
 rotation = 3.14159
 Player = 2
 SpeedLevel = 3
-AttackLevel = 3
-DefenceLevel = 3
 
 [node name="Control" parent="." instance=ExtResource("3_p2ae0")]
 offset_left = -986.0
