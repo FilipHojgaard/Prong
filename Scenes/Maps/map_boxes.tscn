@@ -1,0 +1,239 @@
+[gd_scene load_steps=10 format=3 uid="uid://6xgb5hy8rto"]
+
+[ext_resource type="Script" uid="uid://g888fnysph0e" path="res://Src/GenericMap.cs" id="1_evtmn"]
+[ext_resource type="PackedScene" uid="uid://bop2qoc87ujvq" path="res://Scenes/player.tscn" id="2_yc6no"]
+[ext_resource type="PackedScene" uid="uid://bs5mfhakhwn26" path="res://Scenes/ui_score.tscn" id="3_5attt"]
+[ext_resource type="AudioStream" uid="uid://bmlst0pdyanvk" path="res://Assets/Music/new maps/Pixel Love Adventures_2.mp3" id="4_evtmn"]
+[ext_resource type="PackedScene" uid="uid://csmbh7mgg8cgm" path="res://Scenes/PassBlockAttack.tscn" id="5_2qhkv"]
+[ext_resource type="PackedScene" uid="uid://bvciffyj0kaoh" path="res://Scenes/Block.tscn" id="5_yc6no"]
+[ext_resource type="PackedScene" uid="uid://cy0dclm6yrl13" path="res://Scenes/PassBlockSpeed.tscn" id="6_qhxfr"]
+[ext_resource type="PackedScene" uid="uid://5k68loeeld0a" path="res://Scenes/PassBlockDefence.tscn" id="7_uck0c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k233f"]
+bg_color = Color(0.235751, 0.413155, 0.291535, 1)
+
+[node name="map_fastAndFurious" type="Node2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_evtmn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k233f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.00501389
+scale = Vector2(3.08762, -0.380489)
+
+[node name="LeftPlayer" parent="." instance=ExtResource("2_yc6no")]
+position = Vector2(-909, -1)
+Player = 1
+
+[node name="RightPlayer" parent="." instance=ExtResource("2_yc6no")]
+position = Vector2(908, -1)
+rotation = 3.14159
+Player = 2
+
+[node name="Control" parent="." instance=ExtResource("3_5attt")]
+offset_left = -986.0
+offset_top = -500.0
+offset_right = -946.0
+offset_bottom = -460.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_evtmn")
+autoplay = true
+
+[node name="Block" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-400, -399)
+rotation = -1.57079
+
+[node name="Block2" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-450, -399)
+rotation = -1.57079
+
+[node name="Block3" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-500, -349)
+
+[node name="Block4" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-500, -299)
+
+[node name="Block5" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-450, -249)
+rotation = -1.57079
+
+[node name="Block6" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-400, -249)
+rotation = -1.57079
+
+[node name="Block7" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-350, -299)
+
+[node name="Block8" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-350, -349)
+
+[node name="Block9" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-400, 251)
+rotation = -1.57079
+
+[node name="Block10" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-450, 251)
+rotation = -1.57079
+
+[node name="Block11" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-500, 301)
+
+[node name="Block12" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-500, 351)
+
+[node name="Block13" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-450, 401)
+rotation = -1.57079
+
+[node name="Block14" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-400, 401)
+rotation = -1.57079
+
+[node name="Block15" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-350, 351)
+
+[node name="Block16" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-350, 301)
+
+[node name="Block17" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(400, -399)
+rotation = -1.57079
+
+[node name="Block18" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(350, -399)
+rotation = -1.57079
+
+[node name="Block19" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(300, -349)
+
+[node name="Block20" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(300, -299)
+
+[node name="Block21" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(350, -249)
+rotation = -1.57079
+
+[node name="Block22" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(400, -249)
+rotation = -1.57079
+
+[node name="Block23" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(450, -299)
+
+[node name="Block24" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(450, -349)
+
+[node name="Block25" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(400, 251)
+rotation = -1.57079
+
+[node name="Block26" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(350, 251)
+rotation = -1.57079
+
+[node name="Block27" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(300, 301)
+
+[node name="Block28" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(300, 351)
+
+[node name="Block29" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(350, 401)
+rotation = -1.57079
+
+[node name="Block30" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(400, 401)
+rotation = -1.57079
+
+[node name="Block31" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(450, 351)
+
+[node name="Block32" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(450, 301)
+
+[node name="PassBlockAttack" parent="." instance=ExtResource("5_2qhkv")]
+position = Vector2(-450, -349)
+
+[node name="PassBlockAttack2" parent="." instance=ExtResource("5_2qhkv")]
+position = Vector2(-400, -349)
+
+[node name="PassBlockAttack3" parent="." instance=ExtResource("5_2qhkv")]
+position = Vector2(-450, -299)
+
+[node name="PassBlockAttack4" parent="." instance=ExtResource("5_2qhkv")]
+position = Vector2(-400, -299)
+
+[node name="PassBlockSpeed" parent="." instance=ExtResource("6_qhxfr")]
+position = Vector2(350, -349)
+
+[node name="PassBlockSpeed2" parent="." instance=ExtResource("6_qhxfr")]
+position = Vector2(400, -349)
+
+[node name="PassBlockSpeed3" parent="." instance=ExtResource("6_qhxfr")]
+position = Vector2(350, -299)
+
+[node name="PassBlockSpeed4" parent="." instance=ExtResource("6_qhxfr")]
+position = Vector2(400, -299)
+
+[node name="PassBlockSpeed5" parent="." instance=ExtResource("6_qhxfr")]
+position = Vector2(-450, 301)
+
+[node name="PassBlockSpeed6" parent="." instance=ExtResource("6_qhxfr")]
+position = Vector2(-400, 301)
+
+[node name="PassBlockSpeed7" parent="." instance=ExtResource("6_qhxfr")]
+position = Vector2(-450, 351)
+
+[node name="PassBlockSpeed8" parent="." instance=ExtResource("6_qhxfr")]
+position = Vector2(-400, 351)
+
+[node name="PassBlockDefence" parent="." instance=ExtResource("7_uck0c")]
+position = Vector2(350, 301)
+
+[node name="PassBlockDefence2" parent="." instance=ExtResource("7_uck0c")]
+position = Vector2(400, 301)
+
+[node name="PassBlockDefence3" parent="." instance=ExtResource("7_uck0c")]
+position = Vector2(350, 351)
+
+[node name="PassBlockDefence4" parent="." instance=ExtResource("7_uck0c")]
+position = Vector2(400, 351)
+
+[node name="Block33" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(25, -75)
+rotation = -1.57079
+
+[node name="Block34" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-25, -75)
+rotation = -1.57079
+
+[node name="Block35" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-75, -25)
+
+[node name="Block36" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-75, 25)
+
+[node name="Block37" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(-25, 75)
+rotation = -1.57079
+
+[node name="Block38" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(25, 75)
+rotation = -1.57079
+
+[node name="Block39" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(75, 25)
+
+[node name="Block40" parent="." instance=ExtResource("5_yc6no")]
+position = Vector2(75, -25)

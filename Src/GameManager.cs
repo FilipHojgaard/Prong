@@ -55,6 +55,8 @@ public partial class GameManager : Node
             {7, "map_tunnels" },
             {8, "map_strength" },
             {9, "map_x" },
+            {10, "map_boxes" },
+            {11, "map_slowlife" },
         };
     }
 
