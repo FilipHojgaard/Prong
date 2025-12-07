@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7s7587jcbrcs"]
+[gd_scene load_steps=14 format=3 uid="uid://c7s7587jcbrcs"]
 
 [ext_resource type="Script" uid="uid://c7wh8fr3ii6t1" path="res://Src/MainMenu.cs" id="1_853f1"]
 [ext_resource type="FontFile" uid="uid://hvksett1fm88" path="res://Assets/Fonts/Pixel Digivolve.otf" id="1_tt5f1"]
 [ext_resource type="AudioStream" uid="uid://csilijwslg2wx" path="res://Assets/SFX/UI_hover_sfx.wav" id="3_8saeu"]
 [ext_resource type="AudioStream" uid="uid://cdh3ac6pbvt0p" path="res://Assets/SFX/UI_click_sfx.wav" id="4_ghw46"]
 [ext_resource type="AudioStream" uid="uid://bek6ipt8jy42i" path="res://Assets/Music/Pixel Paddle Anthem.mp3" id="5_df05h"]
+[ext_resource type="Texture2D" uid="uid://dsk5np0oy0elu" path="res://Assets/Sprites/sound_on.png" id="6_8um5k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_853f1"]
 bg_color = Color(0.41882, 0.183033, 0.311133, 1)
@@ -155,3 +156,7 @@ stream = ExtResource("5_df05h")
 volume_db = -0.325
 autoplay = true
 parameters/looping = true
+
+[node name="SoundOn" type="Sprite2D" parent="."]
+position = Vector2(109, 966)
+texture = ExtResource("6_8um5k")
