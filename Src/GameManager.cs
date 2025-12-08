@@ -19,6 +19,7 @@ public partial class GameManager : Node
     public static int RightPlayerOverallScorePrevious { get; set; } = 0;
     public static int LeftPlayerOverallScorePrevious { get; set; } = 0;
     public static bool LockNewRoundWinner { get; set; } = false;
+    public static bool MusicOn { get; set; } = true;
 
     public StateMachineEnum StateMachine { get; set; } = StateMachineEnum.Undefined;
     public bool InMainMenu { get; set; } = true;

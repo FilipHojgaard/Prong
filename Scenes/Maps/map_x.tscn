@@ -57,7 +57,6 @@ rotation = -0.785397
 [node name="Block2" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(-150, -149)
 rotation = -0.785397
-scale = Vector2(1, 1)
 
 [node name="Block3" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(-200, -199)
@@ -66,7 +65,6 @@ rotation = -0.785397
 [node name="Block4" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(-250, -249)
 rotation = -0.785397
-scale = Vector2(1, 1)
 
 [node name="Block5" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(-300, -299)
@@ -75,7 +73,6 @@ rotation = -0.785397
 [node name="Block6" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(-350, -349)
 rotation = -0.785397
-scale = Vector2(1, 1)
 
 [node name="Block7" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(-400, -399)
@@ -84,7 +81,6 @@ rotation = -0.785397
 [node name="Block8" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(-450, -449)
 rotation = -0.785397
-scale = Vector2(1, 1)
 
 [node name="Block9" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(450, 451)
@@ -93,7 +89,6 @@ rotation = -0.785397
 [node name="Block10" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(400, 401)
 rotation = -0.785397
-scale = Vector2(1, 1)
 
 [node name="Block11" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(350, 351)
@@ -102,7 +97,6 @@ rotation = -0.785397
 [node name="Block12" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(300, 301)
 rotation = -0.785397
-scale = Vector2(1, 1)
 
 [node name="Block13" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(250, 251)
@@ -111,7 +105,6 @@ rotation = -0.785397
 [node name="Block14" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(200, 201)
 rotation = -0.785397
-scale = Vector2(1, 1)
 
 [node name="Block15" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(150, 151)
@@ -120,7 +113,6 @@ rotation = -0.785397
 [node name="Block16" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(100, 101)
 rotation = -0.785397
-scale = Vector2(1, 1)
 
 [node name="Block17" parent="." instance=ExtResource("5_m63pe")]
 position = Vector2(100, -99)

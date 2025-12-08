@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://chdls4hptxh71"]
+
+[ext_resource type="Texture2D" uid="uid://b48rbj45mp0uo" path="res://Assets/Sprites/sound_off.png" id="1_hfdvy"]
+[ext_resource type="Script" uid="uid://ddso5b6hip5nc" path="res://Src/MusicButton.cs" id="1_phxew"]
+[ext_resource type="Texture2D" uid="uid://dsk5np0oy0elu" path="res://Assets/Sprites/sound_on.png" id="2_phxew"]
+
+[node name="MusicButton" type="TextureButton"]
+script = ExtResource("1_phxew")
+MusicOff = ExtResource("1_hfdvy")
+MusicOn = ExtResource("2_phxew")

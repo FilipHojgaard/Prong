@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://hwhnekya4gs1"]
+[gd_scene load_steps=12 format=3 uid="uid://hwhnekya4gs1"]
 
 [ext_resource type="FontFile" uid="uid://hvksett1fm88" path="res://Assets/Fonts/Pixel Digivolve.otf" id="1_lj4oq"]
 [ext_resource type="Script" uid="uid://0s6ddjk8m26r" path="res://Src/PauseMenu.cs" id="1_qwhev"]
 [ext_resource type="AudioStream" uid="uid://csilijwslg2wx" path="res://Assets/SFX/UI_hover_sfx.wav" id="3_5w4ur"]
+[ext_resource type="PackedScene" uid="uid://chdls4hptxh71" path="res://Scenes/music_button.tscn" id="4_ey1tb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_siy43"]
 bg_color = Color(0, 0, 0, 0.458824)
@@ -163,6 +164,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_lj4oq")
 theme_override_font_sizes/font_size = 50
+
+[node name="MusicButton" parent="CanvasLayer" instance=ExtResource("4_ey1tb")]
+offset_left = 940.0
+offset_top = 765.0
+offset_right = 940.0
+offset_bottom = 765.0
 
 [node name="HoverSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_5w4ur")

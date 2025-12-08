@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://csilijwslg2wx" path="res://Assets/SFX/UI_hover_sfx.wav" id="3_8saeu"]
 [ext_resource type="AudioStream" uid="uid://cdh3ac6pbvt0p" path="res://Assets/SFX/UI_click_sfx.wav" id="4_ghw46"]
 [ext_resource type="AudioStream" uid="uid://bek6ipt8jy42i" path="res://Assets/Music/Pixel Paddle Anthem.mp3" id="5_df05h"]
-[ext_resource type="Texture2D" uid="uid://dsk5np0oy0elu" path="res://Assets/Sprites/sound_on.png" id="6_8um5k"]
+[ext_resource type="PackedScene" uid="uid://chdls4hptxh71" path="res://Scenes/music_button.tscn" id="6_8um5k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_853f1"]
 bg_color = Color(0.41882, 0.183033, 0.311133, 1)
@@ -157,6 +157,9 @@ volume_db = -0.325
 autoplay = true
 parameters/looping = true
 
-[node name="SoundOn" type="Sprite2D" parent="."]
-position = Vector2(109, 966)
-texture = ExtResource("6_8um5k")
+[node name="MusicButton" parent="." instance=ExtResource("6_8um5k")]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 962.0
+offset_right = 64.0
+offset_bottom = 962.0
