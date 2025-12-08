@@ -11,6 +11,7 @@ public partial class MainMenu : Control
     Button ExitButton;
     AudioStreamPlayer HoverSfx;
     AudioStreamPlayer ClickSfx;
+    AudioStreamPlayer Music;
 
     public override void _Ready()
     {
@@ -29,6 +30,9 @@ public partial class MainMenu : Control
 
         HoverSfx = GetNode<AudioStreamPlayer>("HoverSfx");
         ClickSfx = GetNode<AudioStreamPlayer>("ClickSfx");
+        Music = GetNode<AudioStreamPlayer>("Music");
+        Music.Playing = GameManager.MusicOn;
+        // TODO: Add MusicEvent and a handler for MainMenu and GenericMap that then sets the Music.Playing to GameManager.MusicOn whenever the event occurs. 
 
         GameManager.Instance.SetStateMachine(StateMachineEnum.InMainMenu);
     }

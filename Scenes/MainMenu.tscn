@@ -151,7 +151,7 @@ stream = ExtResource("3_8saeu")
 [node name="ClickSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ghw46")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_df05h")
 volume_db = -0.325
 autoplay = true
