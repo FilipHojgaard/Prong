@@ -7,8 +7,13 @@ public partial class GenericMap : Node2D
 {
     public int BallCount { get; set; } = 0;
 
+    AudioStreamPlayer Music;
+
     public override void _Ready()
     {
+        Music = GetNode<AudioStreamPlayer>("Music");
+        Music.Playing = GameManager.MusicOn;
+
         GameManager.Instance.CalculateGoalPositions();
         GameManager.Instance.CalculateBorderPositions();
         GameManager.Instance.CalculateMapCenter();
@@ -23,6 +28,7 @@ public partial class GenericMap : Node2D
         GetNode<Eventbus>(ProngConstants.EventHubPath).Goal += HandleGoal;
         GetNode<Eventbus>(ProngConstants.EventHubPath).PassBlockBall += HandlePassBLockBall;
         GetNode<Eventbus>(ProngConstants.EventHubPath).RequestBall += HandleRequestBall;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).MusicSetting += HandleMusicSetting;
     }
 
     public override void _ExitTree()
@@ -30,6 +36,7 @@ public partial class GenericMap : Node2D
         GetNode<Eventbus>(ProngConstants.EventHubPath).Goal -= HandleGoal;
         GetNode<Eventbus>(ProngConstants.EventHubPath).PassBlockBall -= HandlePassBLockBall;
         GetNode<Eventbus>(ProngConstants.EventHubPath).RequestBall -= HandleRequestBall;
+        GetNode<Eventbus>(ProngConstants.EventHubPath).MusicSetting -= HandleMusicSetting;
     }
 
     public void SpawnHorizontalBorders()
@@ -128,6 +135,11 @@ public partial class GenericMap : Node2D
 
         await ToSignal(GetTree().CreateTimer(0.05), SceneTreeTimer.SignalName.Timeout);
         GetTree().CurrentScene.AddChild(ball);
+    }
+
+    private void HandleMusicSetting()
+    {
+        Music.Playing = GameManager.MusicOn;
     }
 
 }

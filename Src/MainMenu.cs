@@ -37,6 +37,16 @@ public partial class MainMenu : Control
         GameManager.Instance.SetStateMachine(StateMachineEnum.InMainMenu);
     }
 
+    public override void _EnterTree()
+    {
+        GetNode<Eventbus>(ProngConstants.EventHubPath).MusicSetting += HandleMusicSetting;
+    }
+
+    public override void _ExitTree()
+    {
+        GetNode<Eventbus>(ProngConstants.EventHubPath).MusicSetting -= HandleMusicSetting;
+    }
+
     private void OnButtonHovered()
     {
         HoverSfx.Play();
@@ -49,9 +59,13 @@ public partial class MainMenu : Control
         GameManager.Instance.StartGame();
     }
 
-    
     private void ExitGame()
     {
         GetTree().Quit();
+    }
+
+    private void HandleMusicSetting()
+    {
+        Music.Playing = GameManager.MusicOn;
     }
 }

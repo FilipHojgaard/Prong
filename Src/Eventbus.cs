@@ -29,4 +29,7 @@ public partial class Eventbus : Node
     [Signal]
     public delegate void EasterEggEventHandler();
 
+    [Signal]
+    public delegate void MusicSettingEventHandler();
+
 }

@@ -1,4 +1,5 @@
 using Godot;
+using Prong.Shared;
 
 namespace Prong.Src;
 
@@ -21,5 +22,8 @@ public partial class MusicButton : TextureButton
     {
         GameManager.MusicOn = !GameManager.MusicOn;
         TextureNormal = GameManager.MusicOn ? MusicOn : MusicOff;
+
+        var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath);
+        eventBus.EmitSignal(Eventbus.SignalName.MusicSetting);
     }
 }
