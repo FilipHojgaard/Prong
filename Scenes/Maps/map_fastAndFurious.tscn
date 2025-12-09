@@ -99,7 +99,7 @@ position = Vector2(-100, 301)
 [node name="PassBlockBall4" parent="." instance=ExtResource("5_2yyns")]
 position = Vector2(-250, 301)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 
 [node name="PixelLoveAdventures" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_oaiq3")

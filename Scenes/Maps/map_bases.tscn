@@ -125,6 +125,6 @@ position = Vector2(0, -449)
 [node name="PassBlockBall4" parent="." instance=ExtResource("5_fgqk6")]
 position = Vector2(0, -499)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_afnqb")
 autoplay = true

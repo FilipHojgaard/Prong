@@ -44,6 +44,6 @@ offset_top = -500.0
 offset_right = -946.0
 offset_bottom = -460.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_oenh0")
 autoplay = true
