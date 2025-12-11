@@ -137,74 +137,98 @@ position = Vector2(-400, 401)
 [node name="PassBlockBall28" parent="." instance=ExtResource("7_ffm4c")]
 position = Vector2(400, 401)
 
-[node name="Block7" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block7" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, -499)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block8" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block8" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, -399)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block9" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block9" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, -449)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block10" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block10" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, -349)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block11" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block11" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, -299)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block15" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block15" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, 201)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block16" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block16" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, 301)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block17" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block17" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, 351)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block18" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block18" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, 401)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block19" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block19" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, 451)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block20" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block20" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, 501)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block2" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block2" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(-950, -199)
+Owner = NodePath("../LeftPlayer")
 
-[node name="Block12" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block12" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, -499)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block13" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block13" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, -449)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block14" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block14" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, -399)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block21" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block21" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, -349)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block22" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block22" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, -299)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block23" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block23" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, -199)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block24" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block24" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, 501)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block25" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block25" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, 451)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block26" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block26" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, 401)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block27" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block27" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, 351)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block28" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block28" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, 301)
+Owner = NodePath("../RightPlayer")
 
-[node name="Block29" parent="." instance=ExtResource("3_bam8k")]
+[node name="Block29" parent="." node_paths=PackedStringArray("Owner") instance=ExtResource("3_bam8k")]
 position = Vector2(950, 201)
+Owner = NodePath("../RightPlayer")
