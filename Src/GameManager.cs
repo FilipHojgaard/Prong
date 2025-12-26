@@ -32,7 +32,7 @@ public partial class GameManager : Node
 
     private Dictionary<int, string> _maps { get; set; }
 
-    protected BoundedQueue<int?> _mapHistory { get; set; } = new BoundedQueue<int?>(5);
+    protected BoundedQueue<int?> _mapHistory { get; set; } = new BoundedQueue<int?>(MaxSize: 6);
 
     public bool Pause { get; set; } = false;
     public override void _Ready()
