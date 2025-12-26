@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Prong.Shared;
 
@@ -14,7 +15,7 @@ public class BoundedQueue<T>
 
     public void Enqueue(T item)
     {
-        if (_queue.Count > _maxSize)
+        if (_queue.Count >= _maxSize)
         {
             _queue.Dequeue();
         }
@@ -28,5 +29,14 @@ public class BoundedQueue<T>
     public int Count()
     {
         return _queue.Count;
+    }
+
+    public bool Contains(T x)
+    {
+        if (x == null)
+        {
+            return false;
+        }
+        return _queue.Contains(x);
     }
 }

@@ -32,7 +32,7 @@ public partial class GameManager : Node
 
     private Dictionary<int, string> _maps { get; set; }
 
-    private int? _mapHistory { get; set; } = null;
+    protected BoundedQueue<int?> _mapHistory { get; set; } = new BoundedQueue<int?>(5);
 
     public bool Pause { get; set; } = false;
     public override void _Ready()
@@ -188,18 +188,17 @@ public partial class GameManager : Node
 
     public async void StartGame()
     {
-        // TODO: Implement such that the same map can't be picked again.  
         InMainMenu = false;
         LeftPlayerScore = default;
         RightPlayerScore = default;
         Pause = false;
         GetTree().Paused = Pause;
         int? newMap = null;
-        while (newMap == _mapHistory || newMap is null)
+        while (_mapHistory.Contains(newMap) || newMap is null)
         {
             newMap = GD.RandRange(0, _maps.Count - 1);
         }
-        _mapHistory = (int)newMap;
+        _mapHistory.Enqueue(newMap);
         var mapName = _maps[(int)newMap];
         GetTree().ChangeSceneToFile($"res://Scenes/Maps/{mapName}.tscn");
 
@@ -210,17 +209,16 @@ public partial class GameManager : Node
     private async void PickRandomMap()
     {
         LockNewRoundWinner = false;
-        // TODO: Implement such that the same map can't be picked again.  
         LeftPlayerScore = default;
         RightPlayerScore = default;
         Pause = false;
         GetTree().Paused = Pause;
         int? newMap = null;
-        while (newMap == _mapHistory || newMap is null)
+        while (_mapHistory.Contains(newMap) || newMap is null)
         {
             newMap = GD.RandRange(0, _maps.Count - 1);
         }
-        _mapHistory = (int)newMap;
+        _mapHistory.Enqueue(newMap);
         var mapName = _maps[(int)newMap];
         GetTree().ChangeSceneToFile($"res://Scenes/Maps/{mapName}.tscn");
     }
