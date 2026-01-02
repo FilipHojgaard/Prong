@@ -1,0 +1,324 @@
+[gd_scene load_steps=15 format=3 uid="uid://b8vs0ppfn2xoe"]
+
+[ext_resource type="Script" uid="uid://c6nytpw3jqgxd" path="res://Src/HowToPlayMenu.cs" id="1_r8rx6"]
+[ext_resource type="Texture2D" uid="uid://cxo2uhokxjhgx" path="res://Assets/Sprites/keyboard_symbols.png" id="2_1l8uj"]
+[ext_resource type="FontFile" uid="uid://hvksett1fm88" path="res://Assets/Fonts/Pixel Digivolve.otf" id="3_yx4y8"]
+[ext_resource type="Texture2D" uid="uid://drl7anpqwspcc" path="res://Assets/Sprites/PassBlockAttack_v2.png" id="4_uktic"]
+[ext_resource type="Texture2D" uid="uid://7id2up38dtku" path="res://Assets/Sprites/PassBlockBallSpeed.png" id="5_t7rns"]
+[ext_resource type="Texture2D" uid="uid://vsxpbshglrn5" path="res://Assets/Sprites/PassBlockBall_v2.png" id="6_wpjo1"]
+[ext_resource type="Texture2D" uid="uid://du1tctg22xlnn" path="res://Assets/Sprites/PassBlockDefence_v2.png" id="7_adxoq"]
+[ext_resource type="Texture2D" uid="uid://bhj2cg44qhmw4" path="res://Assets/Sprites/PassBlockSpeed_v2.png" id="8_t15hf"]
+[ext_resource type="AudioStream" uid="uid://csilijwslg2wx" path="res://Assets/SFX/UI_hover_sfx.wav" id="9_t7rns"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44tho"]
+bg_color = Color(0.419608, 0.184314, 0.309804, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee5bx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrbug"]
+bg_color = Color(0.702448, 0.417627, 0.1917, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.180005, 0.180005, 0.180005, 0.6)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clut0"]
+bg_color = Color(0.572749, 0.333067, 0.140853, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.180005, 0.180005, 0.180005, 0.6)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xp127"]
+bg_color = Color(0.829872, 0.512886, 0.268471, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.180005, 0.180005, 0.180005, 0.6)
+shadow_size = 10
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r8rx6")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_44tho")
+metadata/_edit_use_anchors_ = true
+
+[node name="w" type="Sprite2D" parent="."]
+position = Vector2(725, 547)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1l8uj")
+region_enabled = true
+region_rect = Rect2(97, 66, 13, 12)
+
+[node name="a" type="Sprite2D" parent="."]
+position = Vector2(685, 584)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1l8uj")
+region_enabled = true
+region_rect = Rect2(1, 34, 13, 12)
+
+[node name="s" type="Sprite2D" parent="."]
+position = Vector2(725, 584)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1l8uj")
+region_enabled = true
+region_rect = Rect2(33, 66, 13, 12)
+
+[node name="d" type="Sprite2D" parent="."]
+position = Vector2(765, 584)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1l8uj")
+region_enabled = true
+region_rect = Rect2(49, 34, 13, 12)
+
+[node name="up" type="Sprite2D" parent="."]
+position = Vector2(1179.5, 548)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1l8uj")
+region_enabled = true
+region_rect = Rect2(1, 2, 13, 12)
+
+[node name="left" type="Sprite2D" parent="."]
+position = Vector2(1139.5, 585)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1l8uj")
+region_enabled = true
+region_rect = Rect2(33, 2, 13, 12)
+
+[node name="down" type="Sprite2D" parent="."]
+position = Vector2(1179.5, 585)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1l8uj")
+region_enabled = true
+region_rect = Rect2(17, 2, 13, 12)
+
+[node name="right" type="Sprite2D" parent="."]
+position = Vector2(1219.5, 585)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1l8uj")
+region_enabled = true
+region_rect = Rect2(49, 2, 13, 12)
+
+[node name="left_Fire" type="Label" parent="."]
+layout_mode = 0
+offset_left = 799.0
+offset_top = 573.0
+offset_right = 839.0
+offset_bottom = 595.333
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "Fire!"
+
+[node name="left_shield" type="Label" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 573.0
+offset_right = 657.0
+offset_bottom = 595.333
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "Shield"
+
+[node name="left_up" type="Label" parent="."]
+layout_mode = 0
+offset_left = 689.0
+offset_top = 500.0
+offset_right = 761.0
+offset_bottom = 522.333
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "MOve up"
+
+[node name="left_down" type="Label" parent="."]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 618.0
+offset_right = 775.0
+offset_bottom = 640.333
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "Move down"
+
+[node name="right_Fire" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1066.0
+offset_top = 573.0
+offset_right = 1106.0
+offset_bottom = 595.333
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "Fire!"
+
+[node name="right_shield" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1250.0
+offset_top = 573.0
+offset_right = 1307.0
+offset_bottom = 595.333
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "Shield"
+
+[node name="right_up" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1139.0
+offset_top = 500.0
+offset_right = 1211.0
+offset_bottom = 522.333
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "MOve up"
+
+[node name="right_down" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1129.0
+offset_top = 618.0
+offset_right = 1225.0
+offset_bottom = 640.333
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "Move down"
+
+[node name="back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -180.0
+offset_right = 106.0
+offset_bottom = -121.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_yx4y8")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ee5bx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrbug")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_clut0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xp127")
+text = "Back
+"
+
+[node name="description" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -414.5
+offset_top = -340.0
+offset_right = 414.5
+offset_bottom = -205.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_yx4y8")
+theme_override_font_sizes/font_size = 25
+text = "Score on your opponent while blocking incoming balls
+
+Place shields and fire fireballs to destroy your opponents shields
+
+Collect powerups to upgrade your fireballs, shields and movement speed
+
+To win a round, humiliate your opponents defences 7 times"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.312
+anchor_top = 0.648
+anchor_right = 0.677
+anchor_bottom = 0.787
+offset_left = 0.959961
+offset_top = 0.159973
+offset_right = 0.159912
+offset_bottom = 0.039917
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PassBlockAttackV2" type="Sprite2D" parent="Panel2"]
+position = Vector2(50, 50)
+texture = ExtResource("4_uktic")
+
+[node name="PassBlockBallSpeed" type="Sprite2D" parent="Panel2"]
+position = Vector2(200, 50)
+texture = ExtResource("5_t7rns")
+
+[node name="PassBlockBallV2" type="Sprite2D" parent="Panel2"]
+position = Vector2(500, 50)
+texture = ExtResource("6_wpjo1")
+
+[node name="PassBlockDefenceV2" type="Sprite2D" parent="Panel2"]
+position = Vector2(350, 50)
+texture = ExtResource("7_adxoq")
+
+[node name="PassBlockSpeedV2" type="Sprite2D" parent="Panel2"]
+position = Vector2(650, 50)
+texture = ExtResource("8_t15hf")
+
+[node name="powerup_fireball" type="Label" parent="Panel2"]
+offset_left = 12.0
+offset_top = 86.0
+offset_right = 87.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "fireball
+upgrade"
+horizontal_alignment = 1
+
+[node name="powerup_movement" type="Label" parent="Panel2"]
+offset_left = 160.0
+offset_top = 86.0
+offset_right = 235.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "movement
+upgrade"
+horizontal_alignment = 1
+
+[node name="powerup_shield" type="Label" parent="Panel2"]
+offset_left = 307.0
+offset_top = 86.0
+offset_right = 395.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "shield
+upgrade"
+horizontal_alignment = 1
+
+[node name="item_extraball" type="Label" parent="Panel2"]
+offset_left = 457.0
+offset_top = 86.0
+offset_right = 545.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "extra
+ball"
+horizontal_alignment = 1
+
+[node name="item_ballspeed" type="Label" parent="Panel2"]
+offset_left = 605.0
+offset_top = 86.0
+offset_right = 693.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "ball
+speedup"
+horizontal_alignment = 1
+
+[node name="hoversfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_t7rns")

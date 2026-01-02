@@ -88,7 +88,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_ghw46")
 theme_override_styles/normal = SubResource("StyleBoxFlat_df05h")
 text = "Play"
 
-[node name="About" type="Button" parent="VBoxContainer"]
+[node name="HowToPlay" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_tt5f1")
@@ -97,7 +97,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_8saeu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8saeu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ghw46")
 theme_override_styles/normal = SubResource("StyleBoxFlat_df05h")
-text = "About"
+text = "How to play"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
