@@ -7,22 +7,28 @@ public partial class MainMenu : Control
 {
 
     Button PlayButton;
-    Button AboutButton;
+    Button HowToPlayButton;
     Button ExitButton;
     AudioStreamPlayer HoverSfx;
     AudioStreamPlayer ClickSfx;
     AudioStreamPlayer Music;
 
+    private HowToPlayMenu _howToPlay;
+    private PackedScene _howToPlayScene;
+
     public override void _Ready()
     {
         ProcessMode = ProcessModeEnum.Always;
+
+        _howToPlayScene = GD.Load<PackedScene>("res://Scenes/HowToPlay.tscn");
 
         PlayButton = GetNode<Button>("VBoxContainer/Play");
         PlayButton.Pressed += PlayGame;
         PlayButton.MouseEntered += OnButtonHovered;
 
-        AboutButton = GetNode<Button>("VBoxContainer/About");
-        AboutButton.MouseEntered += OnButtonHovered;
+        HowToPlayButton = GetNode<Button>("VBoxContainer/HowToPlay");
+        HowToPlayButton.Pressed += HowToPlay;
+        HowToPlayButton.MouseEntered += OnButtonHovered;
 
         ExitButton = GetNode<Button>("VBoxContainer/Exit");
         ExitButton.Pressed += ExitGame;
@@ -57,6 +63,13 @@ public partial class MainMenu : Control
         ClickSfx.Play();
         GameManager.Instance.SetStateMachine(StateMachineEnum.Playing);
         GameManager.Instance.StartGame();
+    }
+
+    private void HowToPlay()
+    {
+        _howToPlay = _howToPlayScene.Instantiate<HowToPlayMenu>();
+        _howToPlay.ProcessMode = ProcessModeEnum.Always;
+        GetTree().Root.AddChild(_howToPlay);
     }
 
     private void ExitGame()
