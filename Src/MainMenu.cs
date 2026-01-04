@@ -38,7 +38,6 @@ public partial class MainMenu : Control
         ClickSfx = GetNode<AudioStreamPlayer>("ClickSfx");
         Music = GetNode<AudioStreamPlayer>("Music");
         Music.Playing = GameManager.MusicOn;
-        // TODO: Add MusicEvent and a handler for MainMenu and GenericMap that then sets the Music.Playing to GameManager.MusicOn whenever the event occurs. 
 
         GameManager.Instance.SetStateMachine(StateMachineEnum.InMainMenu);
     }

@@ -25,7 +25,7 @@ public partial class PassBlockSpeed : Area2D
             _hitSfx.Play();
 
             QueueFree();
-            var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath); // TODO:  Can I avoid getting a static reference somehow? 
+            var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath);
             if (ball.LastProngHit is null)
             {
                 return;

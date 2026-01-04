@@ -13,14 +13,18 @@ public partial class Fireball : RigidBody2D
 
     private AudioStreamPlayer _hitSfx;
 
-    // TODO: Implement diagonal here, and an Initialize method to set it. then in LinearVelocity under _Process, we can set the 0 to be the diaganal value or 0 dynamically for level 3 attack. 
+    public void Initialize(Prong owner, int speed, DiagonalTypeEnum diagonal = DiagonalTypeEnum.Straight)
+    {
+        Owner = owner;
+        Speed = speed;
+        Diagonal = diagonal;
+    }
 
     public override void _Ready()
     {
         _hitSfx = GetNode<AudioStreamPlayer>("HitSfx");
 
         GravityScale = 0;
-        //Mass = 0f; // TODO: This does not work. It seems to work when I don't set the Mass at all. Check out if we reallyl need it. 
         LockRotation = true;
 
         ContactMonitor = true;
@@ -51,13 +55,6 @@ public partial class Fireball : RigidBody2D
                 break;
         }
         LinearVelocity = new Vector2(Speed, 0).Rotated(yDirection);
-    }
-
-    public void Initialize(Prong owner, int speed, DiagonalTypeEnum diagonal = DiagonalTypeEnum.Straight)
-    {
-        Owner = owner;
-        Speed = speed;
-        Diagonal = diagonal;
     }
 
     public void FireLeft()
