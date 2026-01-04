@@ -18,8 +18,8 @@ public partial class PauseMenu : Control
         // Score
         LeftScore = GetNode<Label>("CanvasLayer/LeftScore");
         RightScore = GetNode<Label>("CanvasLayer/RightScore");
-        LeftScore.Text = GameManager.LeftPlayerOverallScore.ToString();
-        RightScore.Text = GameManager.RightPlayerOverallScore.ToString();
+        LeftScore.Text = GameManager.LeftPlayerScore.ToString();
+        RightScore.Text = GameManager.RightPlayerScore.ToString();
 
         // State Machine
         GameManager.Instance.SetStateMachine(Shared.StateMachineEnum.InPauseMenu);

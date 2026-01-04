@@ -46,8 +46,8 @@ public partial class RoundScoreUI : Control
         LeftPlayerScore.Text = "28";
         RightPlayerScore.Text = "10";
         await ToSignal(GetTree().CreateTimer(4.0), SceneTreeTimer.SignalName.Timeout);
-        LeftPlayerScore.Text = GameManager.LeftPlayerScore.ToString();
-        RightPlayerScore.Text = GameManager.RightPlayerScore.ToString();
+        LeftPlayerScore.Text = GameManager.LeftPlayerRoundScore.ToString();
+        RightPlayerScore.Text = GameManager.RightPlayerRoundScore.ToString();
         ShowEasterEgg = false;
     }
 }

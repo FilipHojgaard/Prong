@@ -26,10 +26,10 @@ public partial class ScoreOverview : Control
     {
         PlayerWonRound = playerWonRound;
 
-        _PrevLeftScore.Text = GameManager.LeftPlayerOverallScorePrevious.ToString();
-        _PrevRightScore.Text = GameManager.RightPlayerOverallScorePrevious.ToString();
-        _NewLeftScore.Text = GameManager.LeftPlayerOverallScore.ToString();
-        _NewtRightScore.Text = GameManager.RightPlayerOverallScore.ToString();
+        _PrevLeftScore.Text = GameManager.LeftPlayerScorePrevious.ToString();
+        _PrevRightScore.Text = GameManager.RightPlayerScorePrevious.ToString();
+        _NewLeftScore.Text = GameManager.LeftPlayerScore.ToString();
+        _NewtRightScore.Text = GameManager.RightPlayerScore.ToString();
     }
 
     public void AnimateScores()

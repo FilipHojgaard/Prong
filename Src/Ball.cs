@@ -76,7 +76,7 @@ public partial class Ball : RigidBody2D
 
     public void SetStartSpeed()
     {
-        if (GameManager.LeftPlayerScore + GameManager.RightPlayerScore >= 7)
+        if (GameManager.LeftPlayerRoundScore + GameManager.RightPlayerRoundScore >= 7)
         {
             Speed = 740;
         }

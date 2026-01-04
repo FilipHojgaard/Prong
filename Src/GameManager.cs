@@ -12,12 +12,12 @@ public partial class GameManager : Node
     public static float LeftGoalPosition { get; set; } = -1f;
     public static float RightGoalPosition { get; set; } = -1f;
     public static Vector2 MapCenter { get; set; } = new Vector2(0, 0);
+    public static int RightPlayerRoundScore { get; set; } = 0;
+    public static int LeftPlayerRoundScore { get; set; } = 0;
     public static int RightPlayerScore { get; set; } = 0;
     public static int LeftPlayerScore { get; set; } = 0;
-    public static int RightPlayerOverallScore { get; set; } = 0;
-    public static int LeftPlayerOverallScore { get; set; } = 0;
-    public static int RightPlayerOverallScorePrevious { get; set; } = 0;
-    public static int LeftPlayerOverallScorePrevious { get; set; } = 0;
+    public static int RightPlayerScorePrevious { get; set; } = 0;
+    public static int LeftPlayerScorePrevious { get; set; } = 0;
     public static bool LockNewRoundWinner { get; set; } = false;
     public static bool MusicOn { get; set; } = true;
 
@@ -126,8 +126,8 @@ public partial class GameManager : Node
     {
         if (Input.IsActionJustPressed("Reset") && StateMachine == StateMachineEnum.Playing)
         {
-            LeftPlayerScore = default;
-            RightPlayerScore = default;
+            LeftPlayerRoundScore = default;
+            RightPlayerRoundScore = default;
             Pause = false;
             GetTree().Paused = Pause;
             GetTree().ReloadCurrentScene();
@@ -177,20 +177,20 @@ public partial class GameManager : Node
     public void GoToMainMenu()
     {
         InMainMenu = true;
-        LeftPlayerScore = default;
+        LeftPlayerRoundScore = default;
+        RightPlayerRoundScore = default;
         RightPlayerScore = default;
-        RightPlayerOverallScore = default;
-        LeftPlayerOverallScore = default;
-        RightPlayerOverallScorePrevious = default;
-        LeftPlayerOverallScorePrevious = default;
+        LeftPlayerScore = default;
+        RightPlayerScorePrevious = default;
+        LeftPlayerScorePrevious = default;
         GetTree().ChangeSceneToFile($"res://Scenes/MainMenu.tscn");
     }
 
     public async void StartGame()
     {
         InMainMenu = false;
-        LeftPlayerScore = default;
-        RightPlayerScore = default;
+        LeftPlayerRoundScore = default;
+        RightPlayerRoundScore = default;
         Pause = false;
         GetTree().Paused = Pause;
         int? newMap = null;
@@ -209,8 +209,8 @@ public partial class GameManager : Node
     private async void PickRandomMap()
     {
         LockNewRoundWinner = false;
-        LeftPlayerScore = default;
-        RightPlayerScore = default;
+        LeftPlayerRoundScore = default;
+        RightPlayerRoundScore = default;
         Pause = false;
         GetTree().Paused = Pause;
         int? newMap = null;
@@ -227,26 +227,26 @@ public partial class GameManager : Node
     {
         if ((PlayerEnum)PlayerScored == PlayerEnum.LeftPlayer)
         {
-            LeftPlayerScore++;
+            LeftPlayerRoundScore++;
         }
         else
         {
-            RightPlayerScore++;
+            RightPlayerRoundScore++;
         }
         CheckForWinner();
 
         var eventBus = GetNode<Eventbus>(ProngConstants.EventHubPath);
-        eventBus.EmitSignal(Eventbus.SignalName.ScoresUpdated, LeftPlayerScore, RightPlayerScore);
+        eventBus.EmitSignal(Eventbus.SignalName.ScoresUpdated, LeftPlayerRoundScore, RightPlayerRoundScore);
 
     }
 
     public void CheckForWinner()
     {
-        if (LeftPlayerScore == 8)
+        if (LeftPlayerRoundScore == 8)
         {
             HandleRoundWin(PlayerEnum.LeftPlayer);
         }
-        if (RightPlayerScore == 8)
+        if (RightPlayerRoundScore == 8)
         {
             HandleRoundWin(PlayerEnum.RightPlayer);
         }
@@ -264,11 +264,11 @@ public partial class GameManager : Node
         // Increment overall score
         if (player == PlayerEnum.LeftPlayer)
         {
-            LeftPlayerOverallScore++;
+            LeftPlayerScore++;
         }
         else if (player == PlayerEnum.RightPlayer)
         {
-            RightPlayerOverallScore++;
+            RightPlayerScore++;
         }
     
         // Show score UI scene
@@ -288,8 +288,8 @@ public partial class GameManager : Node
         _scoreOverview.QueueFree();
 
         // Update previous overall score
-        LeftPlayerOverallScorePrevious = LeftPlayerOverallScore;
-        RightPlayerOverallScorePrevious = RightPlayerOverallScore;
+        LeftPlayerScorePrevious = LeftPlayerScore;
+        RightPlayerScorePrevious = RightPlayerScore;
 
         // Pick new map
         GameManager.Instance.SetStateMachine(Shared.StateMachineEnum.Playing);
