@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8vs0ppfn2xoe"]
+[gd_scene load_steps=16 format=3 uid="uid://b8vs0ppfn2xoe"]
 
 [ext_resource type="Script" uid="uid://c6nytpw3jqgxd" path="res://Src/HowToPlayMenu.cs" id="1_r8rx6"]
 [ext_resource type="Texture2D" uid="uid://cxo2uhokxjhgx" path="res://Assets/Sprites/keyboard_symbols.png" id="2_1l8uj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://du1tctg22xlnn" path="res://Assets/Sprites/PassBlockDefence_v2.png" id="7_adxoq"]
 [ext_resource type="Texture2D" uid="uid://bhj2cg44qhmw4" path="res://Assets/Sprites/PassBlockSpeed_v2.png" id="8_t15hf"]
 [ext_resource type="AudioStream" uid="uid://csilijwslg2wx" path="res://Assets/SFX/UI_hover_sfx.wav" id="9_t7rns"]
+[ext_resource type="Texture2D" uid="uid://cjicqg70vf6ov" path="res://Assets/Sprites/controller_button_3.png" id="10_wpjo1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44tho"]
 bg_color = Color(0.419608, 0.184314, 0.309804, 1)
@@ -327,3 +328,24 @@ horizontal_alignment = 1
 
 [node name="hoversfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_t7rns")
+
+[node name="right_shield2" type="Label" parent="."]
+offset_left = 1326.0
+offset_top = 756.5
+offset_right = 1383.0
+offset_bottom = 778.833
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "Shield"
+
+[node name="right_Fire2" type="Label" parent="."]
+offset_left = 1450.0
+offset_top = 842.5
+offset_right = 1490.0
+offset_bottom = 864.833
+theme_override_fonts/font = ExtResource("3_yx4y8")
+text = "Fire!"
+
+[node name="ControllerButton3" type="Sprite2D" parent="."]
+position = Vector2(1468, 765.5)
+scale = Vector2(0.31836, 0.31836)
+texture = ExtResource("10_wpjo1")
