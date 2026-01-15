@@ -31,6 +31,12 @@ public partial class Prong : StaticBody2D
 
     public Vector2 LastDefencePosition { get; set; } = new Vector2();
 
+    private Texture2D _spriteRedBlue;
+    private Texture2D _spriteBlueRed;
+    private Texture2D _spriteRed;
+    private Texture2D _spriteBlue;
+    private Texture2D _spriteDefault;
+
     [Export]
     public int SpeedLevel { get; set; } = 1;
 
@@ -97,8 +103,9 @@ public partial class Prong : StaticBody2D
         DefenceIndicatorLvl3 = GetNode<Sprite2D>("defence_3");
 
         SetupProperties();
-        SpriteUpdate();
         InitialLevelsIndicators();
+        PreloadSprites();
+        SpriteUpdate();
     }
 
     public override void _EnterTree()
@@ -113,6 +120,18 @@ public partial class Prong : StaticBody2D
         GetNode<Eventbus>(ProngConstants.EventHubPath).SpeedLevelUp -= EventIncreaseSpeed;
         GetNode<Eventbus>(ProngConstants.EventHubPath).AttackLevelUp -= EventIncreaseAttack;
         GetNode<Eventbus>(ProngConstants.EventHubPath).DefenceLevelUp -= EventIncreaseDefence;
+    }
+
+    private void PreloadSprites()
+    {
+        _spriteRedBlue = GD.Load<Texture2D>("res://Assets/Sprites/player_red_blue.png");
+        _spriteBlueRed = GD.Load<Texture2D>("res://Assets/Sprites/player_blue_red.png");
+        _spriteRed = GD.Load<Texture2D>("res://Assets/Sprites/player_red.png");
+        _spriteBlue = GD.Load<Texture2D>("res://Assets/Sprites/player_blue.png");
+        _spriteDefault = GD.Load<Texture2D>("res://Assets/Sprites/player.png");
+
+        SpeedIndicatorLvl2 = GetNode<Sprite2D>("speed_2");
+        SpeedIndicatorLvl3 = GetNode<Sprite2D>("speed_3");
     }
 
     private void SetupProperties()
@@ -303,23 +322,23 @@ public partial class Prong : StaticBody2D
         
         if (FireballReady && ShieldReady && Player == PlayerEnum.LeftPlayer)
         {
-            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/player_red_blue.png");
+            newTexture = _spriteRedBlue;
         }
         else if (FireballReady && ShieldReady && Player == PlayerEnum.RightPlayer)
         {
-            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/player_blue_red.png");
+            newTexture = _spriteBlueRed;
         }
         else if (FireballReady)
         {
-            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/player_red.png");
+            newTexture = _spriteRed;
         }
         else if (ShieldReady)
         {
-            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/player_blue.png");
+            newTexture = _spriteBlue;
         }
         else
         {
-            newTexture = GD.Load<Texture2D>("res://Assets/Sprites/player.png");
+            newTexture = _spriteDefault;
         }
 
         if (newTexture is not null)
