@@ -1,6 +1,4 @@
 using Godot;
-using Newtonsoft.Json.Bson;
-
 namespace Prong.Src;
 
 public partial class HowToPlayMenu : Control
@@ -15,12 +13,13 @@ public partial class HowToPlayMenu : Control
         backButton = GetNode<Button>("back");
         backButton.Pressed += Back;
         backButton.MouseEntered += OnMouseHover;
+        backButton.GrabFocus();
 
     }
 
     private void Back()
     {
-        this.QueueFree();
+        GetTree().ChangeSceneToFile($"res://Scenes/MainMenu.tscn");
     }
 
     private void OnMouseHover()

@@ -28,6 +28,7 @@ public partial class PauseMenu : Control
         Continue = GetNode<Button>("CanvasLayer/VBoxContainer/Continue");
         Continue.MouseEntered += OnButtonHovered;
         Continue.Pressed += ContinueHandler;
+        Continue.GrabFocus();
 
         Menu = GetNode<Button>("CanvasLayer/VBoxContainer/Menu");
         Menu.MouseEntered += OnButtonHovered;
@@ -52,6 +53,7 @@ public partial class PauseMenu : Control
     {
         GD.Print("back to menu...");
         GameManager.Instance.GoToMainMenu();
+        GameManager.Instance.TogglePause();
         QueueFree();
     }
 

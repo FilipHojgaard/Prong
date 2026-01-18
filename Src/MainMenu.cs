@@ -25,6 +25,7 @@ public partial class MainMenu : Control
         PlayButton = GetNode<Button>("VBoxContainer/Play");
         PlayButton.Pressed += PlayGame;
         PlayButton.MouseEntered += OnButtonHovered;
+        PlayButton.GrabFocus();
 
         HowToPlayButton = GetNode<Button>("VBoxContainer/HowToPlay");
         HowToPlayButton.Pressed += HowToPlay;
@@ -66,9 +67,7 @@ public partial class MainMenu : Control
 
     private void HowToPlay()
     {
-        _howToPlay = _howToPlayScene.Instantiate<HowToPlayMenu>();
-        _howToPlay.ProcessMode = ProcessModeEnum.Always;
-        GetTree().Root.AddChild(_howToPlay);
+        GetTree().ChangeSceneToFile($"res://Scenes/HowToPlay.tscn");
     }
 
     private void ExitGame()

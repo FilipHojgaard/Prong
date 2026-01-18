@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c7s7587jcbrcs"]
+[gd_scene load_steps=11 format=3 uid="uid://c7s7587jcbrcs"]
 
 [ext_resource type="Script" uid="uid://c7wh8fr3ii6t1" path="res://Src/MainMenu.cs" id="1_853f1"]
 [ext_resource type="FontFile" uid="uid://hvksett1fm88" path="res://Assets/Fonts/Pixel Digivolve.otf" id="1_tt5f1"]
@@ -9,8 +9,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_853f1"]
 bg_color = Color(0.41882, 0.183033, 0.311133, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_853f1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8saeu"]
 bg_color = Color(0.702448, 0.417627, 0.1917, 1)
@@ -38,10 +36,6 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 shadow_color = Color(0.180005, 0.180005, 0.180005, 0.6)
 shadow_size = 10
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8saeu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ghw46"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -82,7 +76,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_tt5f1")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/focus = SubResource("StyleBoxEmpty_853f1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_8saeu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8saeu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ghw46")
 theme_override_styles/normal = SubResource("StyleBoxFlat_df05h")
@@ -93,7 +87,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_tt5f1")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8saeu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_8saeu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8saeu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ghw46")
 theme_override_styles/normal = SubResource("StyleBoxFlat_df05h")
@@ -104,7 +98,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_tt5f1")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ghw46")
+theme_override_styles/focus = SubResource("StyleBoxFlat_8saeu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8saeu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ghw46")
 theme_override_styles/normal = SubResource("StyleBoxFlat_df05h")

@@ -14,7 +14,14 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44tho"]
 bg_color = Color(0.419608, 0.184314, 0.309804, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee5bx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpjo1"]
+bg_color = Color(0.702448, 0.417627, 0.1917, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.180005, 0.180005, 0.180005, 0.6)
+shadow_size = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrbug"]
 bg_color = Color(0.702448, 0.417627, 0.1917, 1)
@@ -43,7 +50,7 @@ corner_radius_bottom_left = 20
 shadow_color = Color(0.180005, 0.180005, 0.180005, 0.6)
 shadow_size = 10
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -206,7 +213,7 @@ grow_vertical = 0
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_yx4y8")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ee5bx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wpjo1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_lrbug")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_clut0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xp127")
@@ -330,6 +337,7 @@ horizontal_alignment = 1
 stream = ExtResource("9_t7rns")
 
 [node name="right_shield2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1326.0
 offset_top = 756.5
 offset_right = 1383.0
@@ -338,6 +346,7 @@ theme_override_fonts/font = ExtResource("3_yx4y8")
 text = "Shield"
 
 [node name="right_Fire2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1450.0
 offset_top = 842.5
 offset_right = 1490.0
