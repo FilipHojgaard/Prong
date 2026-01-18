@@ -124,11 +124,11 @@ public partial class Prong : StaticBody2D
 
     private void PreloadSprites()
     {
-        _spriteRedBlue = GD.Load<Texture2D>("res://Assets/Sprites/player_red_blue.png");
-        _spriteBlueRed = GD.Load<Texture2D>("res://Assets/Sprites/player_blue_red.png");
-        _spriteRed = GD.Load<Texture2D>("res://Assets/Sprites/player_red.png");
-        _spriteBlue = GD.Load<Texture2D>("res://Assets/Sprites/player_blue.png");
-        _spriteDefault = GD.Load<Texture2D>("res://Assets/Sprites/player.png");
+        _spriteRedBlue = GD.Load<Texture2D>("res://Assets/Sprites/Player_red_blue.png");
+        _spriteBlueRed = GD.Load<Texture2D>("res://Assets/Sprites/Player_blue_red.png");
+        _spriteRed = GD.Load<Texture2D>("res://Assets/Sprites/Player_red.png");
+        _spriteBlue = GD.Load<Texture2D>("res://Assets/Sprites/Player_blue.png");
+        _spriteDefault = GD.Load<Texture2D>("res://Assets/Sprites/Player.png");
 
         SpeedIndicatorLvl2 = GetNode<Sprite2D>("speed_2");
         SpeedIndicatorLvl3 = GetNode<Sprite2D>("speed_3");
